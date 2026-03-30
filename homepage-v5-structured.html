@@ -1,0 +1,2043 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>大禹安全 | 构建数字业务的保障体系</title>
+        <style>
+            :root {
+                --bg: #efe8dc;
+                --bg-soft: #f7f2e9;
+                --surface: #fcfaf5;
+                --surface-alt: #eef2ec;
+                --surface-warm: #f5ede1;
+                --ink: #17221f;
+                --muted: #62706b;
+                --line: rgba(23, 34, 31, 0.1);
+                --pine: #173630;
+                --pine-2: #21473f;
+                --moss: #63786f;
+                --sand: #d9c2a0;
+                --sand-deep: #ba8a52;
+                --signal: #bf6a3b;
+                --signal-soft: rgba(191, 106, 59, 0.1);
+                --shadow: 0 24px 72px rgba(37, 31, 22, 0.1);
+                --radius-xl: 34px;
+                --radius-lg: 24px;
+                --radius-md: 18px;
+                --max: 1680px;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                margin: 0;
+                color: var(--ink);
+                font-family:
+                    "Avenir Next", "PingFang SC", "Hiragino Sans GB",
+                    "Noto Sans SC", "Microsoft YaHei", sans-serif;
+                line-height: 1.6;
+                background:
+                    radial-gradient(
+                        circle at top left,
+                        rgba(33, 71, 63, 0.12),
+                        transparent 28%
+                    ),
+                    radial-gradient(
+                        circle at top right,
+                        rgba(191, 106, 59, 0.12),
+                        transparent 24%
+                    ),
+                    linear-gradient(
+                        180deg,
+                        #f7f3eb 0%,
+                        #efe8dc 44%,
+                        #ece4d7 100%
+                    );
+            }
+
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                background-image:
+                    linear-gradient(
+                        rgba(23, 34, 31, 0.02) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(23, 34, 31, 0.02) 1px,
+                        transparent 1px
+                    );
+                background-size: 34px 34px;
+                mask-image: linear-gradient(
+                    180deg,
+                    rgba(0, 0, 0, 0.18),
+                    transparent 78%
+                );
+            }
+
+            a {
+                color: inherit;
+                text-decoration: none;
+            }
+
+            h1,
+            h2,
+            h3,
+            p {
+                margin: 0;
+            }
+
+            .container {
+                width: min(calc(100% - 56px), var(--max));
+                margin: 0 auto;
+                position: relative;
+                z-index: 1;
+            }
+
+            .topbar {
+                position: sticky;
+                top: 16px;
+                z-index: 10;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 18px 0 16px;
+            }
+
+            .brand,
+            .nav {
+                display: inline-flex;
+                align-items: center;
+                gap: 14px;
+                padding: 12px 16px;
+                border-radius: 999px;
+                border: 1px solid rgba(255, 255, 255, 0.6);
+                background: rgba(252, 249, 244, 0.76);
+                box-shadow: 0 10px 28px rgba(39, 31, 22, 0.06);
+                backdrop-filter: blur(16px);
+            }
+
+            .brand {
+                font-weight: 700;
+            }
+
+            .brand-mark {
+                width: 12px;
+                height: 12px;
+                border-radius: 999px;
+                background: linear-gradient(
+                    135deg,
+                    var(--signal),
+                    var(--sand-deep)
+                );
+                box-shadow: 0 0 0 6px rgba(255, 250, 243, 0.92);
+            }
+
+            .nav {
+                gap: 22px;
+                font-size: 14px;
+                color: var(--muted);
+            }
+
+            .hero {
+                padding: 12px 0 26px;
+            }
+
+            .hero-shell {
+                position: relative;
+                overflow: hidden;
+                padding: 34px;
+                border-radius: 40px;
+                border: 1px solid rgba(255, 255, 255, 0.7);
+                background: linear-gradient(
+                    180deg,
+                    rgba(252, 249, 244, 0.97),
+                    rgba(246, 242, 234, 0.95)
+                );
+                box-shadow: var(--shadow);
+                color: var(--ink);
+            }
+
+            .hero-shell::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background:
+                    radial-gradient(
+                        circle at 12% 16%,
+                        rgba(33, 71, 63, 0.08),
+                        transparent 24%
+                    ),
+                    radial-gradient(
+                        circle at 88% 12%,
+                        rgba(186, 138, 82, 0.1),
+                        transparent 26%
+                    ),
+                    radial-gradient(
+                        circle at 74% 58%,
+                        rgba(255, 255, 255, 0.34),
+                        transparent 34%
+                    );
+                pointer-events: none;
+            }
+
+            .hero-shell::after {
+                content: "";
+                position: absolute;
+                right: 4%;
+                top: 8%;
+                width: 36%;
+                height: 84%;
+                border-radius: 999px;
+                background: radial-gradient(
+                    circle at center,
+                    rgba(255, 255, 255, 0.24),
+                    rgba(255, 255, 255, 0.02) 62%,
+                    transparent 72%
+                );
+                filter: blur(12px);
+                pointer-events: none;
+            }
+
+            .hero-grid {
+                position: relative;
+                z-index: 1;
+                display: grid;
+                grid-template-columns: 0.98fr 1.02fr;
+                gap: 12px;
+                align-items: stretch;
+            }
+
+            .hero-copy {
+                display: grid;
+                align-content: start;
+                gap: 24px;
+                padding: 26px 6px 18px;
+            }
+
+            .eyebrow {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                width: fit-content;
+                padding: 10px 16px;
+                border-radius: 999px;
+                border: 1px solid rgba(23, 54, 48, 0.1);
+                background: rgba(238, 242, 236, 0.88);
+                color: var(--moss);
+                font-size: 12px;
+                letter-spacing: 0.08em;
+            }
+
+            .eyebrow::before {
+                content: "";
+                width: 8px;
+                height: 8px;
+                border-radius: 999px;
+                background: var(--signal);
+            }
+
+            h1 {
+                max-width: 14ch;
+                font-size: clamp(42px, 4.6vw, 72px);
+                line-height: 1.02;
+                letter-spacing: -0.065em;
+                font-weight: 760;
+                color: var(--pine);
+                text-wrap: balance;
+            }
+
+            .hero-copy .lead {
+                max-width: 26ch;
+                color: var(--pine-2);
+                font-size: clamp(19px, 1.45vw, 24px);
+                line-height: 1.48;
+            }
+
+            .hero-copy .sub {
+                max-width: 32ch;
+                color: var(--muted);
+                font-size: 16px;
+                line-height: 1.72;
+            }
+
+            .formula-hero {
+                position: relative;
+                overflow: hidden;
+                display: grid;
+                gap: 8px;
+                margin-top: 8px;
+                width: fit-content;
+                max-width: 92%;
+                padding: 20px 22px;
+                border-radius: 24px;
+                border: 1px solid rgba(255, 255, 255, 0.68);
+                background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.88),
+                    rgba(242, 247, 244, 0.78)
+                );
+                box-shadow:
+                    0 12px 24px rgba(39, 31, 22, 0.05),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.54);
+                backdrop-filter: blur(8px);
+            }
+
+            .formula-hero::before {
+                content: "";
+                position: absolute;
+                inset: 0 0 auto 0;
+                height: 2px;
+                background: linear-gradient(
+                    90deg,
+                    rgba(33, 71, 63, 0.12),
+                    rgba(191, 106, 59, 0.24),
+                    rgba(255, 255, 255, 0)
+                );
+            }
+
+            .formula-hero::after {
+                content: "";
+                position: absolute;
+                right: -2%;
+                top: -12%;
+                width: 38%;
+                height: 140%;
+                background: radial-gradient(
+                    circle at center,
+                    rgba(191, 106, 59, 0.07),
+                    transparent 62%
+                );
+                filter: blur(18px);
+                pointer-events: none;
+            }
+
+            .formula-hero strong {
+                color: var(--pine-2);
+                font-size: 11px;
+                letter-spacing: 0.08em;
+            }
+
+            .formula-hero p {
+                font-size: clamp(18px, 1.45vw, 24px);
+                line-height: 1.22;
+                letter-spacing: -0.02em;
+                font-weight: 700;
+                color: var(--pine);
+            }
+
+            .hero-actions {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+                margin-top: 10px;
+            }
+
+            .button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 50px;
+                padding: 0 20px;
+                border-radius: 16px;
+                border: 1px solid rgba(23, 54, 48, 0.12);
+                font-size: 14px;
+                font-weight: 700;
+                transition: 160ms ease;
+            }
+
+            .button.primary {
+                background: linear-gradient(180deg, var(--pine-2), var(--pine));
+                color: #fff8f0;
+                box-shadow: 0 14px 28px rgba(11, 21, 19, 0.18);
+                border-color: rgba(23, 54, 48, 0.12);
+            }
+
+            .button.primary:hover {
+                transform: translateY(-1px);
+                filter: brightness(1.03);
+            }
+
+            .button.secondary {
+                background: rgba(255, 255, 255, 0.78);
+                color: var(--pine);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
+            }
+
+            .button.secondary:hover {
+                background: rgba(255, 255, 255, 0.92);
+            }
+
+            .hero-visual {
+                position: relative;
+                display: grid;
+                align-content: stretch;
+                min-height: 680px;
+                padding: 18px;
+                border-radius: 32px;
+                border: none;
+                background:
+                    radial-gradient(
+                        circle at 28% 24%,
+                        rgba(33, 71, 63, 0.04),
+                        transparent 26%
+                    ),
+                    radial-gradient(
+                        circle at 78% 76%,
+                        rgba(191, 106, 59, 0.06),
+                        transparent 30%
+                    ),
+                    linear-gradient(
+                        180deg,
+                        rgba(255, 255, 255, 0.06),
+                        rgba(255, 255, 255, 0.02)
+                    );
+            }
+
+            .hero-visual::before {
+                content: "";
+                position: absolute;
+                inset: 14px;
+                border-radius: 28px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                pointer-events: none;
+            }
+
+            .iso-scene {
+                position: absolute;
+                inset: 12px;
+                border-radius: 28px;
+                overflow: hidden;
+                background:
+                    radial-gradient(
+                        circle at 16% 18%,
+                        rgba(33, 71, 63, 0.04),
+                        transparent 24%
+                    ),
+                    radial-gradient(
+                        circle at 84% 78%,
+                        rgba(191, 106, 59, 0.08),
+                        transparent 26%
+                    ),
+                    radial-gradient(
+                        circle at 50% 46%,
+                        rgba(255, 255, 255, 0.2),
+                        transparent 42%
+                    );
+            }
+
+            .iso-scene svg {
+                transform: scale(1.18) translate(-4.8%, -1.2%);
+                transform-origin: center;
+            }
+
+            .iso-scene::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background-image:
+                    linear-gradient(
+                        rgba(23, 54, 48, 0.018) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        90deg,
+                        rgba(23, 54, 48, 0.018) 1px,
+                        transparent 1px
+                    );
+                background-size: 48px 48px;
+                mask-image: linear-gradient(
+                    180deg,
+                    rgba(0, 0, 0, 0.7),
+                    transparent 94%
+                );
+                opacity: 0.32;
+            }
+
+            .iso-scene::after {
+                content: "";
+                position: absolute;
+                inset: 2%;
+                border-radius: 30px;
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                pointer-events: none;
+            }
+
+            .iso-art {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .iso-shadow {
+                fill: url(#isoGlow);
+                opacity: 0.78;
+            }
+
+            .iso-assembly {
+                animation: isoDrift 10s ease-in-out infinite;
+                transform-origin: 50% 56%;
+            }
+
+            .iso-block {
+                filter: drop-shadow(0 20px 28px rgba(23, 54, 48, 0.1));
+            }
+
+            .iso-block .top,
+            .iso-block .left,
+            .iso-block .right {
+                stroke-linejoin: round;
+            }
+
+            .iso-block.core {
+                animation: coreLift 7s ease-in-out infinite;
+                transform-origin: 400px 344px;
+            }
+
+            .iso-block.core .top {
+                fill: url(#coreTop);
+                stroke: rgba(255, 255, 255, 0.58);
+                stroke-width: 1.5;
+            }
+
+            .iso-block.core .left {
+                fill: url(#coreLeft);
+                stroke: rgba(255, 255, 255, 0.16);
+                stroke-width: 1.2;
+            }
+
+            .iso-block.core .right {
+                fill: url(#coreRight);
+                stroke: rgba(255, 255, 255, 0.16);
+                stroke-width: 1.2;
+            }
+
+            .iso-block.pine .top {
+                fill: url(#pineTop);
+                stroke: rgba(255, 255, 255, 0.42);
+                stroke-width: 1.2;
+            }
+
+            .iso-block.pine .left {
+                fill: url(#pineLeft);
+                stroke: rgba(255, 255, 255, 0.12);
+                stroke-width: 1;
+            }
+
+            .iso-block.pine .right {
+                fill: url(#pineRight);
+                stroke: rgba(255, 255, 255, 0.12);
+                stroke-width: 1;
+            }
+
+            .iso-block.mist .top {
+                fill: url(#mistTop);
+                stroke: rgba(255, 255, 255, 0.48);
+                stroke-width: 1.2;
+            }
+
+            .iso-block.mist .left {
+                fill: url(#mistLeft);
+                stroke: rgba(255, 255, 255, 0.1);
+                stroke-width: 1;
+            }
+
+            .iso-block.mist .right {
+                fill: url(#mistRight);
+                stroke: rgba(255, 255, 255, 0.1);
+                stroke-width: 1;
+            }
+
+            .iso-block.sand .top {
+                fill: url(#sandTop);
+                stroke: rgba(255, 255, 255, 0.44);
+                stroke-width: 1.2;
+            }
+
+            .iso-block.sand .left {
+                fill: url(#sandLeft);
+                stroke: rgba(255, 255, 255, 0.1);
+                stroke-width: 1;
+            }
+
+            .iso-block.sand .right {
+                fill: url(#sandRight);
+                stroke: rgba(255, 255, 255, 0.1);
+                stroke-width: 1;
+            }
+
+            .iso-seam {
+                fill: none;
+                stroke: rgba(23, 54, 48, 0.24);
+                stroke-width: 1.25;
+                opacity: 0.78;
+            }
+
+            .iso-joint {
+                fill: none;
+                stroke: rgba(255, 255, 255, 0.42);
+                stroke-width: 1.4;
+                stroke-linejoin: round;
+                opacity: 0.9;
+            }
+
+            .iso-joint.shadow {
+                stroke: rgba(23, 54, 48, 0.16);
+                stroke-width: 1.8;
+                opacity: 0.7;
+            }
+
+            .iso-rib {
+                fill: none;
+                stroke: rgba(23, 54, 48, 0.18);
+                stroke-width: 1;
+                opacity: 0.58;
+            }
+
+            .section {
+                padding: 26px 0;
+            }
+
+            .section-box {
+                position: relative;
+                overflow: hidden;
+                padding: 34px;
+                border-radius: var(--radius-xl);
+                border: 1px solid rgba(255, 255, 255, 0.62);
+                background: rgba(252, 249, 244, 0.82);
+                box-shadow: var(--shadow);
+                backdrop-filter: blur(16px);
+            }
+
+            .section-box.alt {
+                background: linear-gradient(
+                    180deg,
+                    rgba(240, 244, 239, 0.9),
+                    rgba(252, 249, 244, 0.84)
+                );
+            }
+
+            .section-box.warm {
+                background: linear-gradient(
+                    180deg,
+                    rgba(246, 236, 225, 0.92),
+                    rgba(252, 249, 244, 0.84)
+                );
+            }
+
+            .section-box.dark {
+                color: #f7f1e8;
+                border-color: rgba(255, 255, 255, 0.1);
+                background: linear-gradient(
+                    180deg,
+                    rgba(23, 54, 48, 0.98),
+                    rgba(28, 63, 56, 0.96)
+                );
+            }
+
+            .section-box.dark::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background:
+                    radial-gradient(
+                        circle at top right,
+                        rgba(217, 194, 160, 0.1),
+                        transparent 28%
+                    ),
+                    linear-gradient(
+                        120deg,
+                        transparent 0 58%,
+                        rgba(255, 255, 255, 0.04) 58% 64%,
+                        transparent 64% 100%
+                    );
+                pointer-events: none;
+            }
+
+            .section-head {
+                position: relative;
+                z-index: 1;
+                display: grid;
+                grid-template-columns: 0.8fr 1.2fr;
+                gap: 28px;
+                align-items: start;
+                margin-bottom: 24px;
+            }
+
+            .section-kicker {
+                display: inline-block;
+                margin-bottom: 10px;
+                color: var(--pine-2);
+                font-size: 12px;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+
+            .section-box.dark .section-kicker {
+                color: #f1d6bc;
+            }
+
+            .section-head h2 {
+                font-size: clamp(32px, 3.5vw, 54px);
+                line-height: 1;
+                letter-spacing: -0.05em;
+            }
+
+            .section-head p {
+                max-width: 60ch;
+                color: var(--muted);
+            }
+
+            .section-box.dark .section-head p {
+                color: rgba(247, 241, 232, 0.76);
+            }
+
+            .system-layout,
+            .grid-4,
+            .grid-3,
+            .grid-2 {
+                display: grid;
+                gap: 18px;
+            }
+
+            .system-layout {
+                grid-template-columns: 0.86fr 1.14fr;
+                align-items: stretch;
+            }
+
+            .grid-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .system-aside {
+                display: grid;
+                gap: 18px;
+                align-content: start;
+            }
+
+            .system-formula {
+                padding: 26px;
+                border-radius: 26px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.62);
+            }
+
+            .system-formula strong {
+                display: inline-block;
+                margin-bottom: 10px;
+                color: var(--pine);
+                font-size: 12px;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+
+            .system-formula p {
+                font-size: clamp(24px, 2vw, 34px);
+                line-height: 1.16;
+                letter-spacing: -0.03em;
+                font-weight: 700;
+            }
+
+            .system-note {
+                padding: 22px 24px;
+                border-radius: 22px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.5);
+                color: var(--muted);
+            }
+
+            .system-map {
+                position: relative;
+                min-height: 620px;
+                padding: 28px;
+                border-radius: 30px;
+                border: 1px solid var(--line);
+                background:
+                    radial-gradient(
+                        circle at center,
+                        rgba(33, 71, 63, 0.08),
+                        transparent 42%
+                    ),
+                    linear-gradient(
+                        180deg,
+                        rgba(255, 255, 255, 0.76),
+                        rgba(255, 255, 255, 0.42)
+                    );
+                overflow: hidden;
+            }
+
+            .system-map::before,
+            .system-map::after {
+                content: "";
+                position: absolute;
+                border-radius: 999px;
+                border: 1px solid rgba(33, 71, 63, 0.1);
+            }
+
+            .system-map::before {
+                inset: 12% 18%;
+            }
+
+            .system-map::after {
+                inset: 22% 28%;
+                border-color: rgba(191, 106, 59, 0.1);
+            }
+
+            .system-chipline,
+            .system-base {
+                position: absolute;
+                left: 24px;
+                right: 24px;
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .system-chipline {
+                top: 22px;
+            }
+            .system-base {
+                bottom: 22px;
+            }
+
+            .system-chipline span,
+            .system-base span {
+                padding: 9px 12px;
+                border-radius: 999px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.84);
+                color: var(--muted);
+                font-size: 12px;
+                font-weight: 700;
+            }
+
+            .system-base .ai {
+                color: var(--signal);
+                border-color: rgba(191, 106, 59, 0.18);
+                background: rgba(255, 244, 238, 0.92);
+            }
+
+            .system-core {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 240px;
+                height: 240px;
+                border-radius: 999px;
+                background:
+                    radial-gradient(
+                        circle at 28% 28%,
+                        rgba(255, 255, 255, 0.18),
+                        transparent 22%
+                    ),
+                    linear-gradient(
+                        180deg,
+                        rgba(23, 54, 48, 0.96),
+                        rgba(32, 70, 61, 0.98)
+                    );
+                color: #f7f1e8;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 30px;
+                box-shadow:
+                    0 24px 52px rgba(17, 29, 26, 0.18),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+
+            .system-core strong {
+                display: block;
+                font-size: 38px;
+                line-height: 1;
+                letter-spacing: -0.04em;
+                margin-bottom: 10px;
+            }
+
+            .system-core span {
+                display: block;
+                font-size: 12px;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: rgba(247, 241, 232, 0.68);
+            }
+
+            .system-node {
+                position: absolute;
+                width: 210px;
+                padding: 18px 18px 16px;
+                border-radius: 22px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.84);
+                box-shadow: 0 12px 28px rgba(39, 31, 22, 0.06);
+            }
+
+            .system-node strong {
+                display: block;
+                margin-bottom: 6px;
+                font-size: 14px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--pine);
+            }
+
+            .system-node p {
+                font-size: 15px;
+                line-height: 1.35;
+            }
+
+            .system-node.asset {
+                left: 6%;
+                top: 22%;
+            }
+            .system-node.observe {
+                right: 6%;
+                top: 22%;
+            }
+            .system-node.ops {
+                left: 6%;
+                bottom: 18%;
+            }
+            .system-node.risk {
+                right: 6%;
+                bottom: 18%;
+            }
+
+            .system-node.observe strong,
+            .system-node.risk strong {
+                color: var(--signal);
+            }
+
+            .card {
+                position: relative;
+                padding: 24px;
+                border-radius: 24px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.56);
+                transition:
+                    transform 160ms ease,
+                    box-shadow 160ms ease,
+                    border-color 160ms ease;
+            }
+
+            .card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 16px 30px rgba(39, 31, 22, 0.06);
+                border-color: rgba(23, 54, 48, 0.16);
+            }
+
+            .section-box.dark .card {
+                background: rgba(255, 255, 255, 0.06);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .card h3 {
+                font-size: 22px;
+                line-height: 1.08;
+                letter-spacing: -0.03em;
+                margin-bottom: 10px;
+            }
+
+            .card p {
+                color: var(--muted);
+            }
+
+            .section-box.dark .card p,
+            .section-box.dark .card h3 {
+                color: inherit;
+            }
+
+            .number {
+                display: block;
+                margin-bottom: 12px;
+                font-size: 34px;
+                line-height: 1;
+                letter-spacing: -0.04em;
+                color: rgba(23, 54, 48, 0.22);
+                font-weight: 800;
+            }
+
+            .pain-grid {
+                display: grid;
+                grid-template-columns: 1.06fr 0.94fr;
+                gap: 18px;
+            }
+
+            .pain-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: grid;
+                gap: 14px;
+            }
+
+            .pain-list li {
+                position: relative;
+                padding: 18px 18px 18px 48px;
+                border-radius: 20px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.54);
+                font-size: 17px;
+            }
+
+            .pain-list li::before {
+                content: "";
+                position: absolute;
+                left: 18px;
+                top: 22px;
+                width: 12px;
+                height: 12px;
+                border-radius: 999px;
+                background: linear-gradient(135deg, var(--signal), var(--pine));
+            }
+
+            .insight {
+                padding: 26px;
+                border-radius: 24px;
+                border: 1px solid rgba(23, 54, 48, 0.14);
+                background: linear-gradient(
+                    180deg,
+                    rgba(23, 54, 48, 0.96),
+                    rgba(30, 68, 60, 0.94)
+                );
+                color: #f7f1e8;
+                box-shadow: 0 20px 36px rgba(17, 29, 26, 0.14);
+            }
+
+            .insight h3 {
+                font-size: 28px;
+                line-height: 1.06;
+                letter-spacing: -0.03em;
+                margin-bottom: 14px;
+            }
+
+            .insight p {
+                color: rgba(247, 241, 232, 0.78);
+            }
+
+            .insight-strip {
+                display: grid;
+                gap: 12px;
+                margin-top: 18px;
+            }
+
+            .insight-strip div {
+                padding: 14px 16px;
+                border-radius: 16px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                background: rgba(255, 255, 255, 0.06);
+            }
+
+            .insight-strip strong {
+                display: block;
+                margin-bottom: 6px;
+                font-size: 12px;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: #f1d6bc;
+            }
+
+            .asset-list,
+            .about-list {
+                list-style: none;
+                padding: 0;
+                margin: 14px 0 0;
+                display: grid;
+                gap: 12px;
+            }
+
+            .asset-list li,
+            .about-list li {
+                position: relative;
+                padding: 14px 14px 14px 42px;
+                border-radius: 16px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.48);
+            }
+
+            .asset-list li::before,
+            .about-list li::before {
+                content: "";
+                position: absolute;
+                left: 14px;
+                top: 18px;
+                width: 10px;
+                height: 10px;
+                border-radius: 999px;
+                background: linear-gradient(135deg, var(--pine), var(--signal));
+            }
+
+            .section-box.dark .asset-list li,
+            .section-box.dark .about-list li {
+                border-color: rgba(255, 255, 255, 0.12);
+                background: rgba(255, 255, 255, 0.06);
+                color: rgba(247, 241, 232, 0.9);
+            }
+
+            .scene-card {
+                min-height: 220px;
+                padding-top: 54px;
+                overflow: hidden;
+            }
+
+            .scene-card::before {
+                content: "";
+                position: absolute;
+                inset: 0 0 auto 0;
+                height: 8px;
+                background: linear-gradient(90deg, var(--pine), var(--signal));
+            }
+
+            .scene-card:nth-child(2)::before {
+                background: linear-gradient(90deg, var(--signal), #d28b60);
+            }
+
+            .scene-card:nth-child(3)::before {
+                background: linear-gradient(90deg, #284f46, #688077);
+            }
+
+            .footer {
+                padding: 24px 0 68px;
+            }
+
+            .footer-box {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 24px;
+                align-items: center;
+                padding: 32px 34px;
+                border-radius: 30px;
+                background: linear-gradient(
+                    135deg,
+                    rgba(23, 54, 48, 0.98),
+                    rgba(31, 71, 63, 0.96)
+                );
+                color: #f7f1e8;
+                box-shadow: var(--shadow);
+            }
+
+            .footer-box h2 {
+                font-size: clamp(28px, 3vw, 44px);
+                line-height: 1.02;
+                letter-spacing: -0.04em;
+                margin-bottom: 10px;
+            }
+
+            .footer-box p {
+                max-width: 44ch;
+                color: rgba(247, 241, 232, 0.78);
+            }
+
+            .footer-tag {
+                padding: 12px 16px;
+                border-radius: 14px;
+                border: 1px solid rgba(255, 255, 255, 0.14);
+                background: rgba(255, 255, 255, 0.08);
+                white-space: nowrap;
+                font-size: 13px;
+            }
+
+            .reveal {
+                opacity: 0;
+                transform: translateY(18px);
+                animation: rise 700ms ease forwards;
+            }
+
+            .delay-1 {
+                animation-delay: 100ms;
+            }
+            .delay-2 {
+                animation-delay: 200ms;
+            }
+            .delay-3 {
+                animation-delay: 300ms;
+            }
+
+            @keyframes rise {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes breathe {
+                0%,
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1.03);
+                    opacity: 0.92;
+                }
+            }
+
+            @keyframes isoDrift {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-8px);
+                }
+            }
+
+            @keyframes coreLift {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-5px);
+                }
+            }
+
+            @media (max-width: 1180px) {
+                .hero-grid,
+                .system-layout,
+                .pain-grid,
+                .section-head,
+                .grid-4,
+                .grid-3,
+                .grid-2,
+                .footer-box {
+                    grid-template-columns: 1fr;
+                }
+
+                .hero-copy {
+                    order: 1;
+                }
+
+                .hero-visual {
+                    min-height: 620px;
+                }
+            }
+
+            @media (max-width: 860px) {
+                .nav {
+                    display: none;
+                }
+
+                .topbar {
+                    position: static;
+                }
+
+                .container {
+                    width: min(calc(100% - 28px), 100%);
+                }
+
+                .hero-shell,
+                .section-box,
+                .footer-box {
+                    padding: 22px;
+                }
+
+                h1 {
+                    font-size: clamp(38px, 9vw, 54px);
+                    line-height: 1.08;
+                }
+
+                .formula-hero p,
+                .system-formula p {
+                    font-size: clamp(22px, 6vw, 30px);
+                }
+
+                .hero-copy .lead {
+                    font-size: clamp(20px, 5.2vw, 26px);
+                    line-height: 1.5;
+                }
+
+                .hero-copy .sub {
+                    font-size: 16px;
+                    line-height: 1.72;
+                }
+
+                .hero-visual {
+                    min-height: 540px;
+                }
+
+                .iso-scene {
+                    inset: 8px;
+                }
+
+                .iso-scene svg {
+                    transform: scale(1.01) translate(0.4%, 0);
+                }
+
+                .system-map {
+                    min-height: 760px;
+                    padding: 18px;
+                }
+
+                .system-core {
+                    width: 190px;
+                    height: 190px;
+                }
+
+                .system-core strong {
+                    font-size: 30px;
+                }
+
+                .system-node {
+                    width: 150px;
+                }
+
+                .system-node.asset {
+                    left: 4%;
+                    top: 24%;
+                }
+                .system-node.observe {
+                    right: 4%;
+                    top: 24%;
+                }
+                .system-node.ops {
+                    left: 4%;
+                    bottom: 24%;
+                }
+                .system-node.risk {
+                    right: 4%;
+                    bottom: 24%;
+                }
+            }
+
+            @media (max-width: 560px) {
+                h1 {
+                    font-size: clamp(34px, 11vw, 46px);
+                }
+
+                .hero-copy .lead,
+                .hero-copy .sub {
+                    max-width: none;
+                }
+
+                .formula-hero,
+                .system-formula {
+                    padding: 18px;
+                }
+
+                .hero-actions {
+                    display: grid;
+                }
+
+                .button {
+                    width: 100%;
+                }
+
+                .system-chipline,
+                .system-base {
+                    left: 14px;
+                    right: 14px;
+                }
+
+                .footer-box {
+                    padding: 24px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header class="topbar reveal">
+                <div class="brand">
+                    <span class="brand-mark" aria-hidden="true"></span>
+                    <span>大禹安全</span>
+                </div>
+                <nav class="nav">
+                    <a href="#system">保障体系</a>
+                    <a href="#pain">客户痛点</a>
+                    <a href="#open">开源技术驱动</a>
+                    <a href="#scenes">适用场景</a>
+                </nav>
+            </header>
+
+            <section class="hero" id="top">
+                <div class="hero-shell reveal delay-1">
+                    <div class="hero-grid">
+                        <div class="hero-copy">
+                            <span class="eyebrow">数字业务保障基础设施</span>
+                            <h1>为数字业务构建保障基础设施</h1>
+                            <p class="lead">构建数字业务的保障体系</p>
+                            <p class="sub">
+                                从业务保障目标切入，不从单项安全技术切入。围绕资产、运行观测、可靠运维与安全风险控制，形成能够长期演进的保障底座。
+                            </p>
+
+                            <div class="formula-hero">
+                                <strong>保障公式</strong>
+                                <p>
+                                    保障 = 资产 + 运行观测 + 可靠运维 +
+                                    安全风险控制
+                                </p>
+                            </div>
+
+                            <div class="hero-actions">
+                                <a class="button primary" href="#system"
+                                    >查看保障体系</a
+                                >
+                                <a class="button secondary" href="#about"
+                                    >了解大禹安全</a
+                                >
+                            </div>
+                        </div>
+
+                        <div
+                            class="hero-visual"
+                            aria-label="基础设施建设概念图"
+                        >
+                            <div class="iso-scene" aria-hidden="true">
+                                <svg
+                                    class="iso-art"
+                                    viewBox="0 0 800 620"
+                                    preserveAspectRatio="xMidYMid meet"
+                                >
+                                    <defs>
+                                        <radialGradient
+                                            id="isoGlow"
+                                            cx="50%"
+                                            cy="52%"
+                                            r="42%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#ffffff"
+                                                stop-opacity="0.92"
+                                            />
+                                            <stop
+                                                offset="44%"
+                                                stop-color="#c7976a"
+                                                stop-opacity="0.18"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#ffffff"
+                                                stop-opacity="0"
+                                            />
+                                        </radialGradient>
+                                        <linearGradient
+                                            id="coreTop"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="100%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#dd8b57"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#c46a3e"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="coreLeft"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="0%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#9c4d2c"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#7f3b20"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="coreRight"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="0%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#7f3b20"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#662d1a"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="pineTop"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="100%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#6d8079"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#51645e"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="pineLeft"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="0%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#42544f"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#31413c"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="pineRight"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="0%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#34453f"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#283530"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="mistTop"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="100%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#f4f3ee"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#dfe5e0"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="mistLeft"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="0%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#d4ddd7"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#bdc8c2"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="mistRight"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="0%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#c7d1cb"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#aebbb4"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="sandTop"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="100%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#e8d7c2"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#d2b796"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="sandLeft"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="0%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#c7a886"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#af8e6f"
+                                            />
+                                        </linearGradient>
+                                        <linearGradient
+                                            id="sandRight"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="0%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#b09072"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#97785b"
+                                            />
+                                        </linearGradient>
+                                    </defs>
+
+                                    <ellipse
+                                        class="iso-shadow"
+                                        cx="402"
+                                        cy="356"
+                                        rx="244"
+                                        ry="164"
+                                    ></ellipse>
+
+                                    <g class="iso-assembly">
+                                        <g class="iso-block mist">
+                                            <polygon
+                                                class="top"
+                                                points="322,202 400,158 478,202 400,246"
+                                            ></polygon>
+                                            <polygon
+                                                class="left"
+                                                points="322,202 400,246 400,336 322,292"
+                                            ></polygon>
+                                            <polygon
+                                                class="right"
+                                                points="400,246 478,202 478,292 400,336"
+                                            ></polygon>
+                                        </g>
+
+                                        <g class="iso-block pine">
+                                            <polygon
+                                                class="top"
+                                                points="242,250 320,206 398,250 320,294"
+                                            ></polygon>
+                                            <polygon
+                                                class="left"
+                                                points="242,250 320,294 320,384 242,340"
+                                            ></polygon>
+                                            <polygon
+                                                class="right"
+                                                points="320,294 398,250 398,340 320,384"
+                                            ></polygon>
+                                        </g>
+
+                                        <g class="iso-block pine">
+                                            <polygon
+                                                class="top"
+                                                points="402,250 480,206 558,250 480,294"
+                                            ></polygon>
+                                            <polygon
+                                                class="left"
+                                                points="402,250 480,294 480,384 402,340"
+                                            ></polygon>
+                                            <polygon
+                                                class="right"
+                                                points="480,294 558,250 558,340 480,384"
+                                            ></polygon>
+                                        </g>
+
+                                        <g class="iso-block sand">
+                                            <polygon
+                                                class="top"
+                                                points="286,360 400,294 514,360 400,426"
+                                            ></polygon>
+                                            <polygon
+                                                class="left"
+                                                points="286,360 400,426 400,504 286,438"
+                                            ></polygon>
+                                            <polygon
+                                                class="right"
+                                                points="400,426 514,360 514,438 400,504"
+                                            ></polygon>
+                                        </g>
+
+                                        <g class="iso-block mist">
+                                            <polygon
+                                                class="top"
+                                                points="482,346 560,302 638,346 560,390"
+                                            ></polygon>
+                                            <polygon
+                                                class="left"
+                                                points="482,346 560,390 560,454 482,410"
+                                            ></polygon>
+                                            <polygon
+                                                class="right"
+                                                points="560,390 638,346 638,410 560,454"
+                                            ></polygon>
+                                        </g>
+
+                                        <g class="iso-block core">
+                                            <polygon
+                                                class="top"
+                                                points="322,266 400,222 478,266 400,310"
+                                            ></polygon>
+                                            <polygon
+                                                class="left"
+                                                points="322,266 400,310 400,420 322,376"
+                                            ></polygon>
+                                            <polygon
+                                                class="right"
+                                                points="400,310 478,266 478,376 400,420"
+                                            ></polygon>
+                                        </g>
+
+                                        <polyline
+                                            class="iso-seam"
+                                            points="320,294 400,246 480,294"
+                                        ></polyline>
+                                        <polyline
+                                            class="iso-seam"
+                                            points="286,360 400,294 514,360"
+                                        ></polyline>
+                                        <line
+                                            class="iso-seam"
+                                            x1="400"
+                                            y1="246"
+                                            x2="400"
+                                            y2="222"
+                                        ></line>
+                                        <line
+                                            class="iso-seam"
+                                            x1="400"
+                                            y1="440"
+                                            x2="400"
+                                            y2="484"
+                                        ></line>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="system">
+                <div class="section-box alt reveal delay-1">
+                    <div class="section-head">
+                        <div>
+                            <span class="section-kicker">Assurance System</span>
+                            <h2>保障体系</h2>
+                        </div>
+                        <p>
+                            保障不是抽象口号，而是可以被建设、被治理、被持续演进的四个基础部分。这是整套方法的起点，也是后续技术、产品和交付的共同结构。
+                        </p>
+                    </div>
+
+                    <div class="system-layout">
+                        <div class="system-aside">
+                            <div class="system-formula">
+                                <strong>Original Formula</strong>
+                                <p>
+                                    保障 = 资产 + 运行观测 + 可靠运维 +
+                                    安全风险控制
+                                </p>
+                            </div>
+                            <div class="system-note">
+                                我们不是把四套孤立系统并排交给客户，而是用统一的规则、模型、工具链和开源底座，把资产、观测、运维与风险控制组织成一套长期有效的保障能力。
+                            </div>
+                        </div>
+
+                        <div
+                            class="system-map"
+                            aria-label="数字业务保障体系图示"
+                        >
+                            <div class="system-chipline">
+                                <span>业务稳定</span>
+                                <span>可观测</span>
+                                <span>可运营</span>
+                                <span>可控</span>
+                            </div>
+
+                            <div class="system-node asset">
+                                <strong>Asset</strong>
+                                <p>业务对象、系统组件、数据链路长期清楚</p>
+                            </div>
+                            <div class="system-node observe">
+                                <strong>Observation</strong>
+                                <p>运行状态、链路变化、异常征兆持续可见</p>
+                            </div>
+                            <div class="system-core">
+                                <div>
+                                    <strong>数字业务<br />保障体系</strong>
+                                    <span>Assurance Core</span>
+                                </div>
+                            </div>
+                            <div class="system-node ops">
+                                <strong>Operations</strong>
+                                <p>部署、变更、运行、恢复机制可靠执行</p>
+                            </div>
+                            <div class="system-node risk">
+                                <strong>Risk Control</strong>
+                                <p>风险识别、约束、处置与持续治理联动</p>
+                            </div>
+
+                            <div class="system-base">
+                                <span>规则</span>
+                                <span>模型</span>
+                                <span>工具链</span>
+                                <span class="ai">AI 协同</span>
+                                <span>开源底座</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="pain">
+                <div class="section-box warm reveal delay-2">
+                    <div class="section-head">
+                        <div>
+                            <span class="section-kicker"
+                                >Customer Pain Points</span
+                            >
+                            <h2>客户常见痛点</h2>
+                        </div>
+                        <p>
+                            很多客户真正面对的不是某一项安全功能没有上线，而是资产、观测、运维和风险控制长期分散建设，系统越来越多，业务却没有因此变得更稳定、更清楚、更可控。
+                        </p>
+                    </div>
+
+                    <div class="pain-grid">
+                        <ul class="pain-list">
+                            <li>资产长期理不清楚</li>
+                            <li>资源与业务量脱节</li>
+                            <li>运行观测缺失</li>
+                            <li>运维、安全、观测多系统建设分割</li>
+                            <li>安全处置方式极端且粗暴</li>
+                        </ul>
+
+                        <div class="insight">
+                            <h3>问题不是系统不够多，而是体系没有真正建立。</h3>
+                            <p>
+                                如果资产不清、观测不足、运维割裂、风险处置粗暴同时存在，客户就很难形成持续有效的数字业务保障能力。
+                            </p>
+                            <div class="insight-strip">
+                                <div>
+                                    <strong>不是在做什么</strong>
+                                    <p>继续叠加更多分散系统和更多割裂工具。</p>
+                                </div>
+                                <div>
+                                    <strong>而是在做什么</strong>
+                                    <p>
+                                        从业务保障目标出发，重组资产、观测、运维与安全控制。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="difference">
+                <div class="section-box dark reveal delay-1">
+                    <div class="section-head">
+                        <div>
+                            <span class="section-kicker">Why Different</span>
+                            <h2>为什么与其它安全公司不同</h2>
+                        </div>
+                        <p>
+                            大禹安全不是从单项安全技术定义问题，而是从业务保障目标定义问题；不是从孤立产品能力组织建设，而是从整体保障体系组织建设。
+                        </p>
+                    </div>
+
+                    <div class="grid-3">
+                        <article class="card">
+                            <span class="number">01</span>
+                            <h3>从业务目标定义问题</h3>
+                            <p>
+                                不是先定义卖什么安全产品，而是先回答客户业务如何被稳定支撑和持续保障。
+                            </p>
+                        </article>
+                        <article class="card">
+                            <span class="number">02</span>
+                            <h3>从整体体系组织建设</h3>
+                            <p>
+                                不是把资产、观测、运维和安全各自拆开建设，而是放到同一个保障体系里协同推进。
+                            </p>
+                        </article>
+                        <article class="card">
+                            <span class="number">03</span>
+                            <h3>从长期工程能力持续演进</h3>
+                            <p>
+                                不是从短期项目执行出发，而是从基础设施建设和长期工程建设出发。
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="open">
+                <div class="section-box alt reveal delay-2">
+                    <div class="section-head">
+                        <div>
+                            <span class="section-kicker"
+                                >Open Technology Strategy</span
+                            >
+                            <h2>开源技术驱动</h2>
+                        </div>
+                        <p>
+                            大禹安全坚持开源、可审计、可复核、可持续演进的技术路线。真正进入关键业务、承担保障底座职责的基础能力，必须透明、可控、可审计、可继承。
+                        </p>
+                    </div>
+
+                    <div class="grid-2">
+                        <article class="card">
+                            <h3>核心技术资产</h3>
+                            <ul class="asset-list">
+                                <li>
+                                    瞬析（WarpParse）：复杂日志与实时事件处理引擎
+                                </li>
+                                <li>WarpFusion：实时计算与事件处理引擎</li>
+                                <li>
+                                    WPL / OML /
+                                    工具链：规则、模型、验证、调试与恢复能力体系
+                                </li>
+                            </ul>
+                        </article>
+                        <article class="card">
+                            <h3>开源的价值</h3>
+                            <ul class="asset-list">
+                                <li>让核心能力更可信</li>
+                                <li>让规则与模型更可控</li>
+                                <li>让工程资产更易沉淀</li>
+                                <li>让项目成果更容易沉淀为通用底座</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="scenes">
+                <div class="section-box warm reveal delay-1">
+                    <div class="section-head">
+                        <div>
+                            <span class="section-kicker">Use Cases</span>
+                            <h2>适用场景</h2>
+                        </div>
+                        <p>
+                            不是围绕单点产品寻找用例，而是围绕数字业务保障体系进入复杂场景。场景不是附加项，而是这套体系真正落地的地方。
+                        </p>
+                    </div>
+
+                    <div class="grid-3">
+                        <article class="card scene-card">
+                            <h3>城市级安全运营中心</h3>
+                            <p>
+                                统一接入多类安全设备、云平台和业务系统数据，建设稳定可运营的保障底座。
+                            </p>
+                        </article>
+                        <article class="card scene-card">
+                            <h3>行业安全平台与托管运营</h3>
+                            <p>
+                                支撑多租户、多来源、多规则体系的数据治理与持续运营。
+                            </p>
+                        </article>
+                        <article class="card scene-card">
+                            <h3>数字平台实时监测与审计</h3>
+                            <p>支撑实时观测、审计留痕、异常检测和风控分析。</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="about">
+                <div class="section-box reveal delay-2">
+                    <div class="section-head">
+                        <div>
+                            <span class="section-kicker"
+                                >About Dayu Security</span
+                            >
+                            <h2>关于我们</h2>
+                        </div>
+                        <p>
+                            大禹安全（长沙）信息科技有限责任公司成立于 2025 年 4
+                            月，是一家由开源技术驱动的数字业务保障基础设施建设公司。
+                        </p>
+                    </div>
+
+                    <div class="grid-2">
+                        <article class="card">
+                            <h3>团队背景</h3>
+                            <ul class="about-list">
+                                <li>
+                                    核心团队来自奇安信大禹平台，长期参与安全能力平台与大型安全运营体系建设
+                                </li>
+                                <li>
+                                    在安全行业、复杂数据链路和运营体系建设方面具有长期研发与工程实践经验
+                                </li>
+                            </ul>
+                        </article>
+                        <article class="card">
+                            <h3>长期方向</h3>
+                            <ul class="about-list">
+                                <li>
+                                    通过真实项目进入复杂场景，在交付中持续沉淀规则、模型、工具链和基础设施能力
+                                </li>
+                                <li>项目是进入方式，底座建设才是长期方向</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <div class="footer-box reveal delay-1">
+                    <div>
+                        <h2>
+                            如果你正在建设安全运营平台、日志治理体系或实时监测分析链路
+                        </h2>
+                        <p>
+                            欢迎与我们交流，用开源路线构建更可控、更清晰、更能长期演进的数字业务保障体系。
+                        </p>
+                    </div>
+                    <div class="footer-tag">Contact / Collaboration</div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
