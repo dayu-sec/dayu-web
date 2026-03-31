@@ -1156,20 +1156,20 @@
             }
 
             .footer {
-                padding: 8px 0 56px;
+                padding: 8px 0 44px;
             }
 
             .footer-box {
                 display: grid;
                 gap: 10px;
-                padding: 24px 0 0;
+                padding: 18px 0 0;
                 border-top: 1px solid var(--line);
                 color: var(--ink);
             }
 
             .footer-copy {
                 display: grid;
-                gap: 8px;
+                gap: 6px;
             }
 
             .footer-label {
@@ -1180,15 +1180,17 @@
                 color: var(--signal);
             }
 
-            .footer-box h2 {
-                max-width: 20ch;
-                font-size: clamp(22px, 2.2vw, 32px);
-                line-height: 1.12;
-                letter-spacing: -0.03em;
+            .footer-title {
+                max-width: 32ch;
+                font-size: clamp(16px, 1.35vw, 20px);
+                font-weight: 600;
+                line-height: 1.5;
             }
 
             .footer-box p {
-                max-width: 52ch;
+                max-width: 60ch;
+                font-size: 15px;
+                line-height: 1.8;
                 color: var(--muted);
             }
 
@@ -1291,7 +1293,7 @@
 
                 .hero-shell,
                 .footer-box {
-                    padding: 20px 0 0;
+                    padding: 18px 0 0;
                 }
 
                 .section-box {
@@ -1396,7 +1398,7 @@
                 }
 
                 .footer-box {
-                    padding: 20px 0 0;
+                    padding: 18px 0 0;
                 }
             }
         </style>
@@ -1458,9 +1460,9 @@
                 <div class="footer-box reveal delay-1">
                     <div class="footer-copy">
                         <div class="footer-label">联系与交流</div>
-                        <h2>
+                        <div class="footer-title">
                             如果你正在建设安全运营平台、日志治理体系或实时监测分析链路
-                        </h2>
+                        </div>
                         <p>
                             欢迎与我们交流，以开源路线构建更可控、更清晰、更能长期演进的数字业务保障能力。
                         </p>
