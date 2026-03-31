@@ -1404,15 +1404,17 @@
     <body>
         <div class="container">
             <header class="topbar reveal">
-                <div class="brand">
+                <a class="brand" href="index.html">
                     <span class="brand-mark" aria-hidden="true"></span>
                     <span>大禹安全</span>
-                </div>
+                </a>
                 <nav class="nav">
-                    <a href="#pain">客户痛点</a>
-                    <a href="#system">保障体系</a>
-                    <a href="#open">开源技术驱动</a>
-                    <a href="#scenes">适用场景</a>
+                    <a href="index.html">首页</a>
+                    <a href="index.html#pain">客户痛点</a>
+                    <a href="index.html#system">保障体系</a>
+                    <a href="opensource.html">开源技术</a>
+                    <a href="case.html">适用场景</a>
+                    <a href="aboutus.html">关于我们</a>
                 </nav>
             </header>
 
@@ -1436,10 +1438,10 @@
                             </div>
 
                             <div class="hero-actions">
-                                <a class="button primary" href="#pain"
+                                <a class="button primary" href="index.html#pain"
                                     >查看客户痛点</a
                                 >
-                                <a class="button secondary" href="#about"
+                                <a class="button secondary" href="aboutus.html"
                                     >了解大禹安全</a
                                 >
                             </div>
@@ -1808,9 +1810,7 @@
                             <span class="section-kicker">问题导入</span>
                             <h2>业务越增长，系统越脆弱</h2>
                         </div>
-                        <p>
-                            增长一旦持续，支撑体系里的断点就会被不断放大。
-                        </p>
+                        <p>增长一旦持续，支撑体系里的断点就会被不断放大。</p>
                     </div>
 
                     <div class="pain-grid">
@@ -1824,12 +1824,8 @@
                         </ul>
 
                         <div class="insight">
-                            <h3>
-                                支撑体系跟不上时，复杂性越高，系统越脆弱。
-                            </h3>
-                            <p>
-                                单维产品越堆越多，成本越高，根因仍难解决。
-                            </p>
+                            <h3>支撑体系跟不上时，复杂性越高，系统越脆弱。</h3>
+                            <p>单维产品越堆越多，成本越高，根因仍难解决。</p>
                         </div>
                     </div>
                 </div>
@@ -1840,7 +1836,7 @@
                     <div class="section-head">
                         <div>
                             <span class="section-kicker">根因与方案</span>
-                            <h2>围绕业务目标建设</h2>
+                            <h2>构建业务保障体系</h2>
                         </div>
                     </div>
 
@@ -1855,7 +1851,9 @@
                                     </div>
                                     <div>
                                         <span>依赖混乱</span>
-                                        <p>关键链路和上下游关系缺少统一认知。</p>
+                                        <p>
+                                            关键链路和上下游关系缺少统一认知。
+                                        </p>
                                     </div>
                                     <div>
                                         <span>状态不可见</span>
@@ -1918,44 +1916,6 @@
                 </div>
             </section>
 
-            <section class="section" id="difference">
-                <div class="section-box dark reveal delay-1">
-                    <div class="section-head">
-                        <div>
-                            <span class="section-kicker">Why Different</span>
-                            <h2>为什么与其它安全公司不同</h2>
-                        </div>
-                        <p>
-                            大禹安全不是从单项安全技术定义问题，而是从业务保障目标定义问题；不是从孤立产品能力组织建设，而是从整体保障体系组织建设。
-                        </p>
-                    </div>
-
-                    <div class="grid-3">
-                        <article class="card">
-                            <span class="number">01</span>
-                            <h3>从业务目标定义问题</h3>
-                            <p>
-                                不是先定义卖什么安全产品，而是先回答客户业务如何被稳定支撑和持续保障。
-                            </p>
-                        </article>
-                        <article class="card">
-                            <span class="number">02</span>
-                            <h3>从整体体系组织建设</h3>
-                            <p>
-                                不是把资产、观测、运维和安全各自拆开建设，而是放到同一个保障体系里协同推进。
-                            </p>
-                        </article>
-                        <article class="card">
-                            <span class="number">03</span>
-                            <h3>从长期工程能力持续演进</h3>
-                            <p>
-                                不是从短期项目执行出发，而是从基础设施建设和长期工程建设出发。
-                            </p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
             <section class="section" id="open">
                 <div class="section-box alt reveal delay-2">
                     <div class="section-head">
@@ -1975,13 +1935,13 @@
                             <h3>核心技术资产</h3>
                             <ul class="asset-list">
                                 <li>
-                                    瞬析（WarpParse）：复杂日志与实时事件处理引擎
+                                    瞬析（WarpParse）：日志解析与数据传递管道，性能超越Vector
                                 </li>
                                 <li>WarpFusion：实时计算与事件处理引擎</li>
                                 <li>
-                                    WPL / OML /
-                                    工具链：规则、模型、验证、调试与恢复能力体系
+                                    Galaxy-Ops：面向运维交付的开源组织与配置工具
                                 </li>
+                                <li>Galaxy-Flow：基于 GXL 的开源工作流引擎</li>
                             </ul>
                         </article>
                         <article class="card">
@@ -1994,77 +1954,44 @@
                             </ul>
                         </article>
                     </div>
+
+                    <div class="hero-actions">
+                        <a class="button secondary" href="opensource.html"
+                            >查看详细开源技术页</a
+                        >
+                    </div>
                 </div>
             </section>
 
-            <section class="section" id="scenes">
+            <section class="section">
                 <div class="section-box warm reveal delay-1">
                     <div class="section-head">
                         <div>
-                            <span class="section-kicker">Use Cases</span>
-                            <h2>适用场景</h2>
+                            <span class="section-kicker">Trusted Partner</span>
+                            <h2>值得信赖的长期合作伙伴</h2>
                         </div>
                         <p>
-                            不是围绕单点产品寻找用例，而是围绕数字业务保障体系进入复杂场景。场景不是附加项，而是这套体系真正落地的地方。
+                            我们不是一次性交付后离场的供应方，而是在复杂场景里与客户长期协同、持续建设保障体系的合作伙伴。
                         </p>
                     </div>
 
                     <div class="grid-3">
-                        <article class="card scene-card">
-                            <h3>城市级安全运营中心</h3>
+                        <article class="card">
+                            <h3>2022 北京冬奥会</h3>
                             <p>
-                                统一接入多类安全设备、云平台和业务系统数据，建设稳定可运营的保障底座。
+                                团队参与 2022
+                                北京冬奥会三级安全运营体系设计与建设。
                             </p>
                         </article>
-                        <article class="card scene-card">
-                            <h3>行业安全平台与托管运营</h3>
+                        <article class="card">
+                            <h3>长沙城运安全运营中心</h3>
                             <p>
-                                支撑多租户、多来源、多规则体系的数据治理与持续运营。
+                                团队参与 2022 年长沙城市安全运营中心设计建设。
                             </p>
                         </article>
-                        <article class="card scene-card">
-                            <h3>数字平台实时监测与审计</h3>
-                            <p>支撑实时观测、审计留痕、异常检测和风控分析。</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section" id="about">
-                <div class="section-box reveal delay-2">
-                    <div class="section-head">
-                        <div>
-                            <span class="section-kicker"
-                                >About Dayu Security</span
-                            >
-                            <h2>关于我们</h2>
-                        </div>
-                        <p>
-                            大禹安全（长沙）信息科技有限责任公司成立于 2025 年 4
-                            月，是一家由开源技术驱动的数字业务保障基础设施建设公司。
-                        </p>
-                    </div>
-
-                    <div class="grid-2">
                         <article class="card">
-                            <h3>团队背景</h3>
-                            <ul class="about-list">
-                                <li>
-                                    核心团队来自奇安信大禹平台，长期参与安全能力平台与大型安全运营体系建设
-                                </li>
-                                <li>
-                                    在安全行业、复杂数据链路和运营体系建设方面具有长期研发与工程实践经验
-                                </li>
-                            </ul>
-                        </article>
-                        <article class="card">
-                            <h3>长期方向</h3>
-                            <ul class="about-list">
-                                <li>
-                                    通过真实项目进入复杂场景，在交付中持续沉淀规则、模型、工具链和基础设施能力
-                                </li>
-                                <li>项目是进入方式，底座建设才是长期方向</li>
-                            </ul>
+                            <h3>国家级大型电网</h3>
+                            <p>团队参与国家级大型电网安全基础设施设计建设。</p>
                         </article>
                     </div>
                 </div>
