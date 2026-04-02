@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>大禹安全 | 开源构建可信底座</title>
+        <title>大禹安全 | 开源构建可信基石</title>
         <style>
             :root {
                 --bg: #efe8dc;
@@ -1133,6 +1133,355 @@
                 color: rgba(247, 241, 232, 0.9);
             }
 
+            .benchmark-panel {
+                margin-top: 24px;
+            }
+
+            .benchmark-panel > p {
+                margin-top: 8px;
+                color: var(--muted);
+                font-size: 14px;
+            }
+
+            .benchmark-table-wrap {
+                margin-top: 18px;
+                overflow-x: auto;
+                border: 1px solid var(--line);
+                border-radius: 18px;
+                background: rgba(255, 255, 255, 0.74);
+            }
+
+            .benchmark-table {
+                width: 100%;
+                min-width: 900px;
+                border-collapse: collapse;
+                font-size: 14px;
+            }
+
+            .benchmark-table th,
+            .benchmark-table td {
+                padding: 14px 16px;
+                text-align: left;
+                border-bottom: 1px solid rgba(23, 34, 31, 0.08);
+            }
+
+            .benchmark-table th {
+                font-size: 12px;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--muted);
+                background: rgba(23, 54, 48, 0.04);
+            }
+
+            .benchmark-table td strong {
+                color: var(--pine);
+            }
+
+            .benchmark-note {
+                margin-top: 12px;
+                font-size: 13px;
+                color: var(--muted);
+            }
+
+            .project-links {
+                margin-top: 18px;
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .project-link {
+                display: inline-flex;
+                align-items: center;
+                min-height: 40px;
+                padding: 0 14px;
+                border-radius: 999px;
+                border: 1px solid rgba(23, 54, 48, 0.12);
+                background: rgba(255, 255, 255, 0.76);
+                color: var(--pine);
+                font-size: 13px;
+                font-weight: 700;
+            }
+
+            .dsl-map {
+                margin-top: 22px;
+                padding: 20px;
+                border-radius: 18px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.52);
+            }
+
+            .dsl-axis {
+                display: flex;
+                justify-content: space-between;
+                gap: 16px;
+                margin-bottom: 8px;
+                font-size: 12px;
+                font-weight: 700;
+                letter-spacing: 0.04em;
+                color: var(--muted);
+            }
+
+            .dsl-axis span:last-child {
+                text-align: right;
+            }
+
+            .dsl-note {
+                margin-bottom: 14px;
+                font-size: 12px;
+                color: var(--muted);
+            }
+
+            .dsl-row {
+                display: grid;
+                grid-template-columns: 72px minmax(0, 1fr) 260px;
+                gap: 16px;
+                align-items: center;
+                padding: 10px 0;
+                border-top: 1px solid rgba(23, 34, 31, 0.08);
+            }
+
+            .dsl-row.wfl {
+                padding-left: 10px;
+                padding-right: 10px;
+                margin-left: -10px;
+                margin-right: -10px;
+                border-radius: 14px;
+                background: linear-gradient(
+                    90deg,
+                    rgba(23, 54, 48, 0.08),
+                    rgba(23, 54, 48, 0.03)
+                );
+                border: 1px solid rgba(23, 54, 48, 0.1);
+                box-shadow: 0 14px 28px rgba(23, 34, 31, 0.06);
+            }
+
+            .dsl-row:first-of-type {
+                border-top: none;
+                padding-top: 0;
+            }
+
+            .dsl-name {
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: 0.03em;
+            }
+
+            .dsl-track {
+                position: relative;
+                height: 12px;
+                border-radius: 999px;
+                background: linear-gradient(
+                    90deg,
+                    rgba(127, 138, 134, 0.32),
+                    rgba(23, 54, 48, 0.16) 45%,
+                    rgba(23, 54, 48, 0.42)
+                );
+                overflow: hidden;
+            }
+
+            .dsl-track::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                width: 1px;
+                background: rgba(255, 255, 255, 0.55);
+                opacity: 0.75;
+            }
+
+            .dsl-range {
+                position: absolute;
+                top: 50%;
+                left: var(--from);
+                width: calc(var(--to) - var(--from));
+                height: 16px;
+                border-radius: 999px;
+                transform: translateY(-50%);
+                box-shadow: 0 6px 16px rgba(23, 34, 31, 0.12);
+            }
+
+            .dsl-range::before,
+            .dsl-range::after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                width: 4px;
+                height: 20px;
+                border-radius: 3px;
+                transform: translateY(-50%);
+                background: rgba(255, 255, 255, 0.9);
+                box-shadow: 0 3px 10px rgba(23, 34, 31, 0.12);
+            }
+
+            .dsl-range::before {
+                left: 0;
+                transform: translate(-1px, -50%);
+            }
+
+            .dsl-range::after {
+                right: 0;
+                transform: translate(1px, -50%);
+            }
+
+            .dsl-range.query,
+            .dsl-range.hybrid,
+            .dsl-range.detect {
+                background: linear-gradient(
+                    90deg,
+                    rgba(24, 31, 29, 0.86),
+                    rgba(24, 31, 29, 0.72)
+                );
+            }
+
+            .dsl-range.query::before,
+            .dsl-range.query::after,
+            .dsl-range.hybrid::before,
+            .dsl-range.hybrid::after,
+            .dsl-range.detect::before,
+            .dsl-range.detect::after {
+                border: 2px solid rgba(24, 31, 29, 0.84);
+            }
+
+            .dsl-range.wfl-focus {
+                background: linear-gradient(
+                    90deg,
+                    rgba(191, 106, 59, 0.96),
+                    rgba(191, 106, 59, 0.82)
+                );
+            }
+
+            .dsl-range.wfl-focus::before,
+            .dsl-range.wfl-focus::after {
+                border: 2px solid rgba(191, 106, 59, 0.9);
+            }
+
+            .dsl-desc {
+                font-size: 13px;
+                color: var(--muted);
+            }
+
+            .dsl-row.wfl .dsl-desc {
+                color: var(--pine);
+                font-weight: 700;
+            }
+
+            .benchmark-visual {
+                margin-top: 22px;
+                display: grid;
+                gap: 16px;
+            }
+
+            .benchmark-visual-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 16px;
+            }
+
+            .benchmark-visual-card {
+                padding: 18px;
+                border-radius: 18px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.52);
+            }
+
+            .benchmark-visual-head {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                gap: 12px;
+                margin-bottom: 14px;
+            }
+
+            .benchmark-visual-head strong {
+                font-size: 18px;
+                letter-spacing: -0.02em;
+            }
+
+            .benchmark-visual-head span {
+                font-size: 12px;
+                color: var(--muted);
+            }
+
+            .benchmark-scenario {
+                display: grid;
+                gap: 8px;
+                padding: 12px 0;
+                border-top: 1px solid rgba(23, 34, 31, 0.08);
+            }
+
+            .benchmark-scenario:first-of-type {
+                border-top: none;
+                padding-top: 0;
+            }
+
+            .benchmark-scenario-title {
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+                font-size: 13px;
+                font-weight: 700;
+            }
+
+            .benchmark-scenario-title span:last-child {
+                color: var(--signal);
+            }
+
+            .benchmark-series {
+                display: grid;
+                gap: 8px;
+            }
+
+            .benchmark-series-item {
+                display: grid;
+                grid-template-columns: 92px minmax(0, 1fr) 60px;
+                gap: 10px;
+                align-items: center;
+                font-size: 12px;
+                color: var(--muted);
+            }
+
+            .benchmark-series-label {
+                white-space: nowrap;
+            }
+
+            .benchmark-series-value {
+                text-align: right;
+                font-variant-numeric: tabular-nums;
+            }
+
+            .benchmark-series-track {
+                position: relative;
+                height: 8px;
+                border-radius: 999px;
+                background: rgba(23, 34, 31, 0.08);
+                overflow: hidden;
+            }
+
+            .benchmark-series-bar {
+                position: absolute;
+                inset: 0 auto 0 0;
+                width: var(--w);
+                border-radius: inherit;
+            }
+
+            .benchmark-series-bar.warp {
+                background: linear-gradient(90deg, var(--pine), #2d5c52);
+            }
+
+            .benchmark-series-bar.vrl {
+                background: linear-gradient(90deg, var(--signal), #d48d63);
+            }
+
+            .benchmark-series-bar.fixed {
+                background: linear-gradient(90deg, #b08a58, #cfb48a);
+            }
+
+            .benchmark-series-bar.logstash {
+                background: linear-gradient(90deg, #7f8a86, #aab3af);
+            }
+
             .scene-card {
                 min-height: 220px;
                 padding-top: 54px;
@@ -1256,8 +1605,14 @@
                 .grid-4,
                 .grid-3,
                 .grid-2,
-                .footer-box {
+                .footer-box,
+                .benchmark-visual-grid {
                     grid-template-columns: 1fr;
+                }
+
+                .dsl-row {
+                    grid-template-columns: 1fr;
+                    gap: 10px;
                 }
 
                 .hero-copy {
@@ -1415,7 +1770,7 @@
                     <a href="index.html#pain">客户痛点</a>
                     <a href="index.html#system">保障体系</a>
                     <a href="opensource.html">开源技术</a>
-                    <a href="case.html">适用场景</a>
+                    <a href="case.html">合作案例</a>
                     <a href="aboutus.html">关于我们</a>
                 </nav>
             </header>
@@ -1423,74 +1778,21 @@
                 <div class="section-box alt reveal delay-2">
                     <div class="section-head">
                         <div>
-                            <span class="section-kicker"
-                                >Open Technology Strategy</span
-                            >
-                            <h2>开源构建可信底座</h2>
+                            <h2>开源构建可信基石</h2>
                         </div>
-                        <p>
-                            大禹安全坚持开源、可审计、可复核、可持续演进的技术路线。真正进入关键业务、承担保障底座职责的基础能力，必须透明、可控、可审计、可继承。
-                        </p>
                     </div>
 
                     <div class="grid-2">
                         <article class="card">
-                            <h3>核心技术资产</h3>
-                            <ul class="asset-list">
-                                <li>
-                                    瞬析（WarpParse）：复杂日志与实时事件处理引擎
-                                </li>
-                                <li>WarpFusion：实时计算与事件处理引擎</li>
-                                <li>
-                                    Galaxy-Ops：面向运维交付的开源组织与配置工具
-                                </li>
-                                <li>
-                                    Galaxy-Flow：基于 GXL 的开源工作流引擎
-                                </li>
-                            </ul>
-                        </article>
-                        <article class="card">
-                            <h3>开源的价值</h3>
-                            <ul class="asset-list">
-                                <li>让技术能力透明可验</li>
-                                <li>让关键系统独立演进</li>
-                                <li>构建行业判断基准</li>
-                                <li>让开发者持续打磨</li>
-                            </ul>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <div class="section-box reveal delay-1">
-                    <div class="section-head">
-                        <div>
-                            <span class="section-kicker">Why Open Source</span>
-                            <h2>为什么必须坚持开源路线</h2>
-                        </div>
-                        <p>
-                            对大禹安全而言，开源不是附属标签，而是基础设施建设的前提。越靠近底座，客户越关心是否透明、是否可审计、是否能长期演进。
-                        </p>
-                    </div>
-
-                    <div class="grid-3">
-                        <article class="card">
-                            <h3>可信</h3>
+                            <h3>建立客户可信</h3>
                             <p>
-                                承担保障底座职责的能力不能建立在不可见的黑盒上，开源让能力边界和实现逻辑都可被验证。
+                                核心能力透明可验，客户可以判断边界、机制、质量与真实水平。
                             </p>
                         </article>
                         <article class="card">
-                            <h3>可控</h3>
+                            <h3>增强竞争力</h3>
                             <p>
-                                规则、模型、数据链路和执行过程都可以持续掌握，不会因为供应商边界而失去长期主动权。
-                            </p>
-                        </article>
-                        <article class="card">
-                            <h3>可演进</h3>
-                            <p>
-                                项目里的能力沉淀不会停留在一次性交付，而能持续演化为可复用、可继承的工程资产。
+                                开放持续吸收开发者反馈、同行比较与真实场景压力，避免系统停留在旧路径里。
                             </p>
                         </article>
                     </div>
@@ -1501,27 +1803,271 @@
                 <div class="section-box warm reveal delay-2">
                     <div class="section-head">
                         <div>
-                            <span class="section-kicker">Core Assets</span>
-                            <h2>核心技术资产如何分工</h2>
+                            <span class="section-kicker">WarpParse</span>
+                            <h2>WarpParse</h2>
                         </div>
                         <p>
-                            这些开源项目不是零散工具，而是围绕业务整体保障体系形成的工程底座。
+                            WarpParse 不是传统 ETL 的又一层封装，而是面向复杂日志与实时事件处理的高性能数据处理底座。
                         </p>
                     </div>
 
                     <div class="grid-2">
                         <article class="card">
-                            <h3>瞬析 WarpParse</h3>
+                            <h3>高性能数据处理</h3>
                             <p>
-                                面向复杂日志与实时事件处理，负责异构数据的接入、解析、转换与分发，是保障数据链路的基础入口。
+                                面向高吞吐、强实时、复杂结构场景，统一完成接入、解析、转换与分发，不再依赖脚本堆叠来拼接链路。
                             </p>
                         </article>
                         <article class="card">
-                            <h3>WarpFusion</h3>
+                            <h3>WPL / OML</h3>
                             <p>
-                                面向实时计算与事件处理，承接持续观测、事件关联和实时判断的需求。
+                                通过 WPL / OML 把解析规则、对象建模与后处理逻辑提升为语义化、声明式表达，更适合长期维护与协作。
                             </p>
                         </article>
+                        <article class="card">
+                            <h3>工程化流水线</h3>
+                            <p>
+                                通过配置化并行流水线组织接入、解析、转换、路由与输出，把项目交付沉淀为可复用、可治理的工程资产。
+                            </p>
+                        </article>
+                        <article class="card">
+                            <h3>生产级落地</h3>
+                            <p>
+                                围绕高吞吐、零拷贝、背压控制、异常恢复和国产环境适配建设基础能力，支撑生产级场景持续运行。
+                            </p>
+                        </article>
+                    </div>
+                    <div class="project-links">
+                        <a class="project-link" href="https://warpparse.ai">WarpParse 官网</a>
+                        <a class="project-link" href="https://github.com/wp-labs">WarpParse GitHub</a>
+                    </div>
+
+                    <article class="card benchmark-panel">
+                        <h3>MixLog 基准对比</h3>
+                        <p>
+                            基于 Linux benchmark report 中的 Mixed Log
+                            数据，平均日志大小 886B，四类日志按 3:2:1:1
+                            混合。
+                        </p>
+                        <div class="benchmark-visual">
+                            <div class="benchmark-visual-grid">
+                                <div class="benchmark-visual-card">
+                                    <div class="benchmark-visual-head">
+                                        <strong>仅解析</strong>
+                                        <span>WarpParse vs Vector</span>
+                                    </div>
+                                    <div class="benchmark-scenario">
+                                        <div class="benchmark-scenario-title">
+                                            <span>File -&gt; BlackHole</span>
+                                            <span>WarpParse 5.56x</span>
+                                        </div>
+                                        <div class="benchmark-series">
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">WarpParse</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar warp" style="--w: 100%"></div></div>
+                                                <span class="benchmark-series-value">286k</span>
+                                            </div>
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">Vector-VRL</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar vrl" style="--w: 18%"></div></div>
+                                                <span class="benchmark-series-value">51k</span>
+                                            </div>
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">Vector-Fixed</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar fixed" style="--w: 18.4%"></div></div>
+                                                <span class="benchmark-series-value">53k</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="benchmark-scenario">
+                                        <div class="benchmark-scenario-title">
+                                            <span>TCP -&gt; BlackHole</span>
+                                            <span>WarpParse 3.10x</span>
+                                        </div>
+                                        <div class="benchmark-series">
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">WarpParse</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar warp" style="--w: 90.4%"></div></div>
+                                                <span class="benchmark-series-value">259k</span>
+                                            </div>
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">Vector-VRL</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar vrl" style="--w: 29.1%"></div></div>
+                                                <span class="benchmark-series-value">83k</span>
+                                            </div>
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">Vector-Fixed</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar fixed" style="--w: 28.6%"></div></div>
+                                                <span class="benchmark-series-value">82k</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="benchmark-visual-card">
+                                    <div class="benchmark-visual-head">
+                                        <strong>解析 + 转换</strong>
+                                        <span>WarpParse vs Vector</span>
+                                    </div>
+                                    <div class="benchmark-scenario">
+                                        <div class="benchmark-scenario-title">
+                                            <span>File -&gt; BlackHole</span>
+                                            <span>WarpParse 4.45x</span>
+                                        </div>
+                                        <div class="benchmark-series">
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">WarpParse</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar warp" style="--w: 100%"></div></div>
+                                                <span class="benchmark-series-value">204k</span>
+                                            </div>
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">Vector-VRL</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar vrl" style="--w: 22.5%"></div></div>
+                                                <span class="benchmark-series-value">46k</span>
+                                            </div>
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">Vector-Fixed</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar fixed" style="--w: 23.7%"></div></div>
+                                                <span class="benchmark-series-value">48k</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="benchmark-scenario">
+                                        <div class="benchmark-scenario-title">
+                                            <span>TCP -&gt; BlackHole</span>
+                                            <span>WarpParse 2.40x</span>
+                                        </div>
+                                        <div class="benchmark-series">
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">WarpParse</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar warp" style="--w: 93.1%"></div></div>
+                                                <span class="benchmark-series-value">190k</span>
+                                            </div>
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">Vector-VRL</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar vrl" style="--w: 38.8%"></div></div>
+                                                <span class="benchmark-series-value">79k</span>
+                                            </div>
+                                            <div class="benchmark-series-item">
+                                                <span class="benchmark-series-label">Vector-Fixed</span>
+                                                <div class="benchmark-series-track"><div class="benchmark-series-bar fixed" style="--w: 37.4%"></div></div>
+                                                <span class="benchmark-series-value">77k</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="benchmark-note">
+                                数据来源：`wp-examples/benchmark/report/report_linux.md`
+                                的 Mixed Log 测试结果。
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-box reveal delay-1">
+                    <div class="section-head">
+                        <div>
+                            <span class="section-kicker">WarpFusion</span>
+                            <h2>WarpFusion</h2>
+                        </div>
+                        <p>
+                            WarpFusion 用来补上 WarpParse 之后的关联计算层，把实时分析从单条解析推进到多流关联、窗口计算和风险判断。
+                        </p>
+                    </div>
+
+                    <div class="grid-2">
+                        <article class="card">
+                            <h3>实时关联计算</h3>
+                            <p>
+                                支持跨数据源关联、时间窗口聚合、时序链匹配与缺失事件检测，解决单条解析之后无法继续判断的问题。
+                            </p>
+                        </article>
+                        <article class="card">
+                            <h3>WFL 规则语言</h3>
+                            <p>
+                                通过 WFL 统一表达时序、实体、评分和输出，把关联分析从零散查询提升为可维护、可复用的规则体系。
+                            </p>
+                        </article>
+                        <article class="card">
+                            <h3>规则表达更完整</h3>
+                            <p>
+                                相比 YARA-L、EQL、Sigma 等主流 DSL，WFL 在双阶段匹配、实体建模和可解释评分上更完整。
+                            </p>
+                        </article>
+                        <article class="card">
+                            <h3>轻量独立运行</h3>
+                            <p>
+                                独立部署、单机可用、低依赖，并可沿同一模型平滑扩展到分布式场景，更适合作为长期演进的关联计算底座。
+                            </p>
+                        </article>
+                    </div>
+                    <div class="dsl-map">
+                        <div class="dsl-axis">
+                            <span>查询能力强</span>
+                            <span>检测+行为分析能力强</span>
+                        </div>
+                        <div class="dsl-note">下图表达的是能力覆盖区间，不是单一点位。</div>
+                        <div class="dsl-row">
+                            <div class="dsl-name">SPL</div>
+                            <div class="dsl-track">
+                                <div class="dsl-range query" style="--from: 2%; --to: 62%"></div>
+                            </div>
+                            <div class="dsl-desc">通用查询，检测是附属</div>
+                        </div>
+                        <div class="dsl-row">
+                            <div class="dsl-name">KQL</div>
+                            <div class="dsl-track">
+                                <div class="dsl-range query" style="--from: 4%; --to: 60%"></div>
+                            </div>
+                            <div class="dsl-desc">通用查询，检测靠 ML</div>
+                        </div>
+                        <div class="dsl-row wfl">
+                            <div class="dsl-name">WFL</div>
+                            <div class="dsl-track">
+                                <div class="dsl-range wfl-focus" style="--from: 18%; --to: 96%"></div>
+                            </div>
+                            <div class="dsl-desc">检测+行为分析为核心，聚合覆盖主场景</div>
+                        </div>
+                        <div class="dsl-row">
+                            <div class="dsl-name">EQL</div>
+                            <div class="dsl-track">
+                                <div class="dsl-range hybrid" style="--from: 42%; --to: 78%"></div>
+                            </div>
+                            <div class="dsl-desc">事件查询+序列检测，无聚合</div>
+                        </div>
+                        <div class="dsl-row">
+                            <div class="dsl-name">YARA-L</div>
+                            <div class="dsl-track">
+                                <div class="dsl-range detect" style="--from: 56%; --to: 84%"></div>
+                            </div>
+                            <div class="dsl-desc">纯检测，弱聚合</div>
+                        </div>
+                        <div class="dsl-row">
+                            <div class="dsl-name">Sigma</div>
+                            <div class="dsl-track">
+                                <div class="dsl-range hybrid" style="--from: 67%; --to: 85%"></div>
+                            </div>
+                            <div class="dsl-desc">规则分发格式，无执行</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-box warm reveal delay-2">
+                    <div class="section-head">
+                        <div>
+                            <span class="section-kicker">Galaxy Series</span>
+                            <h2>Galaxy-Ops / Galaxy-Flow</h2>
+                        </div>
+                        <p>
+                            围绕交付组织与自动化编排，大禹安全也在持续建设 Galaxy 系列开源能力，让工程过程本身能够被沉淀、复用与演进。
+                        </p>
+                    </div>
+
+                    <div class="grid-2">
                         <article class="card">
                             <h3>Galaxy-Ops</h3>
                             <p>
@@ -1534,45 +2080,10 @@
                                 基于 GXL 的开源工作流引擎，用于定义流程、组织执行逻辑、编排工程动作，并把自动化过程沉淀为可复用工作流。
                             </p>
                         </article>
-                        <article class="card">
-                            <h3>开源底座与 AI 协同</h3>
-                            <p>
-                                AI 不替代体系本身，而是增强规则生成、异常分析、知识复用和辅助决策等能力。
-                            </p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <div class="section-box reveal delay-1">
-                    <div class="section-head">
-                        <div>
-                            <span class="section-kicker">Engineering Value</span>
-                            <h2>开源带来的工程价值</h2>
-                        </div>
-                        <p>
-                            大禹安全真正沉淀的不是单个工具，而是规则、模型、流程和交付能力可以持续复用的工程体系。
-                        </p>
                     </div>
 
-                    <div class="grid-2">
-                        <article class="card">
-                            <h3>对客户</h3>
-                            <ul class="asset-list">
-                                <li>技术能力透明可验</li>
-                                <li>关键系统不被闭源锁死</li>
-                                <li>客户可以建立清晰判断依据</li>
-                            </ul>
-                        </article>
-                        <article class="card">
-                            <h3>对工程与生态</h3>
-                            <ul class="asset-list">
-                                <li>能力不因单一厂商变化而中断</li>
-                                <li>项目成果更易沉淀复用</li>
-                                <li>开发者持续打磨更高质量的成果</li>
-                            </ul>
-                        </article>
+                    <div class="project-links">
+                        <a class="project-link" href="https://github.com/galaxio-labs">Galaxy GitHub</a>
                     </div>
                 </div>
             </section>

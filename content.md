@@ -5,7 +5,7 @@
 - [index.md](./index.md)：首页主叙事，包含首屏、问题导入、根因与方案、开源摘要与信任背书
 - [opensource.md](./opensource.md)：开源技术页
 - [difference.md](./difference.md)：为什么与其它安全公司不同
-- [case.md](./case.md)：适用场景 / 案例页
+- [case.md](./case.md)：合作案例页
 - [aboutus.md](./aboutus.md)：关于我们页
 
 说明：
