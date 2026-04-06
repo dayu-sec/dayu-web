@@ -27,9 +27,9 @@
 - 解析 + 转换 / TCP -> BlackHole：WarpParse 190k，Vector-VRL 79k，Vector-Fixed 77k，WarpParse 2.40x
 - 数据来源：`wp-examples/benchmark/report/report_linux.md`
 
-## WarpFusion
+## 瞬算（WarpFusion）
 
-- 导语：WarpFusion 用来补上 WarpParse 之后的关联计算层，把实时分析从单条解析推进到多流关联、窗口计算和风险判断。
+- 导语：瞬算（WarpFusion）用来补上瞬析（WarpParse）之后的关联计算层，把实时分析从单条解析推进到多流关联、窗口计算和风险判断。
 - 实时关联计算：支持跨数据源关联、时间窗口聚合、时序链匹配与缺失事件检测，解决单条解析之后无法继续判断的问题。
 - WFL 规则语言：通过 WFL 统一表达时序、实体、评分和输出，把关联分析从零散查询提升为可维护、可复用的规则体系。
 - 规则表达更完整：相比 YARA-L、EQL、Sigma 等主流 DSL，WFL 在双阶段匹配、实体建模和可解释评分上更完整。
@@ -48,9 +48,11 @@
 
 ## Galaxy-Ops / Galaxy-Flow
 
-- 导语：围绕交付组织与自动化编排，大禹安全也在持续建设 Galaxy 系列开源能力，让工程过程本身能够被沉淀、复用与演进。
+- 导语：围绕交付组织与自动化编排，大禹安全也在持续建设 Galaxio 系列开源能力，让工程过程本身能够被沉淀、复用与演进。
 - Galaxy-Ops：面向运维交付的开源组织与配置工具，用于管理模块、组合系统、导入项目、维护值文件，并把交付过程沉淀为可重复执行的资产。
 - Galaxy-Flow：基于 GXL 的开源工作流引擎，用于定义流程、组织执行逻辑、编排工程动作，并把自动化过程沉淀为可复用工作流。
+
+- 官网：https://galaxio.zone
 - GitHub：https://github.com/galaxio-labs
 
 ## 联系与交流
