@@ -257,8 +257,8 @@
                 position: relative;
                 z-index: 1;
                 display: grid;
-                grid-template-columns: 0.98fr 1.02fr;
-                gap: 36px;
+                grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+                gap: 32px;
                 align-items: stretch;
             }
 
@@ -365,11 +365,12 @@
             }
 
             .formula-hero p {
-                font-size: clamp(18px, 1.45vw, 24px);
+                font-size: clamp(18px, 1.2vw, 22px);
                 line-height: 1.22;
                 letter-spacing: -0.02em;
                 font-weight: 700;
                 color: var(--pine);
+                white-space: nowrap;
             }
 
             .hero-actions {
@@ -1446,6 +1447,7 @@
                 .formula-hero p,
                 .system-formula p {
                     font-size: clamp(22px, 6vw, 30px);
+                    white-space: normal;
                 }
 
                 .hero-copy .lead {
