@@ -286,7 +286,7 @@
   - 落地了推荐色彩体系
   - 用于验证“雾白底 + 深青绿 + 铜锈橙”是否成立
 
-- `homepage-v5-structured.html`
+- `prototypes/homepage-v5-structured.html`
   - 当前更推荐继续迭代的版本
   - 结构上开始真正对齐参考站的首页逻辑
 
