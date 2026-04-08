@@ -618,6 +618,65 @@
                 content: none;
             }
 
+            .section-box.frameless {
+                padding: 0;
+                border: none;
+                border-radius: 0;
+                background: none;
+                box-shadow: none;
+            }
+
+            .section-box.frameless .card {
+                background: rgba(255, 255, 255, 0.42);
+                border-color: rgba(23, 54, 48, 0.08);
+                box-shadow: 0 8px 18px rgba(39, 31, 22, 0.03);
+            }
+
+            #open .open-overview {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 18px;
+            }
+
+            #open .open-panel {
+                padding: 18px 0 0;
+                border-top: 1px solid rgba(23, 54, 48, 0.1);
+                background: none;
+                box-shadow: none;
+            }
+
+            #open .open-panel:hover {
+                transform: none;
+                box-shadow: none;
+                border-color: rgba(23, 54, 48, 0.1);
+            }
+
+            #open .open-panel h3 {
+                margin-bottom: 10px;
+                font-size: 20px;
+            }
+
+            #open .open-panel p {
+                max-width: 52ch;
+            }
+
+            .section-box.frameless .xinchuang-block {
+                border-color: rgba(23, 54, 48, 0.08);
+                background: rgba(255, 255, 255, 0.44);
+            }
+
+            .section-box.frameless .project-link {
+                background: rgba(255, 255, 255, 0.58);
+                border-color: rgba(23, 54, 48, 0.08);
+            }
+
+            .section-box.frameless .benchmark-panel,
+            .section-box.frameless .dsl-map {
+                background: rgba(255, 255, 255, 0.42);
+                border-color: rgba(23, 54, 48, 0.08);
+                box-shadow: 0 8px 18px rgba(39, 31, 22, 0.03);
+            }
+
             .section-head {
                 position: relative;
                 z-index: 1;
@@ -1200,6 +1259,75 @@
                 font-weight: 700;
             }
 
+            .xinchuang-block {
+                margin-top: 18px;
+                padding: 24px;
+                border-radius: 24px;
+                border: 1px solid var(--line);
+                background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.76),
+                    rgba(255, 255, 255, 0.52)
+                );
+            }
+
+            .xinchuang-block h3 {
+                font-size: 22px;
+                line-height: 1.08;
+                letter-spacing: -0.03em;
+                margin-bottom: 10px;
+            }
+
+            .xinchuang-block p {
+                color: var(--muted);
+            }
+
+            .xinchuang-gallery {
+                margin-top: 18px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: 14px;
+            }
+
+            .xinchuang-cert {
+                padding: 14px;
+                border-radius: 18px;
+                border: 1px solid var(--line);
+                background: rgba(255, 255, 255, 0.72);
+                display: grid;
+                gap: 10px;
+            }
+
+            .xinchuang-cert a {
+                display: grid;
+                gap: 10px;
+                color: inherit;
+                text-decoration: none;
+            }
+
+            .xinchuang-cert img {
+                width: 100%;
+                height: 220px;
+                object-fit: contain;
+                object-position: center;
+                border-radius: 12px;
+                border: 1px solid rgba(23, 54, 48, 0.08);
+                background: #fff;
+            }
+
+            .xinchuang-cert span {
+                color: var(--pine);
+                font-size: 13px;
+                font-weight: 700;
+                line-height: 1.4;
+            }
+
+            .xinchuang-note {
+                margin-top: 10px;
+                color: var(--muted);
+                font-size: 13px;
+            }
+
             .dsl-map {
                 margin-top: 22px;
                 padding: 20px;
@@ -1743,6 +1871,10 @@
                     width: 100%;
                 }
 
+                #open .open-overview {
+                    grid-template-columns: 1fr;
+                }
+
                 .system-chipline,
                 .system-base {
                     left: 14px;
@@ -1772,32 +1904,81 @@
                 </nav>
             </header>
             <section class="section" id="open">
-                <div class="section-box alt reveal delay-2">
+                <div class="section-box frameless reveal delay-2">
                     <div class="section-head">
                         <div>
                             <h2>开源构建可信基石</h2>
                         </div>
                     </div>
 
-                    <div class="grid-2">
-                        <article class="card">
+                    <div class="open-overview">
+                        <article class="open-panel">
                             <h3>建立客户可信</h3>
                             <p>
                                 核心能力透明可验，客户可以判断边界、机制、质量与真实水平。
                             </p>
                         </article>
-                        <article class="card">
+                        <article class="open-panel">
                             <h3>增强竞争力</h3>
                             <p>
                                 开放持续吸收开发者反馈、同行比较与真实场景压力，避免系统停留在旧路径里。
                             </p>
                         </article>
                     </div>
+
+                    <article class="xinchuang-block">
+                        <h3>国产信创支持</h3>
+                        <p>
+                            围绕国产信创环境，大禹安全持续推进核心底座在鲲鹏、openEuler、银河麒麟等软硬件体系上的适配与验证，让关键数据处理与事件处理能力能够更稳妥地进入国产化部署场景，并保持长期可维护、可演进。
+                        </p>
+                        <div class="xinchuang-gallery">
+                            <div class="xinchuang-cert">
+                                <a
+                                    href="assets/xinchuang/kunpeng.jpg"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <img
+                                        src="assets/xinchuang/kunpeng.jpg"
+                                        alt="鲲鹏技术认证证书"
+                                    />
+                                    <span>鲲鹏技术认证</span>
+                                </a>
+                            </div>
+                            <div class="xinchuang-cert">
+                                <a
+                                    href="assets/xinchuang/openeuler.jpg"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <img
+                                        src="assets/xinchuang/openeuler.jpg"
+                                        alt="openEuler 兼容性认证证书"
+                                    />
+                                    <span>openEuler 兼容性认证</span>
+                                </a>
+                            </div>
+                            <div class="xinchuang-cert">
+                                <a
+                                    href="assets/xinchuang/qilin.jpg"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    <img
+                                        src="assets/xinchuang/qilin.jpg"
+                                        alt="银河麒麟兼容性认证证书"
+                                    />
+                                    <span>银河麒麟兼容性认证</span>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="xinchuang-note">点击证书可查看原图。</p>
+                    </article>
                 </div>
             </section>
 
             <section class="section">
-                <div class="section-box warm reveal delay-2">
+                <div class="section-box frameless reveal delay-2">
                     <div class="section-head">
                         <div>
                             <span class="section-kicker">WarpParse</span>
@@ -1963,7 +2144,7 @@
             </section>
 
             <section class="section">
-                <div class="section-box reveal delay-1">
+                <div class="section-box frameless reveal delay-1">
                     <div class="section-head">
                         <div>
                             <span class="section-kicker">瞬算</span>
@@ -2053,7 +2234,7 @@
             </section>
 
             <section class="section">
-                <div class="section-box warm reveal delay-2">
+                <div class="section-box frameless reveal delay-2">
                     <div class="section-head">
                         <div>
                             <span class="section-kicker">Galaxio Series</span>
