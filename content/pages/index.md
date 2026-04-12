@@ -151,7 +151,7 @@ kicker：
 核心技术资产：
 
 - 瞬析（WarpParse）：复杂日志与实时事件处理引擎
-- 瞬算（WarpFusion）：实时计算与事件处理引擎
+- 瞬联（WarpFusion）：已完成单机 Demo 的实时关联分析引擎
 - Galaxy-Ops：面向运维交付的开源组织与配置工具
 - Galaxy-Flow：基于 GXL 的开源工作流引擎
 

@@ -31,9 +31,9 @@
 - 解析 + 转换 / TCP -> BlackHole：WarpParse 190k，Vector-VRL 79k，Vector-Fixed 77k，WarpParse 2.40x
 - 数据来源：`wp-examples/benchmark/report/report_linux.md`
 
-## 瞬算（WarpFusion）
+## 瞬联（WarpFusion）
 
-- 导语：瞬算（WarpFusion）用来补上瞬析（WarpParse）之后的关联计算层，把实时分析从单条解析推进到多流关联、窗口计算和风险判断。
+- 导语：瞬联（WarpFusion）用于补上瞬析（WarpParse）之后的关联分析层。当前已完成单机 Demo，正在向工程化能力推进，把实时分析从单条解析推进到多流关联、窗口计算和风险判断。
 - 实时关联计算：支持跨数据源关联、时间窗口聚合、时序链匹配与缺失事件检测，解决单条解析之后无法继续判断的问题。
 - WFL 规则语言：通过 WFL 统一表达时序、实体、评分和输出，把关联分析从零散查询提升为可维护、可复用的规则体系。
 - 规则表达更完整：相比 YARA-L、EQL、Sigma 等主流 DSL，WFL 在双阶段匹配、实体建模和可解释评分上更完整。
