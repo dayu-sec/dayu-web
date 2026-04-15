@@ -6,6 +6,8 @@
   - 核心能力透明可验，客户可以判断边界、机制、质量与真实水平。
 - 增强竞争力
   - 开放持续吸收开发者反馈、同行比较与真实场景压力，避免系统停留在旧路径里。
+- 商业边界
+  - 开源战略不等于免费战略。大禹安全坚持以开源沉淀底座，以企业级服务、场景化建设、长期运营支持和规则模型资产实现商业化。
 - 国产信创支持
   - 围绕鲲鹏、openEuler、银河麒麟等国产软硬件环境持续完成适配与验证。
   - 让关键数据处理与事件处理底座能够更稳妥地进入国产化部署场景，并保持长期可维护、可演进。
@@ -30,6 +32,7 @@
 - 解析 + 转换 / File -> BlackHole：WarpParse 204k，Vector-VRL 46k，Vector-Fixed 48k，WarpParse 4.45x
 - 解析 + 转换 / TCP -> BlackHole：WarpParse 190k，Vector-VRL 79k，Vector-Fixed 77k，WarpParse 2.40x
 - 数据来源：`wp-examples/benchmark/report/report_linux.md`
+- 这些结果说明，WarpParse 的价值不只是吞吐更高，也体现了团队在运行时、数据路径、并行处理、背压控制和工程稳定性上的底层研发能力。
 
 ## 瞬联（WarpFusion）
 
