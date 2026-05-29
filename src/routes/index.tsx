@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import heroShield from "@/assets/hero-shield.png";
+import { PageShell, Eyebrow } from "@/components/site/PageShell";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -12,15 +14,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const NAV = [
-  { label: "首页", href: "#" },
-  { label: "客户痛点", href: "#pain" },
-  { label: "保障体系", href: "#system" },
-  { label: "开源技术", href: "#oss" },
-  { label: "合作案例", href: "#case" },
-  { label: "关于我们", href: "#about" },
-];
 
 // ---- Architecture diagram data (mirrors uploaded 架构图2.png logic) ----
 type NodeKind = "core" | "hub" | "data" | "tool" | "system" | "infra";
@@ -124,66 +117,9 @@ function nodeTone(kind: NodeKind) {
 
 function Index() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      {/* Background layers */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "var(--gradient-hero)" }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.18]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, oklch(1 0 0 / 0.08) 1px, transparent 1px), linear-gradient(to bottom, oklch(1 0 0 / 0.08) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-          maskImage:
-            "radial-gradient(ellipse 70% 60% at 50% 40%, black 40%, transparent 85%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[1100px] -translate-x-1/2 rounded-full blur-[140px]"
-        style={{ background: "oklch(0.55 0.18 220 / 0.35)" }}
-      />
-
-      {/* Nav */}
-      <header className="relative z-20">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-          <a href="#" className="group flex items-center gap-2.5">
-            <span className="relative grid h-9 w-9 place-items-center rounded-md border border-primary/40 bg-primary/10 text-primary shadow-[0_0_18px_oklch(0.82_0.14_220/0.45)]">
-              <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
-                <path
-                  d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinejoin="round"
-                />
-                <path d="m8.5 12 2.5 2.5L16 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <span className="text-base font-semibold tracking-wide text-foreground">
-              大禹安全
-            </span>
-          </a>
-          <nav className="hidden items-center gap-8 md:flex">
-            {NAV.map((item, i) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`text-sm transition-colors ${i === 0 ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <PageShell>
       {/* Hero */}
-      <main className="relative z-10">
-        <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-24 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:px-10 lg:pt-16">
+      <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-24 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:px-10 lg:pt-16">
           {/* Left: copy */}
           <div className="animate-[fadeUp_0.7s_ease-out_both]">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs text-primary backdrop-blur">
@@ -219,8 +155,9 @@ function Index() {
 
             {/* CTAs */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href="#pain"
+              <Link
+                to="/"
+                hash="pain"
                 className="group relative inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:brightness-110"
                 style={{ boxShadow: "var(--shadow-glow)" }}
               >
@@ -228,13 +165,13 @@ function Index() {
                 <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none">
                   <path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </a>
-              <a
-                href="#about"
+              </Link>
+              <Link
+                to="/about"
                 className="inline-flex items-center gap-2 rounded-md border border-primary/30 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-primary/60 hover:bg-white/[0.06]"
               >
                 了解大禹安全
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -259,8 +196,7 @@ function Index() {
               <span className="pointer-events-none absolute -bottom-2 -right-2 h-6 w-6 border-b-2 border-r-2 border-primary/70" />
             </div>
           </div>
-        </section>
-      </main>
+      </section>
 
       <style>{`
         @keyframes fadeUp {
@@ -273,8 +209,12 @@ function Index() {
         }
       `}</style>
 
+      <Pain />
+      <Solution />
       <Architecture />
-    </div>
+      <OpenSourceTeaser />
+      <Partners />
+    </PageShell>
   );
 }
 
@@ -419,5 +359,187 @@ function LegendDot({ className, label }: { className: string; label: string }) {
       <span className={`h-2 w-2 rounded-full ${className}`} />
       {label}
     </span>
+  );
+}
+
+const PAIN_POINTS = [
+  "工具越来越多，但业务影响仍然看不清",
+  "数据越来越多，但对象、边界和责任仍然不清",
+  "告警越来越密，但根因判断并没有变容易",
+  "平台越来越重，但处置链路仍然割裂",
+  "系统变化越来越快，但底座能力跟不上",
+];
+
+function Pain() {
+  return (
+    <section id="pain" className="relative z-10 border-t border-white/5">
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <Eyebrow>客户痛点</Eyebrow>
+        <h2 className="mt-5 max-w-3xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          业务越增长，系统越脆弱
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          增长一旦持续，支撑体系里的断点就会被不断放大。
+        </p>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {PAIN_POINTS.map((p, i) => (
+            <div
+              key={i}
+              className="group rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-colors hover:border-primary/40"
+            >
+              <span className="text-xs font-semibold text-primary/80">0{i + 1}</span>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/90">{p}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-10 rounded-2xl border border-primary/25 bg-card/40 p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.82_0.14_220/0.12)] lg:p-8">
+          <h3 className="text-lg font-semibold text-foreground">
+            一是尽早发现系统要出事，二是尽早发现人可能出事。
+          </h3>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            前者对应业务系统稳定性、连续性和关键链路风险保障，后者对应业务运营过程中的异常操作、权限滥用、内部人员风险和管理失控风险识别。
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const ROOT_CAUSES = [
+  { t: "对象不清", d: "资源、资产、依赖与边界长期模糊。" },
+  { t: "依赖混乱", d: "关键链路和上下游关系缺少统一认知。" },
+  { t: "状态不可见", d: "异常、变化和卡点缺少持续观测。" },
+  { t: "体系割裂", d: "运维、安全、观测长期分开建设。" },
+];
+
+const SOLUTIONS = [
+  { t: "资产治理", d: "把对象、边界、依赖和链路持续理清" },
+  { t: "整体观测", d: "让运行状态、变化与异常持续可见" },
+  { t: "可靠运维", d: "把部署、变更、运行与恢复组织起来" },
+  { t: "风险控制", d: "把风险识别、约束、处置纳入长期治理" },
+];
+
+function Solution() {
+  return (
+    <section className="relative z-10 border-t border-white/5">
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <Eyebrow>根因与方案</Eyebrow>
+        <h2 className="mt-5 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          围绕业务目标建设
+        </h2>
+        <div className="mt-12 grid gap-12 lg:grid-cols-2">
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">根因</h3>
+            <div className="mt-5 space-y-4">
+              {ROOT_CAUSES.map((c) => (
+                <div key={c.t} className="rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
+                  <p className="text-base font-semibold text-foreground">{c.t}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-primary/80">方案 · 业务视角 Business Focus</h3>
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              {SOLUTIONS.map((s) => (
+                <div key={s.t} className="rounded-xl border border-primary/25 bg-primary/[0.06] p-5 backdrop-blur shadow-[0_0_30px_oklch(0.82_0.14_220/0.10)]">
+                  <p className="text-base font-semibold text-foreground">{s.t}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-foreground/75">{s.d}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+              业务稳定 · 状态可见 · 处置联动 · 风险可控 —— 让规则、模型、工具链与 AI 协同沉淀到统一的开源底座。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const OSS_ASSETS = [
+  { name: "瞬析 WarpParse", d: "复杂日志与实时事件处理引擎" },
+  { name: "瞬联 WarpFusion", d: "已完成单机 Demo 的实时关联分析引擎" },
+  { name: "Galaxy-Ops", d: "面向运维交付的开源组织与配置工具" },
+  { name: "Galaxy-Flow", d: "基于 GXL 的开源工作流引擎" },
+];
+
+function OpenSourceTeaser() {
+  return (
+    <section id="oss" className="relative z-10 border-t border-white/5">
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <Eyebrow>Open Technology Strategy</Eyebrow>
+        <h2 className="mt-5 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          开源构建可信底座
+        </h2>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          大禹安全坚持开源、可审计、可复核、可持续演进的技术路线。真正进入关键业务、承担保障底座职责的基础能力，必须透明、可控、可审计、可继承。
+        </p>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {OSS_ASSETS.map((a) => (
+            <div key={a.name} className="rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-colors hover:border-primary/40">
+              <p className="text-base font-semibold text-foreground">{a.name}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{a.d}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          核心底座已完成鲲鹏、openEuler、银河麒麟等国产软硬件环境适配与验证，支持关键行业的国产化部署。
+        </p>
+        <div className="mt-8">
+          <Link
+            to="/opensource"
+            className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:brightness-110"
+            style={{ boxShadow: "var(--shadow-glow)" }}
+          >
+            查看详细开源技术
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const PARTNER_CASES = [
+  { n: "01", t: "2022 北京冬奥会", d: "团队参与 2022 北京冬奥会三级安全运营体系设计与建设。" },
+  { n: "02", t: "长沙城运安全运营中心", d: "团队参与 2022 年长沙城市安全运营中心设计建设。" },
+  { n: "03", t: "国家级大型电网", d: "团队参与国家级大型电网安全运营保障体系的建设与持续运营。" },
+];
+
+function Partners() {
+  return (
+    <section id="case" className="relative z-10 border-t border-white/5">
+      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+        <Eyebrow>Trusted Partner</Eyebrow>
+        <h2 className="mt-5 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          值得信赖的长期合作伙伴
+        </h2>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          我们不是一次性交付后离场的供应方，而是在复杂场景里与客户长期协同、持续建设保障体系的合作伙伴。
+        </p>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          {PARTNER_CASES.map((c) => (
+            <div key={c.n} className="relative overflow-hidden rounded-2xl border border-white/10 bg-card/40 p-6 backdrop-blur-md transition-colors hover:border-primary/40">
+              <span className="text-3xl font-bold text-primary/30">{c.n}</span>
+              <h3 className="mt-3 text-lg font-semibold text-foreground">{c.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8">
+          <Link
+            to="/case"
+            className="inline-flex items-center gap-2 rounded-md border border-primary/30 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-primary/60 hover:bg-white/[0.06]"
+          >
+            查看更多合作案例
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
