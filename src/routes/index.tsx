@@ -117,66 +117,9 @@ function nodeTone(kind: NodeKind) {
 
 function Index() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      {/* Background layers */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "var(--gradient-hero)" }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.18]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, oklch(1 0 0 / 0.08) 1px, transparent 1px), linear-gradient(to bottom, oklch(1 0 0 / 0.08) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-          maskImage:
-            "radial-gradient(ellipse 70% 60% at 50% 40%, black 40%, transparent 85%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[1100px] -translate-x-1/2 rounded-full blur-[140px]"
-        style={{ background: "oklch(0.55 0.18 220 / 0.35)" }}
-      />
-
-      {/* Nav */}
-      <header className="relative z-20">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-          <a href="#" className="group flex items-center gap-2.5">
-            <span className="relative grid h-9 w-9 place-items-center rounded-md border border-primary/40 bg-primary/10 text-primary shadow-[0_0_18px_oklch(0.82_0.14_220/0.45)]">
-              <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5">
-                <path
-                  d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinejoin="round"
-                />
-                <path d="m8.5 12 2.5 2.5L16 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <span className="text-base font-semibold tracking-wide text-foreground">
-              大禹安全
-            </span>
-          </a>
-          <nav className="hidden items-center gap-8 md:flex">
-            {NAV.map((item, i) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`text-sm transition-colors ${i === 0 ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <PageShell>
       {/* Hero */}
-      <main className="relative z-10">
-        <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-24 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:px-10 lg:pt-16">
+      <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-24 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:px-10 lg:pt-16">
           {/* Left: copy */}
           <div className="animate-[fadeUp_0.7s_ease-out_both]">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs text-primary backdrop-blur">
@@ -212,8 +155,9 @@ function Index() {
 
             {/* CTAs */}
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href="#pain"
+              <Link
+                to="/"
+                hash="pain"
                 className="group relative inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:brightness-110"
                 style={{ boxShadow: "var(--shadow-glow)" }}
               >
@@ -221,13 +165,13 @@ function Index() {
                 <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none">
                   <path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </a>
-              <a
-                href="#about"
+              </Link>
+              <Link
+                to="/about"
                 className="inline-flex items-center gap-2 rounded-md border border-primary/30 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-primary/60 hover:bg-white/[0.06]"
               >
                 了解大禹安全
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -252,8 +196,7 @@ function Index() {
               <span className="pointer-events-none absolute -bottom-2 -right-2 h-6 w-6 border-b-2 border-r-2 border-primary/70" />
             </div>
           </div>
-        </section>
-      </main>
+      </section>
 
       <style>{`
         @keyframes fadeUp {
@@ -266,8 +209,12 @@ function Index() {
         }
       `}</style>
 
+      <Pain />
+      <Solution />
       <Architecture />
-    </div>
+      <OpenSourceTeaser />
+      <Partners />
+    </PageShell>
   );
 }
 
