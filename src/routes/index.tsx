@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import heroShield from "@/assets/hero-shield.png";
+import { PageShell, Eyebrow } from "@/components/site/PageShell";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -12,15 +14,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const NAV = [
-  { label: "首页", href: "#" },
-  { label: "客户痛点", href: "#pain" },
-  { label: "保障体系", href: "#system" },
-  { label: "开源技术", href: "#oss" },
-  { label: "合作案例", href: "#case" },
-  { label: "关于我们", href: "#about" },
-];
 
 // ---- Architecture diagram data (mirrors uploaded 架构图2.png logic) ----
 type NodeKind = "core" | "hub" | "data" | "tool" | "system" | "infra";
