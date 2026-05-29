@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as OpensourceRouteImport } from './routes/opensource'
+import { Route as CaseRouteImport } from './routes/case'
 import { Route as IndexRouteImport } from './routes/index'
 
 const OpensourceRoute = OpensourceRouteImport.update({
   id: '/opensource',
   path: '/opensource',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CaseRoute = CaseRouteImport.update({
+  id: '/case',
+  path: '/case',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/case': typeof CaseRoute
   '/opensource': typeof OpensourceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/case': typeof CaseRoute
   '/opensource': typeof OpensourceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/case': typeof CaseRoute
   '/opensource': typeof OpensourceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/opensource'
+  fullPaths: '/' | '/case' | '/opensource'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/opensource'
-  id: '__root__' | '/' | '/opensource'
+  to: '/' | '/case' | '/opensource'
+  id: '__root__' | '/' | '/case' | '/opensource'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CaseRoute: typeof CaseRoute
   OpensourceRoute: typeof OpensourceRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/opensource'
       fullPath: '/opensource'
       preLoaderRoute: typeof OpensourceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/case': {
+      id: '/case'
+      path: '/case'
+      fullPath: '/case'
+      preLoaderRoute: typeof CaseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CaseRoute: CaseRoute,
   OpensourceRoute: OpensourceRoute,
 }
 export const routeTree = rootRouteImport
