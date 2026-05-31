@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { PageShell, Eyebrow } from "@/components/site/PageShell";
+import coverAbout from "@/assets/cover-about.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -49,13 +50,28 @@ function AboutPage() {
   return (
     <PageShell>
       <section className="mx-auto max-w-7xl px-6 pb-16 pt-16 lg:px-10">
-        <Eyebrow>关于我们</Eyebrow>
-        <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
-          面向数字业务保障的基础设施公司
-        </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          大禹安全成立于 2025 年 4 月。我们不是从单点产品出发，而是从复杂平台建设、安全运营体系和实时检测分析系统中积累能力。
-        </p>
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <Eyebrow>关于我们</Eyebrow>
+            <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
+              面向数字业务保障的基础设施公司
+            </h1>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              大禹安全成立于 2025 年 4 月。我们不是从单点产品出发，而是从复杂平台建设、安全运营体系和实时检测分析系统中积累能力。
+            </p>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-3xl bg-primary/10 blur-2xl" />
+            <img
+              src={coverAbout}
+              alt="大禹安全数字业务保障底座示意"
+              loading="lazy"
+              width={1024}
+              height={1024}
+              className="relative w-full rounded-2xl border border-white/10 shadow-[0_0_60px_oklch(0.82_0.14_220/0.18)]"
+            />
+          </div>
+        </div>
         <div className="mt-8 max-w-3xl rounded-2xl border border-primary/25 bg-card/40 p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.82_0.14_220/0.12)]">
           <p className="text-lg font-semibold text-foreground">项目是进入方式，底座能力才是长期价值。</p>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
