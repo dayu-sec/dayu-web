@@ -302,17 +302,30 @@ function Architecture() {
                 const rr = Math.min(0.8, seg1, seg2 / 2, seg3);
                 const d = `M ${x1} ${y1} L ${midX - dx1 * rr} ${y1} Q ${midX} ${y1} ${midX} ${y1 + dy2 * rr} L ${midX} ${y2 - dy2 * rr} Q ${midX} ${y2} ${midX + dx3 * rr} ${y2} L ${x2} ${y2}`;
                 return (
-                  <path
-                    key={i}
-                    d={d}
-                    fill="none"
-                    stroke="url(#edge)"
-                    strokeWidth="0.55"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    markerEnd="url(#arrow)"
-                    opacity="0.85"
-                  />
+                  <g key={i}>
+                    <path
+                      d={d}
+                      fill="none"
+                      stroke="url(#edge)"
+                      strokeWidth="0.55"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      markerEnd="url(#arrow)"
+                      opacity="0.85"
+                    />
+                    {/* flowing light pulse overlay */}
+                    <path
+                      className="edge-flow"
+                      d={d}
+                      fill="none"
+                      stroke="oklch(0.95 0.06 210)"
+                      strokeWidth="0.7"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeDasharray="3 14"
+                      style={{ animationDelay: `${(i % 5) * 0.4}s` }}
+                    />
+                  </g>
                 );
               })}
             </svg>
