@@ -291,9 +291,16 @@ function Architecture() {
                 const y1 = na.y + na.h / 2;
                 const x2 = nb.x + nb.w / 2;
                 const y2 = nb.y + nb.h / 2;
-                // orthogonal elbow line (angled corners)
+                // rounded orthogonal elbow
                 const midX = (x1 + x2) / 2;
-                const d = `M ${x1} ${y1} L ${midX} ${y1} L ${midX} ${y2} L ${x2} ${y2}`;
+                const dx1 = Math.sign(midX - x1) || 1;
+                const dy2 = Math.sign(y2 - y1) || 1;
+                const dx3 = Math.sign(x2 - midX) || 1;
+                const seg1 = Math.abs(midX - x1);
+                const seg2 = Math.abs(y2 - y1);
+                const seg3 = Math.abs(x2 - midX);
+                const rr = Math.min(0.8, seg1, seg2 / 2, seg3);
+                const d = `M ${x1} ${y1} L ${midX - dx1 * rr} ${y1} Q ${midX} ${y1} ${midX} ${y1 + dy2 * rr} L ${midX} ${y2 - dy2 * rr} Q ${midX} ${y2} ${midX + dx3 * rr} ${y2} L ${x2} ${y2}`;
                 return (
                   <path
                     key={i}
@@ -301,6 +308,7 @@ function Architecture() {
                     fill="none"
                     stroke="url(#edge)"
                     strokeWidth="0.25"
+                    strokeLinecap="round"
                     strokeLinejoin="round"
                     markerEnd="url(#arrow)"
                     opacity="0.85"
