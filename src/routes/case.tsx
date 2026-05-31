@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { PageShell, Eyebrow } from "@/components/site/PageShell";
+import coverCase from "@/assets/cover-case.jpg";
 
 export const Route = createFileRoute("/case")({
   head: () => ({
@@ -31,13 +32,28 @@ function CasePage() {
   return (
     <PageShell>
       <section className="mx-auto max-w-7xl px-6 pb-16 pt-16 lg:px-10">
-        <Eyebrow>Trusted Partner</Eyebrow>
-        <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
-          合作案例
-        </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          不是围绕单点产品罗列用例，而是通过真实合作案例说明这套体系如何进入复杂环境、持续落地。
-        </p>
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <Eyebrow>Trusted Partner</Eyebrow>
+            <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
+              合作案例
+            </h1>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              不是围绕单点产品罗列用例，而是通过真实合作案例说明这套体系如何进入复杂环境、持续落地。
+            </p>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-3xl bg-primary/10 blur-2xl" />
+            <img
+              src={coverCase}
+              alt="城市级安全运营中心可视化"
+              loading="lazy"
+              width={1024}
+              height={1024}
+              className="relative w-full rounded-2xl border border-white/10 shadow-[0_0_60px_oklch(0.82_0.14_220/0.18)]"
+            />
+          </div>
+        </div>
         <div className="mt-12 grid gap-4 md:grid-cols-3">
           {CASES.map((c) => (
             <div key={c.t} className="rounded-2xl border border-white/10 bg-card/40 p-6 backdrop-blur-md transition-colors hover:border-primary/40">
