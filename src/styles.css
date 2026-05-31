@@ -147,3 +147,23 @@
     color: var(--color-foreground);
   }
 }
+
+@keyframes edge-flow-dash {
+  to {
+    stroke-dashoffset: -34;
+  }
+}
+
+.edge-flow {
+  stroke-dashoffset: 0;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 1px oklch(0.9 0.1 210 / 0.8));
+  animation: edge-flow-dash 1.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edge-flow {
+    animation: none;
+    opacity: 0;
+  }
+}
