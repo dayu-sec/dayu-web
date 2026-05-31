@@ -273,8 +273,8 @@ function Architecture() {
                   viewBox="0 0 10 10"
                   refX="8"
                   refY="5"
-                  markerWidth="5"
-                  markerHeight="5"
+                  markerWidth="7"
+                  markerHeight="7"
                   orient="auto-start-reverse"
                 >
                   <path d="M0,0 L10,5 L0,10 z" fill="oklch(0.82 0.14 220)" />
@@ -307,7 +307,7 @@ function Architecture() {
                     d={d}
                     fill="none"
                     stroke="url(#edge)"
-                    strokeWidth="0.25"
+                    strokeWidth="0.55"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     markerEnd="url(#arrow)"
