@@ -291,9 +291,9 @@ function Architecture() {
                 const y1 = na.y + na.h / 2;
                 const x2 = nb.x + nb.w / 2;
                 const y2 = nb.y + nb.h / 2;
-                // simple orthogonal-ish curve
+                // orthogonal elbow line (angled corners)
                 const midX = (x1 + x2) / 2;
-                const d = `M ${x1} ${y1} C ${midX} ${y1}, ${midX} ${y2}, ${x2} ${y2}`;
+                const d = `M ${x1} ${y1} L ${midX} ${y1} L ${midX} ${y2} L ${x2} ${y2}`;
                 return (
                   <path
                     key={i}
@@ -301,6 +301,7 @@ function Architecture() {
                     fill="none"
                     stroke="url(#edge)"
                     strokeWidth="0.25"
+                    strokeLinejoin="round"
                     markerEnd="url(#arrow)"
                     opacity="0.85"
                   />
