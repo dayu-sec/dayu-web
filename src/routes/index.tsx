@@ -239,8 +239,8 @@ function Architecture() {
           </p>
         </div>
 
-        {/* Top system tags */}
-        <div className="mb-6 grid grid-cols-3 gap-3 sm:gap-4 lg:max-w-[60%] lg:ml-[33%]">
+        {/* Top system tags — supported by the architecture below */}
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:max-w-[60%] lg:ml-[33%]">
           {TOP_SYSTEMS.map((s) => (
             <div
               key={s.id}
@@ -249,6 +249,61 @@ function Architecture() {
               {s.label}
             </div>
           ))}
+        </div>
+
+        {/* Upward support arrows: architecture -> top systems */}
+        <div className="mb-6 lg:max-w-[60%] lg:ml-[33%]">
+          <svg
+            className="h-10 w-full"
+            viewBox="0 0 300 40"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <defs>
+              <marker
+                id="arrow-up"
+                viewBox="0 0 10 10"
+                refX="5"
+                refY="2"
+                markerWidth="7"
+                markerHeight="7"
+                orient="auto"
+              >
+                <path d="M0,10 L5,0 L10,10 z" fill="oklch(0.82 0.14 220)" />
+              </marker>
+              <linearGradient id="edge-up" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
+                <stop offset="100%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
+              </linearGradient>
+            </defs>
+            {[50, 150, 250].map((cx, i) => (
+              <g key={cx}>
+                <line
+                  x1={cx}
+                  y1="38"
+                  x2={cx}
+                  y2="6"
+                  stroke="url(#edge-up)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  markerEnd="url(#arrow-up)"
+                  opacity="0.85"
+                />
+                <line
+                  className="edge-flow"
+                  x1={cx}
+                  y1="38"
+                  x2={cx}
+                  y2="6"
+                  stroke="oklch(0.95 0.06 210)"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeDasharray="3 14"
+                  style={{ animationDelay: `${i * 0.4}s` }}
+                />
+              </g>
+            ))}
+          </svg>
         </div>
 
         {/* Diagram canvas */}
