@@ -119,7 +119,7 @@ function Index() {
   return (
     <PageShell>
       {/* Hero */}
-      <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-24 pt-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:px-10 lg:pt-16">
+      <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 pb-24 pt-10 lg:grid-cols-[1fr_1.25fr] lg:gap-16 lg:px-10 lg:pt-16">
           {/* Left: copy */}
           <div className="animate-[fadeUp_0.7s_ease-out_both]">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-xs text-primary backdrop-blur">
