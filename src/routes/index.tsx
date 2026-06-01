@@ -276,7 +276,7 @@ function Architecture() {
                 <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
               </linearGradient>
             </defs>
-            {[50, 150, 250].map((cx, i) => (
+            {[50, 150, 250].map((cx) => (
               <g key={cx}>
                 <line
                   x1={cx}
@@ -289,18 +289,6 @@ function Architecture() {
                   strokeLinejoin="round"
                   markerEnd="url(#arrow-up)"
                   opacity="0.85"
-                />
-                <line
-                  className="edge-flow"
-                  x1={cx}
-                  y1="38"
-                  x2={cx}
-                  y2="6"
-                  stroke="oklch(0.95 0.06 210)"
-                  strokeWidth="2.8"
-                  strokeLinecap="round"
-                  strokeDasharray="3 14"
-                  style={{ animationDelay: `${i * 0.4}s` }}
                 />
               </g>
             ))}
