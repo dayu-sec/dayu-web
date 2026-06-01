@@ -270,7 +270,7 @@ function Architecture() {
                 <path
                   d="M12 38 L12 8 M5 15 L12 6 L19 15"
                   stroke="url(#edge-up)"
-                  strokeWidth="3.4"
+                  strokeWidth="4.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   opacity="0.9"
