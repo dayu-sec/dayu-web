@@ -83,6 +83,13 @@ const TOP_SYSTEMS = [
   { id: "risk", label: "人员风险系统" },
 ];
 
+const GROUP_ICONS: Record<string, LucideIcon> = {
+  "public-cloud": Cloud,
+  idc: Server,
+  warpaixs: Cpu,
+  office: Building2,
+};
+
 // edges: [fromId, toId]
 const DIAGRAM_EDGES: [string, string][] = [
   ["domainsys", "aoc-cloud"],
