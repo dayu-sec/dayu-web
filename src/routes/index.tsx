@@ -401,13 +401,17 @@ function Architecture() {
             {allNodes.map((n) => (
               <div
                 key={n.id}
-                className={`absolute grid place-items-center rounded-md border px-2 text-center text-[11px] font-medium leading-tight backdrop-blur sm:text-xs ${nodeTone(n.kind)}`}
+                className={`absolute flex items-center justify-center gap-1.5 rounded-md border px-2 text-center text-[11px] font-medium leading-tight backdrop-blur sm:text-xs ${nodeTone(n.kind)}`}
                 style={{
                   left: `${n.x}%`, top: `${n.y}%`,
                   width: `${n.w}%`, height: `${n.h}%`,
                 }}
               >
-                {n.label}
+                {(() => {
+                  const Icon = NODE_ICONS[n.kind];
+                  return Icon ? <Icon className="h-3.5 w-3.5 shrink-0 opacity-80" strokeWidth={2} /> : null;
+                })()}
+                <span>{n.label}</span>
               </div>
             ))}
           </div>
