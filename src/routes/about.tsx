@@ -50,17 +50,23 @@ function AboutPage() {
   return (
     <PageShell>
       <section className="mx-auto max-w-7xl px-6 pb-16 pt-16 lg:px-10">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div>
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="flex flex-col">
             <Eyebrow>关于我们</Eyebrow>
-            <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
-              面向数字业务保障的基础设施公司
+            <h1 className="mt-6 text-4xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-5xl">
+              面向数字业务保障的<br className="hidden sm:block" />基础设施公司
             </h1>
-            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
               大禹安全成立于 2025 年 4 月。我们不是从单点产品出发，而是从复杂平台建设、安全运营体系和实时检测分析系统中积累能力。
             </p>
+            <div className="mt-8 rounded-2xl border border-primary/25 bg-card/40 p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.82_0.14_220/0.12)]">
+              <p className="text-lg font-semibold text-foreground">项目是进入方式，底座能力才是长期价值。</p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                团队既理解业务与运营现场，也具备底层引擎、规则体系和工程交付能力。
+              </p>
+            </div>
           </div>
-          <div className="relative">
+          <div className="relative mx-auto w-full max-w-md lg:max-w-none">
             <div className="absolute -inset-4 rounded-3xl bg-primary/10 blur-2xl" />
             <img
               src={coverAbout}
@@ -72,13 +78,7 @@ function AboutPage() {
             />
           </div>
         </div>
-        <div className="mt-8 max-w-3xl rounded-2xl border border-primary/25 bg-card/40 p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.82_0.14_220/0.12)]">
-          <p className="text-lg font-semibold text-foreground">项目是进入方式，底座能力才是长期价值。</p>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            团队既理解业务与运营现场，也具备底层引擎、规则体系和工程交付能力。
-          </p>
-        </div>
-        <div className="mt-12"><Cards items={STRENGTHS} /></div>
+        <div className="mt-16"><Cards items={STRENGTHS} /></div>
       </section>
 
       <section className="relative z-10 border-t border-white/5">
