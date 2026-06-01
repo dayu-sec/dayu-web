@@ -290,18 +290,6 @@ function Architecture() {
                   markerEnd="url(#arrow-up)"
                   opacity="0.85"
                 />
-                <line
-                  className="edge-flow"
-                  x1={cx}
-                  y1="38"
-                  x2={cx}
-                  y2="6"
-                  stroke="oklch(0.95 0.06 210)"
-                  strokeWidth="2.8"
-                  strokeLinecap="round"
-                  strokeDasharray="3 14"
-                  style={{ animationDelay: `${i * 0.4}s` }}
-                />
               </g>
             ))}
           </svg>
