@@ -65,26 +65,26 @@ function OpenSourcePage() {
   return (
     <PageShell>
       <section className="mx-auto max-w-7xl px-6 pb-16 pt-16 lg:px-10">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div>
-            <Eyebrow>Open Technology Strategy</Eyebrow>
-            <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
-              开源构建可信基石
-            </h1>
-            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-              越靠近关键底座，越需要透明、可验、可继承、可持续演进的能力，而不是把长期命运交给封闭黑盒。
-            </p>
-          </div>
-          <div className="relative">
-            <div className="absolute -inset-4 rounded-3xl bg-primary/10 blur-2xl" />
+        <div className="overflow-hidden rounded-3xl border border-white/10 bg-card/40 backdrop-blur-md">
+          <div className="relative aspect-[21/9] w-full overflow-hidden">
             <img
               src={coverOpensource}
               alt="开源技术数据处理底座示意"
               loading="lazy"
               width={1024}
               height={1024}
-              className="relative w-full rounded-2xl border border-white/10 shadow-[0_0_60px_oklch(0.82_0.14_220/0.18)]"
+              className="absolute inset-0 h-full w-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent" />
+          </div>
+          <div className="p-8 lg:p-12">
+            <Eyebrow>Open Technology Strategy</Eyebrow>
+            <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
+              开源构建可信基石
+            </h1>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+              越靠近关键底座，越需要透明、可验、可继承、可持续演进的能力，而不是把长期命运交给封闭黑盒。
+            </p>
           </div>
         </div>
         <div className="mt-12">
