@@ -263,17 +263,17 @@ function Architecture() {
               <marker
                 id="arrow-up"
                 viewBox="0 0 10 10"
-                refX="5"
-                refY="2"
+                refX="8"
+                refY="5"
                 markerWidth="7"
                 markerHeight="7"
-                orient="auto"
+                orient="auto-start-reverse"
               >
-                <path d="M0,10 L5,0 L10,10 z" fill="oklch(0.82 0.14 220)" />
+                <path d="M0,0 L10,5 L0,10 z" fill="oklch(0.82 0.14 220)" />
               </marker>
               <linearGradient id="edge-up" x1="0" y1="1" x2="0" y2="0">
-                <stop offset="0%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
-                <stop offset="100%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
+                <stop offset="0%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
+                <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
               </linearGradient>
             </defs>
             {[50, 150, 250].map((cx, i) => (
@@ -284,8 +284,9 @@ function Architecture() {
                   x2={cx}
                   y2="6"
                   stroke="url(#edge-up)"
-                  strokeWidth="2"
+                  strokeWidth="2.2"
                   strokeLinecap="round"
+                  strokeLinejoin="round"
                   markerEnd="url(#arrow-up)"
                   opacity="0.85"
                 />
@@ -296,7 +297,7 @@ function Architecture() {
                   x2={cx}
                   y2="6"
                   stroke="oklch(0.95 0.06 210)"
-                  strokeWidth="2.4"
+                  strokeWidth="2.8"
                   strokeLinecap="round"
                   strokeDasharray="3 14"
                   style={{ animationDelay: `${i * 0.4}s` }}
