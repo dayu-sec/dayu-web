@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { Cloud, Server, Cpu, Building2, type LucideIcon } from "lucide-react";
+import { Cloud, Server, Cpu, Building2, Boxes, Network, Database, Wrench, Layers, type LucideIcon } from "lucide-react";
 import heroShield from "@/assets/hero-shield.png";
 import { PageShell, Eyebrow } from "@/components/site/PageShell";
 
