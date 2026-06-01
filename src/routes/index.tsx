@@ -252,47 +252,32 @@ function Architecture() {
         </div>
 
         {/* Upward support arrows: architecture -> top systems */}
-        <div className="mb-6 lg:max-w-[60%] lg:ml-[33%]">
-          <svg
-            className="h-10 w-full"
-            viewBox="0 0 300 40"
-            preserveAspectRatio="none"
-            aria-hidden
-          >
-            <defs>
-              <marker
-                id="arrow-up"
-                viewBox="0 0 10 10"
-                refX="8"
-                refY="5"
-                markerWidth="7"
-                markerHeight="7"
-                orient="auto-start-reverse"
+        <div className="mb-6 grid grid-cols-3 gap-3 sm:gap-4 lg:max-w-[60%] lg:ml-[33%]">
+          {TOP_SYSTEMS.map((s) => (
+            <div key={s.id} className="flex justify-center">
+              <svg
+                className="h-10 w-6"
+                viewBox="0 0 24 40"
+                fill="none"
+                aria-hidden
               >
-                <path d="M0,0 L10,5 L0,10 z" fill="oklch(0.82 0.14 220)" />
-              </marker>
-              <linearGradient id="edge-up" x1="0" y1="1" x2="0" y2="0">
-                <stop offset="0%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
-                <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
-              </linearGradient>
-            </defs>
-            {[50, 150, 250].map((cx) => (
-              <g key={cx}>
-                <line
-                  x1={cx}
-                  y1="38"
-                  x2={cx}
-                  y2="6"
+                <defs>
+                  <linearGradient id="edge-up" x1="0" y1="1" x2="0" y2="0">
+                    <stop offset="0%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
+                    <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M12 38 L12 8 M5 15 L12 6 L19 15"
                   stroke="url(#edge-up)"
                   strokeWidth="2.2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  markerEnd="url(#arrow-up)"
-                  opacity="0.85"
+                  opacity="0.9"
                 />
-              </g>
-            ))}
-          </svg>
+              </svg>
+            </div>
+          ))}
         </div>
 
         {/* Diagram canvas */}
