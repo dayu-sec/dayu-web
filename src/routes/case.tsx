@@ -50,7 +50,7 @@ function CasePage() {
               loading="lazy"
               width={1024}
               height={1024}
-              className="relative w-full rounded-2xl border border-white/10 shadow-[0_0_60px_oklch(0.82_0.14_220/0.18)]"
+              className="relative w-full rounded-2xl shadow-[0_0_60px_oklch(0.82_0.14_220/0.18)]"
             />
           </div>
         </div>
