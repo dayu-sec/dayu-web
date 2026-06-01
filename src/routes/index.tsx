@@ -378,7 +378,11 @@ function Architecture() {
                   boxShadow: "inset 0 0 0 1px oklch(1 0 0 / 0.03)",
                 }}
               >
-                <span className="absolute left-3 top-2 text-[11px] font-medium uppercase tracking-wider text-primary/80">
+                <span className="absolute left-3 top-2 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-primary/80">
+                  {(() => {
+                    const Icon = GROUP_ICONS[g.id];
+                    return Icon ? <Icon className="h-3.5 w-3.5" strokeWidth={2} /> : null;
+                  })()}
                   {g.label}
                 </span>
               </div>
