@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
+import { Cloud, Server, Cpu, Building2, type LucideIcon } from "lucide-react";
 import heroShield from "@/assets/hero-shield.png";
 import { PageShell, Eyebrow } from "@/components/site/PageShell";
 
@@ -81,6 +82,13 @@ const TOP_SYSTEMS = [
   { id: "ops", label: "监控运维系统" },
   { id: "risk", label: "人员风险系统" },
 ];
+
+const GROUP_ICONS: Record<string, LucideIcon> = {
+  "public-cloud": Cloud,
+  idc: Server,
+  warpaixs: Cpu,
+  office: Building2,
+};
 
 // edges: [fromId, toId]
 const DIAGRAM_EDGES: [string, string][] = [
@@ -370,7 +378,11 @@ function Architecture() {
                   boxShadow: "inset 0 0 0 1px oklch(1 0 0 / 0.03)",
                 }}
               >
-                <span className="absolute left-3 top-2 text-[11px] font-medium uppercase tracking-wider text-primary/80">
+                <span className="absolute left-3 top-2 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-primary/80">
+                  {(() => {
+                    const Icon = GROUP_ICONS[g.id];
+                    return Icon ? <Icon className="h-3.5 w-3.5" strokeWidth={2} /> : null;
+                  })()}
                   {g.label}
                 </span>
               </div>
