@@ -90,6 +90,15 @@ const GROUP_ICONS: Record<string, LucideIcon> = {
   office: Building2,
 };
 
+const NODE_ICONS: Record<NodeKind, LucideIcon> = {
+  core: Boxes,
+  hub: Network,
+  data: Database,
+  tool: Wrench,
+  system: Layers,
+  infra: Server,
+};
+
 // edges: [fromId, toId]
 const DIAGRAM_EDGES: [string, string][] = [
   ["domainsys", "aoc-cloud"],
