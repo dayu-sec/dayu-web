@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
+import { Code2, Briefcase } from "lucide-react";
 import { PageShell, PageHero } from "@/components/site/PageShell";
 import coverAbout from "@/assets/cover-about.jpg";
 
@@ -89,8 +90,8 @@ function AboutPage() {
             ))}
           </div>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Link to="/opensource" className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:brightness-110" style={{ boxShadow: "var(--shadow-glow)" }}>查看开源技术</Link>
-            <Link to="/case" className="inline-flex items-center gap-2 rounded-md border border-primary/30 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-primary/60">查看合作案例</Link>
+            <Link to="/opensource" className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:brightness-110" style={{ boxShadow: "var(--shadow-glow)" }}><Code2 className="h-4 w-4" strokeWidth={2} />查看开源技术</Link>
+            <Link to="/case" className="inline-flex items-center gap-2 rounded-md border border-primary/30 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-foreground backdrop-blur transition-colors hover:border-primary/60"><Briefcase className="h-4 w-4" strokeWidth={2} />查看合作案例</Link>
           </div>
         </div>
       </section>
