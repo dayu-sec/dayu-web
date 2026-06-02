@@ -469,8 +469,12 @@ function Pain() {
           ))}
         </div>
         <div className="mt-10 rounded-2xl border border-primary/25 bg-card/40 p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.82_0.14_220/0.12)] lg:p-8">
-          <h3 className="text-lg font-semibold text-foreground">
-            一是尽早发现系统要出事，二是尽早发现人可能出事。
+          <h3 className="text-2xl font-bold leading-snug text-foreground sm:text-3xl">
+            一是尽早发现
+            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">系统要出事</span>
+            ，二是尽早发现
+            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">人可能出事</span>
+            。
           </h3>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
             前者对应业务系统稳定性、连续性和关键链路风险保障，后者对应业务运营过程中的异常操作、权限滥用、内部人员风险和管理失控风险识别。
