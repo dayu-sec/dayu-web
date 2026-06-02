@@ -463,7 +463,7 @@ function Pain() {
               key={i}
               className="group rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-colors hover:border-primary/40"
             >
-              <span className="text-xs font-semibold text-primary/80">0{i + 1}</span>
+              <span className="font-semibold text-primary/80 text-base">0{i + 1}</span>
               <p className="mt-2 text-sm leading-relaxed text-foreground/90">{p}</p>
             </div>
           ))}
