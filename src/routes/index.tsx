@@ -615,9 +615,10 @@ function Partners() {
                   loading="lazy"
                   width={1024}
                   height={768}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover brightness-90 contrast-105 saturate-50 transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+                <div className="absolute inset-0 bg-primary/25 mix-blend-color" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/55 to-card/10" />
                 <span className="absolute left-4 top-3 text-3xl font-bold text-primary drop-shadow-[0_2px_8px_oklch(0_0_0/0.6)]">{c.n}</span>
               </div>
               <div className="p-6 pt-4">
