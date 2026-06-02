@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { PageShell, Eyebrow } from "@/components/site/PageShell";
+import { PageShell, PageHero } from "@/components/site/PageShell";
 import coverAbout from "@/assets/cover-about.jpg";
 
 export const Route = createFileRoute("/about")({
@@ -49,36 +49,22 @@ function Cards({ items }: { items: { t: string; d: string }[] }) {
 function AboutPage() {
   return (
     <PageShell>
-      <section className="mx-auto max-w-7xl px-6 pb-16 pt-16 lg:px-10">
-        <div className="overflow-hidden rounded-3xl border border-white/10 bg-card/40 backdrop-blur-md">
-          <div className="relative aspect-[21/9] w-full overflow-hidden">
-            <img
-              src={coverAbout}
-              alt="大禹安全数字业务保障底座示意"
-              loading="lazy"
-              width={1024}
-              height={1024}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent" />
-          </div>
-          <div className="p-8 lg:p-12">
-            <Eyebrow>关于我们</Eyebrow>
-            <h1 className="mt-6 text-4xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-5xl">
-              面向数字业务保障的基础设施公司
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-              大禹安全成立于 2025 年 4 月。我们不是从单点产品出发，而是从复杂平台建设、安全运营体系和实时检测分析系统中积累能力。
-            </p>
-            <div className="mt-8 rounded-2xl border border-primary/25 bg-primary/[0.06] p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.82_0.14_220/0.12)]">
-              <p className="text-lg font-semibold text-foreground">项目是进入方式，底座能力才是长期价值。</p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                团队既理解业务与运营现场，也具备底层引擎、规则体系和工程交付能力。
-              </p>
-            </div>
-          </div>
+      <PageHero
+        eyebrow="关于我们"
+        title="面向数字业务保障的基础设施公司"
+        description="大禹安全成立于 2025 年 4 月。我们不是从单点产品出发，而是从复杂平台建设、安全运营体系和实时检测分析系统中积累能力。"
+        image={coverAbout}
+        imageAlt="大禹安全数字业务保障底座示意"
+      >
+        <div className="mt-8 rounded-2xl border border-primary/25 bg-primary/[0.06] p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.82_0.14_220/0.12)]">
+          <p className="text-lg font-semibold text-foreground">项目是进入方式，底座能力才是长期价值。</p>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            团队既理解业务与运营现场，也具备底层引擎、规则体系和工程交付能力。
+          </p>
         </div>
-        <div className="mt-16"><Cards items={STRENGTHS} /></div>
+      </PageHero>
+      <section className="mx-auto max-w-7xl px-6 pb-16 lg:px-10">
+        <Cards items={STRENGTHS} />
       </section>
 
       <section className="relative z-10 border-t border-white/5">

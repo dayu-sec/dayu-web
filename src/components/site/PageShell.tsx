@@ -21,3 +21,51 @@ export function Eyebrow({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
+export function PageHero({
+  eyebrow,
+  title,
+  description,
+  image,
+  imageAlt,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <section className="mx-auto max-w-7xl px-6 pb-16 pt-16 lg:px-10">
+      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="order-2 lg:order-1">
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <h1 className="mt-6 text-4xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-5xl">
+            {title}
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
+            {description}
+          </p>
+          {children}
+        </div>
+        <div className="order-1 lg:order-2">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-card/40 backdrop-blur-md">
+            <div className="relative aspect-[4/3] w-full overflow-hidden">
+              <img
+                src={image}
+                alt={imageAlt}
+                loading="lazy"
+                width={1024}
+                height={768}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-card/60 via-transparent to-transparent" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
