@@ -589,9 +589,9 @@ function OpenSourceTeaser() {
 }
 
 const PARTNER_CASES = [
-  { n: "01", t: "2022 北京冬奥会", d: "团队参与 2022 北京冬奥会三级安全运营体系设计与建设。" },
-  { n: "02", t: "长沙城运安全运营中心", d: "团队参与 2022 年长沙城市安全运营中心设计建设。" },
-  { n: "03", t: "国家级大型电网", d: "团队参与国家级大型电网安全运营保障体系的建设与持续运营。" },
+  { n: "01", t: "2022 北京冬奥会", d: "团队参与 2022 北京冬奥会三级安全运营体系设计与建设。", img: caseWinterOlympics },
+  { n: "02", t: "长沙城运安全运营中心", d: "团队参与 2022 年长沙城市安全运营中心设计建设。", img: caseCityOps },
+  { n: "03", t: "国家级大型电网", d: "团队参与国家级大型电网安全运营保障体系的建设与持续运营。", img: casePowerGrid },
 ];
 
 function Partners() {
@@ -607,10 +607,23 @@ function Partners() {
         </p>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {PARTNER_CASES.map((c) => (
-            <div key={c.n} className="relative overflow-hidden rounded-2xl border border-white/10 bg-card/40 p-6 backdrop-blur-md transition-colors hover:border-primary/40">
-              <span className="text-3xl font-bold text-primary/30">{c.n}</span>
-              <h3 className="mt-3 text-lg font-semibold text-foreground">{c.t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
+            <div key={c.n} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card/40 backdrop-blur-md transition-colors hover:border-primary/40">
+              <div className="relative h-44 overflow-hidden">
+                <img
+                  src={c.img}
+                  alt={c.t}
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+                <span className="absolute left-4 top-3 text-3xl font-bold text-primary drop-shadow-[0_2px_8px_oklch(0_0_0/0.6)]">{c.n}</span>
+              </div>
+              <div className="p-6 pt-4">
+                <h3 className="text-lg font-semibold text-foreground">{c.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
+              </div>
             </div>
           ))}
         </div>
