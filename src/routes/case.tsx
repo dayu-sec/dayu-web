@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { PageShell, Eyebrow } from "@/components/site/PageShell";
+import { PageShell, PageHero } from "@/components/site/PageShell";
 import coverCase from "@/assets/cover-case.jpg";
 
 export const Route = createFileRoute("/case")({
@@ -31,30 +31,15 @@ const MILESTONES = [
 function CasePage() {
   return (
     <PageShell>
-      <section className="mx-auto max-w-7xl px-6 pb-16 pt-16 lg:px-10">
-        <div className="overflow-hidden rounded-3xl border border-white/10 bg-card/40 backdrop-blur-md">
-          <div className="relative aspect-[21/9] w-full overflow-hidden">
-            <img
-              src={coverCase}
-              alt="城市级安全运营中心可视化"
-              loading="lazy"
-              width={1024}
-              height={1024}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-card/90 via-card/20 to-transparent" />
-          </div>
-          <div className="p-8 lg:p-12">
-            <Eyebrow>Trusted Partner</Eyebrow>
-            <h1 className="mt-5 text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
-              合作案例
-            </h1>
-            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-              不是围绕单点产品罗列用例，而是通过真实合作案例说明这套体系如何进入复杂环境、持续落地。
-            </p>
-          </div>
-        </div>
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
+      <PageHero
+        eyebrow="Trusted Partner"
+        title="合作案例"
+        description="不是围绕单点产品罗列用例，而是通过真实合作案例说明这套体系如何进入复杂环境、持续落地。"
+        image={coverCase}
+        imageAlt="城市级安全运营中心可视化"
+      />
+      <section className="mx-auto max-w-7xl px-6 pb-16 lg:px-10">
+        <div className="grid gap-4 md:grid-cols-3">
           {CASES.map((c) => (
             <div key={c.t} className="rounded-2xl border border-white/10 bg-card/40 p-6 backdrop-blur-md transition-colors hover:border-primary/40">
               <h3 className="text-lg font-semibold text-foreground">{c.t}</h3>
