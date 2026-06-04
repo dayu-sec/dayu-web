@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { Cloud, Server, Cpu, Building2, Boxes, Network, Database, Wrench, Layers, type LucideIcon } from "lucide-react";
+import { Cloud, Server, Cpu, Building2, Boxes, Network, Database, Wrench, Layers, ShieldCheck, Activity, UserCog, type LucideIcon } from "lucide-react";
 import heroShield from "@/assets/hero-shield.png";
 import caseWinterOlympics from "@/assets/case-winter-olympics.jpg";
 import caseCityOps from "@/assets/case-city-ops.jpg";
@@ -80,10 +80,10 @@ const DIAGRAM_GROUPS: DGroup[] = [
   },
 ];
 
-const TOP_SYSTEMS = [
-  { id: "sec", label: "网络安全系统" },
-  { id: "ops", label: "监控运维系统" },
-  { id: "risk", label: "人员风险系统" },
+const TOP_SYSTEMS: { id: string; label: string; icon: LucideIcon }[] = [
+  { id: "sec", label: "网络安全系统", icon: ShieldCheck },
+  { id: "ops", label: "监控运维系统", icon: Activity },
+  { id: "risk", label: "人员风险系统", icon: UserCog },
 ];
 
 const GROUP_ICONS: Record<string, LucideIcon> = {
@@ -263,8 +263,9 @@ function Architecture() {
           {TOP_SYSTEMS.map((s) => (
             <div
               key={s.id}
-              className="rounded-lg border border-primary/20 bg-card/50 px-4 py-3 text-center text-xs font-medium text-foreground/90 backdrop-blur sm:text-sm"
+              className="flex items-center justify-center gap-2 rounded-lg border border-primary/20 bg-card/50 px-4 py-3 text-center text-xs font-medium text-foreground/90 backdrop-blur sm:text-sm"
             >
+              <s.icon className="h-4 w-4 shrink-0 text-primary" strokeWidth={2} />
               {s.label}
             </div>
           ))}
