@@ -195,26 +195,25 @@ function Index() {
             </div>
           </div>
 
-          {/* Right: hero image */}
-          <div className="relative animate-[fadeUp_0.9s_ease-out_both]">
+          {/* Right: hero image — borderless, fades infinitely into the background */}
+          <div className="relative animate-[fadeUp_0.9s_ease-out_both] lg:scale-110">
             <div
               aria-hidden
-              className="absolute inset-0 -z-10 rounded-full blur-3xl"
-              style={{ background: "radial-gradient(circle at 50% 50%, oklch(0.55 0.18 220 / 0.45), transparent 65%)" }}
+              className="absolute inset-0 -z-10 scale-125 blur-3xl"
+              style={{ background: "radial-gradient(circle at 50% 45%, oklch(0.55 0.18 220 / 0.45), transparent 65%)" }}
             />
-            <div className="relative">
-              <img
-                src={heroShield}
-                alt="数字业务保障基础设施 — 资产、观测、运维与风险控制 3D 可视化"
-                className="relative h-auto w-full animate-[floaty_7s_ease-in-out_infinite] select-none drop-shadow-[0_30px_60px_oklch(0.55_0.18_220/0.35)]"
-                draggable={false}
-              />
-              {/* corner brackets */}
-              <span className="pointer-events-none absolute -left-2 -top-2 h-6 w-6 border-l-2 border-t-2 border-primary/70" />
-              <span className="pointer-events-none absolute -right-2 -top-2 h-6 w-6 border-r-2 border-t-2 border-primary/70" />
-              <span className="pointer-events-none absolute -bottom-2 -left-2 h-6 w-6 border-b-2 border-l-2 border-primary/70" />
-              <span className="pointer-events-none absolute -bottom-2 -right-2 h-6 w-6 border-b-2 border-r-2 border-primary/70" />
-            </div>
+            <img
+              src={heroShield}
+              alt="数字业务保障基础设施 — 资产、观测、运维与风险控制 3D 可视化"
+              className="relative h-auto w-full animate-[floaty_7s_ease-in-out_infinite] select-none"
+              draggable={false}
+              style={{
+                maskImage:
+                  "radial-gradient(ellipse 75% 75% at 50% 50%, black 45%, transparent 78%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 75% 75% at 50% 50%, black 45%, transparent 78%)",
+              }}
+            />
           </div>
       </section>
 
