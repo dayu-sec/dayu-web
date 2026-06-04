@@ -55,7 +55,7 @@ function CasePage() {
           <div className="mt-10 space-y-4">
             {MILESTONES.map((m) => (
               <div key={m.n} className="flex items-start gap-5 rounded-2xl border border-white/10 bg-card/40 p-6 backdrop-blur-md transition-colors hover:border-primary/40">
-                <span className="text-3xl font-bold text-primary/30">{m.n}</span>
+                <span className="text-3xl font-bold text-primary/70">{m.n}</span>
                 <div>
                   <h3 className="text-lg font-semibold text-foreground">{m.t}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{m.d}</p>
