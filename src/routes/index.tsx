@@ -80,10 +80,10 @@ const DIAGRAM_GROUPS: DGroup[] = [
   },
 ];
 
-const TOP_SYSTEMS = [
-  { id: "sec", label: "网络安全系统" },
-  { id: "ops", label: "监控运维系统" },
-  { id: "risk", label: "人员风险系统" },
+const TOP_SYSTEMS: { id: string; label: string; icon: LucideIcon }[] = [
+  { id: "sec", label: "网络安全系统", icon: ShieldCheck },
+  { id: "ops", label: "监控运维系统", icon: Activity },
+  { id: "risk", label: "人员风险系统", icon: UserCog },
 ];
 
 const GROUP_ICONS: Record<string, LucideIcon> = {
