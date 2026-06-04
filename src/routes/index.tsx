@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { Cloud, Server, Cpu, Building2, Boxes, Network, Database, Wrench, Layers, type LucideIcon } from "lucide-react";
+import { Cloud, Server, Cpu, Building2, Boxes, Network, Database, Wrench, Layers, ShieldCheck, Activity, UserCog, type LucideIcon } from "lucide-react";
 import heroShield from "@/assets/hero-shield.png";
 import caseWinterOlympics from "@/assets/case-winter-olympics.jpg";
 import caseCityOps from "@/assets/case-city-ops.jpg";
