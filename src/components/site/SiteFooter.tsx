@@ -8,7 +8,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
             <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-md border border-primary/40 bg-primary/10 shadow-[0_0_18px_oklch(0.80_0.15_212/0.45)]">
+              <span className="grid h-9 w-9 place-items-center rounded-md border border-primary/40 bg-primary/10 shadow-[0_0_18px_oklch(0.74_0.14_222/0.45)]">
                 <span
                   aria-hidden
                   className="h-5 w-5 bg-primary"
