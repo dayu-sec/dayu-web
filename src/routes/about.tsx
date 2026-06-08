@@ -57,7 +57,7 @@ function AboutPage() {
         image={coverAbout}
         imageAlt="大禹安全数字业务保障底座示意"
       >
-        <div className="mt-8 rounded-2xl border border-primary/25 bg-primary/[0.06] p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.82_0.14_220/0.12)]">
+        <div className="mt-8 rounded-2xl border border-primary/25 bg-primary/[0.06] p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.80_0.15_212/0.12)]">
           <p className="text-lg font-semibold text-foreground">项目是进入方式，底座能力才是长期价值。</p>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
             团队既理解业务与运营现场，也具备底层引擎、规则体系和工程交付能力。
@@ -83,7 +83,7 @@ function AboutPage() {
           </p>
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             {DIRECTIONS.map((d) => (
-              <div key={d.t} className="rounded-xl border border-primary/25 bg-primary/[0.06] p-6 backdrop-blur shadow-[0_0_30px_oklch(0.82_0.14_220/0.10)]">
+              <div key={d.t} className="rounded-xl border border-primary/25 bg-primary/[0.06] p-6 backdrop-blur shadow-[0_0_30px_oklch(0.80_0.15_212/0.10)]">
                 <p className="text-base font-semibold text-foreground">{d.t}</p>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/75">{d.d}</p>
               </div>
