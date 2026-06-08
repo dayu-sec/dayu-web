@@ -42,6 +42,12 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-status: var(--status);
+  --color-status-foreground: var(--status-foreground);
+  --color-risk: var(--risk);
+  --color-risk-foreground: var(--risk-foreground);
+  --color-tag: var(--tag);
+  --color-tag-foreground: var(--tag-foreground);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
