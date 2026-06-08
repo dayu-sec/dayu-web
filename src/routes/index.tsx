@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
 });
 
 // ---- Architecture diagram data (mirrors uploaded 架构图2.png logic) ----
-type NodeKind = "core" | "hub" | "data" | "tool" | "system" | "infra";
+type NodeKind = "core" | "hub" | "data" | "tool" | "system" | "infra" | "security";
 type DNode = {
   id: string;
   label: string;
@@ -53,7 +53,7 @@ const DIAGRAM_GROUPS: DGroup[] = [
       { id: "aoc-idc", label: "AOC-HUB", kind: "hub", x: 6, y: 56, w: 12, h: 5 },
       { id: "server", label: "服务器", kind: "infra", x: 3, y: 65, w: 22, h: 18 },
       { id: "wp-idc", label: "wp-insightd", kind: "core", x: 6, y: 71, w: 16, h: 6 },
-      { id: "firewall", label: "FireWall", kind: "infra", x: 3, y: 87, w: 14, h: 5 },
+      { id: "firewall", label: "FireWall", kind: "security", x: 3, y: 87, w: 14, h: 5 },
     ],
   },
   {
@@ -100,6 +100,7 @@ const NODE_ICONS: Record<NodeKind, LucideIcon> = {
   tool: Wrench,
   system: Layers,
   infra: Server,
+  security: ShieldAlert,
 };
 
 // edges: [fromId, toId]
