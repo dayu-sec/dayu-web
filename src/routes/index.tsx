@@ -208,7 +208,7 @@ function Index() {
             <img
               src={heroShield}
               alt="数字业务保障基础设施 — 资产、观测、运维与风险控制 3D 可视化"
-              className="relative h-auto w-full animate-[floaty_7s_ease-in-out_infinite] select-none"
+              className="relative h-auto w-full select-none"
               draggable={false}
               style={{
                 maskImage:
