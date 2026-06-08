@@ -407,7 +407,7 @@ function Architecture() {
             {allNodes.map((n) => (
               <div
                 key={n.id}
-                className={`absolute flex items-center justify-center gap-1.5 rounded-md border px-2 text-center text-[11px] font-medium leading-tight backdrop-blur sm:text-xs ${nodeTone(n.kind)}`}
+                className={`absolute flex items-center justify-center gap-1.5 rounded-md border px-2 text-center text-xs font-medium leading-tight backdrop-blur sm:text-sm ${nodeTone(n.kind)}`}
                 style={{
                   left: `${n.x}%`, top: `${n.y}%`,
                   width: `${n.w}%`, height: `${n.h}%`,
