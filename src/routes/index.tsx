@@ -268,7 +268,7 @@ function Architecture() {
               key={s.id}
               className="flex items-center justify-center gap-2 rounded-lg border border-primary/20 bg-card/50 px-4 py-3 text-center text-xs font-medium text-foreground/90 backdrop-blur sm:text-sm"
             >
-              <s.icon className="h-4 w-4 shrink-0 text-primary" strokeWidth={2} />
+              <s.icon className={`h-4 w-4 shrink-0 ${s.id === "sec" ? "text-risk" : "text-primary"}`} strokeWidth={2} />
               {s.label}
             </div>
           ))}
