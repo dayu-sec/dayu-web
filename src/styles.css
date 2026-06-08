@@ -70,7 +70,7 @@
   --card-foreground: oklch(0.97 0.01 230);
   --popover: oklch(0.21 0.035 250);
   --popover-foreground: oklch(0.97 0.01 230);
-  --primary: oklch(0.82 0.14 220);
+  --primary: oklch(0.80 0.15 212);
   --primary-foreground: oklch(0.14 0.03 250);
   --secondary: oklch(0.26 0.04 250);
   --secondary-foreground: oklch(0.97 0.01 230);
@@ -82,11 +82,11 @@
   --destructive-foreground: oklch(0.97 0.01 230);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.82 0.14 220);
-  --glow-primary: oklch(0.82 0.14 220 / 55%);
+  --ring: oklch(0.80 0.15 212);
+  --glow-primary: oklch(0.80 0.15 212 / 55%);
   --glow-accent: oklch(0.78 0.12 300 / 45%);
   --gradient-hero: radial-gradient(ellipse 80% 60% at 70% 40%, oklch(0.35 0.12 230 / 55%), transparent 70%), radial-gradient(ellipse 60% 50% at 20% 80%, oklch(0.30 0.10 300 / 35%), transparent 70%);
-  --shadow-glow: 0 0 60px oklch(0.82 0.14 220 / 35%), 0 0 120px oklch(0.82 0.14 220 / 20%);
+  --shadow-glow: 0 0 60px oklch(0.80 0.15 212 / 35%), 0 0 120px oklch(0.80 0.15 212 / 20%);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
