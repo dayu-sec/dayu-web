@@ -474,9 +474,9 @@ function Pain() {
         <div className="mt-10 rounded-2xl border border-primary/25 bg-card/40 p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.72_0.16_230/0.12)] lg:p-8">
           <h3 className="text-2xl font-bold leading-snug text-foreground sm:text-3xl">
             一是尽早发现
-            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">系统要出事</span>
+            <span className="text-risk">系统要出事</span>
             ，二是尽早发现
-            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">人可能出事</span>
+            <span className="text-risk">人可能出事</span>
             。
           </h3>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
