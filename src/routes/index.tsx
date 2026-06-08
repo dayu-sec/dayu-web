@@ -203,7 +203,7 @@ function Index() {
             <div
               aria-hidden
               className="absolute inset-0 -z-10 scale-125 blur-3xl"
-              style={{ background: "radial-gradient(circle at 50% 45%, oklch(0.55 0.18 232 / 0.45), transparent 65%)" }}
+              style={{ background: "radial-gradient(circle at 50% 45%, oklch(0.58 0.16 22 / 0.22), transparent 45%), radial-gradient(circle at 50% 50%, oklch(0.55 0.16 232 / 0.30), transparent 68%)" }}
             />
             <img
               src={heroShield}
