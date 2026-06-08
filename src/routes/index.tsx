@@ -415,7 +415,7 @@ function Architecture() {
               >
                 {(() => {
                   const Icon = NODE_ICONS[n.kind];
-                  return Icon ? <Icon className="h-3.5 w-3.5 shrink-0 opacity-80" strokeWidth={2} /> : null;
+                  return Icon ? <Icon className="h-5 w-5 shrink-0 opacity-90 sm:h-[22px] sm:w-[22px]" strokeWidth={2} /> : null;
                 })()}
                 <span>{n.label}</span>
               </div>
