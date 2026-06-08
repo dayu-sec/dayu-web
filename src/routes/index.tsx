@@ -130,6 +130,8 @@ function nodeTone(kind: NodeKind) {
       return "border-primary/30 bg-white/[0.04] text-foreground/90";
     case "system":
       return "border-primary/30 bg-card/60 text-foreground";
+    case "security":
+      return "border-risk/60 bg-risk/15 text-foreground shadow-[0_0_22px_oklch(0.62_0.24_20/0.40)]";
     case "infra":
     default:
       return "border-white/10 bg-white/[0.03] text-muted-foreground";
