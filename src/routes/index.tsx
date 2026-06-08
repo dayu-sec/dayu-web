@@ -265,7 +265,7 @@ function Architecture() {
               key={s.id}
               className="flex items-center justify-center gap-2 rounded-lg border border-primary/20 bg-card/50 px-4 py-3 text-center text-xs font-medium text-foreground/90 backdrop-blur sm:text-sm"
             >
-              <s.icon className="h-6 w-6 shrink-0 text-primary" strokeWidth={2} />
+              <s.icon className="h-4 w-4 shrink-0 text-primary" strokeWidth={2} />
               {s.label}
             </div>
           ))}
@@ -412,7 +412,7 @@ function Architecture() {
               >
                 {(() => {
                   const Icon = NODE_ICONS[n.kind];
-                   return Icon ? <Icon className="h-5 w-5 shrink-0 opacity-90 sm:h-[1.35rem] sm:w-[1.35rem]" strokeWidth={2} /> : null;
+                  return Icon ? <Icon className="h-3.5 w-3.5 shrink-0 opacity-80" strokeWidth={2} /> : null;
                 })()}
                 <span>{n.label}</span>
               </div>
