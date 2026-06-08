@@ -135,6 +135,7 @@ function nodeTone(kind: NodeKind) {
       return "border-white/10 bg-white/[0.03] text-muted-foreground";
   }
 }
+}
 
 function Index() {
   return (
