@@ -14,7 +14,9 @@ export function Background() {
             "linear-gradient(to right, oklch(1 0 0 / 0.08) 1px, transparent 1px), linear-gradient(to bottom, oklch(1 0 0 / 0.08) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
           maskImage:
-            "radial-gradient(ellipse 80% 70% at 50% 30%, black 35%, transparent 85%)",
+            "radial-gradient(ellipse 120% 90% at 50% 25%, black 20%, transparent 95%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 120% 90% at 50% 25%, black 20%, transparent 95%)",
         }}
       />
       <div
