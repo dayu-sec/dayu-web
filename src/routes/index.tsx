@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { Cloud, Server, Cpu, Building2, Boxes, Network, Database, Wrench, Layers, ShieldCheck, Activity, UserCog, type LucideIcon } from "lucide-react";
+import { Cloud, Server, Cpu, Building2, Boxes, Network, Database, Wrench, Layers, ShieldCheck, ShieldAlert, Activity, UserCog, type LucideIcon } from "lucide-react";
 import heroShield from "@/assets/hero-shield.png";
 import caseWinterOlympics from "@/assets/case-winter-olympics.jpg";
 import caseCityOps from "@/assets/case-city-ops.jpg";
@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
 });
 
 // ---- Architecture diagram data (mirrors uploaded 架构图2.png logic) ----
-type NodeKind = "core" | "hub" | "data" | "tool" | "system" | "infra";
+type NodeKind = "core" | "hub" | "data" | "tool" | "system" | "infra" | "security";
 type DNode = {
   id: string;
   label: string;
@@ -53,7 +53,7 @@ const DIAGRAM_GROUPS: DGroup[] = [
       { id: "aoc-idc", label: "AOC-HUB", kind: "hub", x: 6, y: 56, w: 12, h: 5 },
       { id: "server", label: "服务器", kind: "infra", x: 3, y: 65, w: 22, h: 18 },
       { id: "wp-idc", label: "wp-insightd", kind: "core", x: 6, y: 71, w: 16, h: 6 },
-      { id: "firewall", label: "FireWall", kind: "infra", x: 3, y: 87, w: 14, h: 5 },
+      { id: "firewall", label: "FireWall", kind: "security", x: 3, y: 87, w: 14, h: 5 },
     ],
   },
   {
@@ -100,6 +100,7 @@ const NODE_ICONS: Record<NodeKind, LucideIcon> = {
   tool: Wrench,
   system: Layers,
   infra: Server,
+  security: ShieldAlert,
 };
 
 // edges: [fromId, toId]
@@ -129,6 +130,8 @@ function nodeTone(kind: NodeKind) {
       return "border-primary/30 bg-white/[0.04] text-foreground/90";
     case "system":
       return "border-primary/30 bg-card/60 text-foreground";
+    case "security":
+      return "border-risk/60 bg-risk/15 text-foreground shadow-[0_0_22px_oklch(0.62_0.24_20/0.40)]";
     case "infra":
     default:
       return "border-white/10 bg-white/[0.03] text-muted-foreground";
@@ -265,7 +268,7 @@ function Architecture() {
               key={s.id}
               className="flex items-center justify-center gap-2 rounded-lg border border-primary/20 bg-card/50 px-4 py-3 text-center text-xs font-medium text-foreground/90 backdrop-blur sm:text-sm"
             >
-              <s.icon className="h-4 w-4 shrink-0 text-primary" strokeWidth={2} />
+              <s.icon className={`h-4 w-4 shrink-0 ${s.id === "sec" ? "text-risk" : "text-primary"}`} strokeWidth={2} />
               {s.label}
             </div>
           ))}
