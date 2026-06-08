@@ -20,7 +20,7 @@ export function Background() {
       <div
         aria-hidden
         className="pointer-events-none fixed -top-40 left-1/2 -z-10 h-[520px] w-[1100px] -translate-x-1/2 rounded-full blur-[140px]"
-        style={{ background: "oklch(0.55 0.16 225 / 0.30)" }}
+        style={{ background: "oklch(0.55 0.18 232 / 0.30)" }}
       />
     </>
   );
