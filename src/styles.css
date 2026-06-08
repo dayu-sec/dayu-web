@@ -88,8 +88,8 @@
   /* Light cyan accent — sub-headings, status text, icon strokes */
   --accent: oklch(0.85 0.11 220);
   --accent-foreground: oklch(0.12 0.02 248);
-  /* Red — risk / firewall / security boundary alerts (softened for dark bg) */
-  --destructive: oklch(0.64 0.19 22);
+  /* Red — risk / firewall / security boundary alerts (ref #FF3C4F) */
+  --destructive: oklch(0.62 0.24 20);
   --destructive-foreground: oklch(0.98 0.006 230);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
@@ -97,7 +97,7 @@
   /* Accent functional tokens */
   --status: oklch(0.78 0.18 225);
   --status-foreground: oklch(0.10 0.02 248);
-  --risk: oklch(0.66 0.18 22);
+  --risk: oklch(0.62 0.24 20);
   --risk-foreground: oklch(0.98 0.006 230);
   --tag: oklch(0.84 0.11 75);
   --tag-foreground: oklch(0.16 0.03 70);

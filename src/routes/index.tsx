@@ -131,7 +131,7 @@ function nodeTone(kind: NodeKind) {
     case "system":
       return "border-primary/30 bg-card/60 text-foreground";
     case "security":
-      return "border-risk/45 bg-risk/[0.08] text-foreground/95 shadow-[0_0_16px_oklch(0.66_0.18_22/0.22)]";
+      return "border-risk/60 bg-risk/15 text-foreground shadow-[0_0_22px_oklch(0.62_0.24_20/0.40)]";
     case "infra":
     default:
       return "border-white/10 bg-white/[0.03] text-muted-foreground";
@@ -203,7 +203,7 @@ function Index() {
             <div
               aria-hidden
               className="absolute inset-0 -z-10 scale-125 blur-3xl"
-              style={{ background: "radial-gradient(circle at 50% 45%, oklch(0.58 0.16 22 / 0.22), transparent 45%), radial-gradient(circle at 50% 50%, oklch(0.55 0.16 232 / 0.30), transparent 68%)" }}
+              style={{ background: "radial-gradient(circle at 50% 45%, oklch(0.55 0.18 232 / 0.45), transparent 65%)" }}
             />
             <img
               src={heroShield}
