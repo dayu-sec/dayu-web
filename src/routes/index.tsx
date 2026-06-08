@@ -393,7 +393,7 @@ function Architecture() {
                   boxShadow: "inset 0 0 0 1px oklch(1 0 0 / 0.03)",
                 }}
               >
-                <span className="absolute left-3 top-2 flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-primary/80">
+                <span className="absolute left-3 top-2 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-primary/80">
                   {(() => {
                     const Icon = GROUP_ICONS[g.id];
                     return Icon ? <Icon className="h-3.5 w-3.5" strokeWidth={2} /> : null;
@@ -407,7 +407,7 @@ function Architecture() {
             {allNodes.map((n) => (
               <div
                 key={n.id}
-                className={`absolute flex items-center justify-center gap-1.5 rounded-md border px-2 text-center text-[11px] font-medium leading-tight backdrop-blur sm:text-xs ${nodeTone(n.kind)}`}
+                className={`absolute flex items-center justify-center gap-1.5 rounded-md border px-2 text-center text-xs font-medium leading-tight backdrop-blur sm:text-sm ${nodeTone(n.kind)}`}
                 style={{
                   left: `${n.x}%`, top: `${n.y}%`,
                   width: `${n.w}%`, height: `${n.h}%`,
@@ -423,7 +423,7 @@ function Architecture() {
           </div>
 
           {/* Legend */}
-          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] text-muted-foreground">
+          <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground sm:text-sm">
             <LegendDot className="bg-primary/60 shadow-[0_0_8px_var(--glow-primary)]" label="核心模块" />
             <LegendDot className="bg-accent/70 shadow-[0_0_8px_var(--glow-accent)]" label="接入枢纽 AOC-HUB" />
             <LegendDot className="bg-primary/30" label="数据层" />
