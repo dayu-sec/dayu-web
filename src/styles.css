@@ -70,41 +70,41 @@
 :root {
   --radius: 0.625rem;
   /* Deep-space tech — pure black / charcoal base, cold cyan-blue brand */
-  /* Base: pure black to deep charcoal */
-  --background: oklch(0.11 0.012 245);
-  --foreground: oklch(0.98 0.005 230);
-  --card: oklch(0.16 0.02 245);
+  /* Base: near-black navy (ref #080F1A) */
+  --background: oklch(0.13 0.022 248);
+  --foreground: oklch(0.98 0.006 230);
+  --card: oklch(0.17 0.026 248);
   --card-foreground: oklch(0.97 0.008 230);
-  --popover: oklch(0.15 0.018 245);
+  --popover: oklch(0.16 0.024 248);
   --popover-foreground: oklch(0.97 0.008 230);
-  /* Brand: deep-space tech blue (cold cyan-blue) */
-  --primary: oklch(0.74 0.14 222);
-  --primary-foreground: oklch(0.10 0.02 245);
+  /* Brand: electric cyan-blue (ref #00B3F9) */
+  --primary: oklch(0.72 0.16 230);
+  --primary-foreground: oklch(0.10 0.02 248);
   /* Support: multi-step silver / light gray */
-  --secondary: oklch(0.24 0.02 245);
+  --secondary: oklch(0.25 0.024 248);
   --secondary-foreground: oklch(0.93 0.006 230);
-  --muted: oklch(0.20 0.015 245);
+  --muted: oklch(0.21 0.018 248);
   --muted-foreground: oklch(0.74 0.012 235);
   /* Light cyan accent — sub-headings, status text, icon strokes */
-  --accent: oklch(0.86 0.10 210);
-  --accent-foreground: oklch(0.12 0.02 245);
-  /* Red — risk / firewall / security boundary alerts */
-  --destructive: oklch(0.60 0.23 25);
-  --destructive-foreground: oklch(0.98 0.005 230);
+  --accent: oklch(0.85 0.11 220);
+  --accent-foreground: oklch(0.12 0.02 248);
+  /* Red — risk / firewall / security boundary alerts (ref #FF3C4F) */
+  --destructive: oklch(0.62 0.24 20);
+  --destructive-foreground: oklch(0.98 0.006 230);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.74 0.14 222);
+  --ring: oklch(0.72 0.16 230);
   /* Accent functional tokens */
-  --status: oklch(0.82 0.17 205);
-  --status-foreground: oklch(0.10 0.02 245);
-  --risk: oklch(0.62 0.23 25);
-  --risk-foreground: oklch(0.98 0.005 230);
+  --status: oklch(0.78 0.18 225);
+  --status-foreground: oklch(0.10 0.02 248);
+  --risk: oklch(0.62 0.24 20);
+  --risk-foreground: oklch(0.98 0.006 230);
   --tag: oklch(0.84 0.11 75);
   --tag-foreground: oklch(0.16 0.03 70);
-  --glow-primary: oklch(0.74 0.14 222 / 55%);
-  --glow-accent: oklch(0.82 0.17 205 / 45%);
-  --gradient-hero: radial-gradient(ellipse 80% 60% at 70% 40%, oklch(0.30 0.10 225 / 55%), transparent 70%), radial-gradient(ellipse 60% 50% at 20% 80%, oklch(0.20 0.05 240 / 45%), transparent 70%);
-  --shadow-glow: 0 0 60px oklch(0.74 0.14 222 / 35%), 0 0 120px oklch(0.74 0.14 222 / 20%);
+  --glow-primary: oklch(0.72 0.16 230 / 55%);
+  --glow-accent: oklch(0.78 0.18 225 / 45%);
+  --gradient-hero: radial-gradient(ellipse 80% 60% at 70% 40%, oklch(0.32 0.11 232 / 55%), transparent 70%), radial-gradient(ellipse 60% 50% at 20% 80%, oklch(0.20 0.05 245 / 45%), transparent 70%);
+  --shadow-glow: 0 0 60px oklch(0.72 0.16 230 / 35%), 0 0 120px oklch(0.72 0.16 230 / 20%);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
