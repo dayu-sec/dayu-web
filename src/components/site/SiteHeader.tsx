@@ -15,7 +15,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-white/5 bg-background/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <Link to="/" className="group flex items-center gap-2.5">
-          <span className="relative grid h-9 w-9 place-items-center rounded-md border border-primary/40 bg-primary/10 shadow-[0_0_18px_oklch(0.74_0.14_222/0.45)]">
+          <span className="relative grid h-9 w-9 place-items-center rounded-md border border-primary/40 bg-primary/10 shadow-[0_0_18px_oklch(0.72_0.16_230/0.45)]">
             <span
               aria-hidden
               className="h-5 w-5 bg-primary transition-transform group-hover:scale-110"

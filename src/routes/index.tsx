@@ -120,7 +120,7 @@ const DIAGRAM_EDGES: [string, string][] = [
 function nodeTone(kind: NodeKind) {
   switch (kind) {
     case "core":
-      return "border-primary/60 bg-primary/15 text-foreground shadow-[0_0_24px_oklch(0.74_0.14_222/0.35)]";
+      return "border-primary/60 bg-primary/15 text-foreground shadow-[0_0_24px_oklch(0.72_0.16_230/0.35)]";
     case "hub":
       return "border-accent/60 bg-accent/15 text-foreground shadow-[0_0_22px_oklch(0.78_0.12_300/0.35)]";
     case "data":
@@ -164,7 +164,7 @@ function Index() {
 
             {/* Formula capsule */}
             <div className="mt-8 max-w-2xl">
-              <div className="relative rounded-2xl border border-primary/25 bg-card/40 px-5 py-4 backdrop-blur-md shadow-[inset_0_0_0_1px_oklch(1_0_0/0.04),0_0_40px_oklch(0.74_0.14_222/0.18)]">
+              <div className="relative rounded-2xl border border-primary/25 bg-card/40 px-5 py-4 backdrop-blur-md shadow-[inset_0_0_0_1px_oklch(1_0_0/0.04),0_0_40px_oklch(0.72_0.16_230/0.18)]">
                 <div className="absolute inset-x-6 -top-px h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
                 <p className="text-sm font-medium text-foreground/95">
                   <span className="text-primary">保障机制</span> ={" "}
@@ -200,7 +200,7 @@ function Index() {
             <div
               aria-hidden
               className="absolute inset-0 -z-10 scale-125 blur-3xl"
-              style={{ background: "radial-gradient(circle at 50% 45%, oklch(0.55 0.16 225 / 0.45), transparent 65%)" }}
+              style={{ background: "radial-gradient(circle at 50% 45%, oklch(0.55 0.18 232 / 0.45), transparent 65%)" }}
             />
             <img
               src={heroShield}
@@ -301,7 +301,7 @@ function Architecture() {
         </div>
 
         {/* Diagram canvas */}
-        <div className="relative w-full overflow-hidden rounded-2xl border border-primary/20 bg-card/30 p-4 backdrop-blur-md shadow-[0_0_60px_oklch(0.74_0.14_222/0.12)] sm:p-6">
+        <div className="relative w-full overflow-hidden rounded-2xl border border-primary/20 bg-card/30 p-4 backdrop-blur-md shadow-[0_0_60px_oklch(0.72_0.16_230/0.12)] sm:p-6">
           {/* faint grid */}
           <div
             aria-hidden
@@ -471,7 +471,7 @@ function Pain() {
             </div>
           ))}
         </div>
-        <div className="mt-10 rounded-2xl border border-primary/25 bg-card/40 p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.74_0.14_222/0.12)] lg:p-8">
+        <div className="mt-10 rounded-2xl border border-primary/25 bg-card/40 p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.72_0.16_230/0.12)] lg:p-8">
           <h3 className="text-2xl font-bold leading-snug text-foreground sm:text-3xl">
             一是尽早发现
             <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">系统要出事</span>
@@ -526,7 +526,7 @@ function Solution() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-primary/80">方案 · 业务视角 Business Focus</h3>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               {SOLUTIONS.map((s) => (
-                <div key={s.t} className="rounded-xl border border-primary/25 bg-primary/[0.06] p-5 backdrop-blur shadow-[0_0_30px_oklch(0.74_0.14_222/0.10)]">
+                <div key={s.t} className="rounded-xl border border-primary/25 bg-primary/[0.06] p-5 backdrop-blur shadow-[0_0_30px_oklch(0.72_0.16_230/0.10)]">
                   <p className="text-base font-semibold text-foreground">{s.t}</p>
                   <p className="mt-1.5 text-sm leading-relaxed text-foreground/75">{s.d}</p>
                 </div>
