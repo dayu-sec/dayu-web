@@ -455,7 +455,7 @@ function Pain() {
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
         <Eyebrow>客户痛点</Eyebrow>
         <h2 className="mt-5 max-w-3xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          业务越增长，系统越脆弱
+          业务越增长，<span className="text-risk">系统越脆弱</span>
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           增长一旦持续，支撑体系里的断点就会被不断放大。
@@ -464,9 +464,9 @@ function Pain() {
           {PAIN_POINTS.map((p, i) => (
             <div
               key={i}
-              className="group rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-colors hover:border-primary/40"
+              className="group rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-colors hover:border-risk/40"
             >
-              <span className="font-semibold text-primary/80 text-2xl">0{i + 1}</span>
+              <span className="font-semibold text-risk/80 text-2xl">0{i + 1}</span>
               <p className="mt-2 text-sm leading-relaxed text-foreground/90">{p}</p>
             </div>
           ))}
