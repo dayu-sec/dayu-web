@@ -456,7 +456,7 @@ function Pain() {
   return (
     <section id="pain" className="relative z-10 border-t border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <Eyebrow>客户痛点</Eyebrow>
+        <Eyebrow tone="risk">客户痛点</Eyebrow>
         <h2 className="mt-5 max-w-3xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           业务越增长，<span className="text-risk">系统越脆弱</span>
         </h2>
