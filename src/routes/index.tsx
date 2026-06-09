@@ -181,8 +181,8 @@ function Index() {
               <Link
                 to="/"
                 hash="pain"
-                className="group relative inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:brightness-110"
-                style={{ boxShadow: "var(--shadow-glow)" }}
+                className="group relative inline-flex items-center gap-2 rounded-md bg-risk px-5 py-2.5 text-sm font-medium text-white transition-all hover:brightness-110"
+                style={{ boxShadow: "0 0 30px oklch(0.62 0.24 20 / 0.5)" }}
               >
                 查看客户痛点
                 <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none">
