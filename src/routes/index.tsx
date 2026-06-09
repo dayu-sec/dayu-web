@@ -231,9 +231,9 @@ function Index() {
         }
       `}</style>
 
+      <Architecture />
       <Pain />
       <Solution />
-      <Architecture />
       <OpenSourceTeaser />
       <Partners />
     </PageShell>
