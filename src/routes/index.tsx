@@ -181,8 +181,8 @@ function Index() {
               <Link
                 to="/"
                 hash="pain"
-                className="group relative inline-flex items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all hover:brightness-110"
-                style={{ boxShadow: "var(--shadow-glow)" }}
+                className="group relative inline-flex items-center gap-2 rounded-md bg-risk px-5 py-2.5 text-sm font-medium text-white transition-all hover:brightness-110"
+                style={{ boxShadow: "0 0 30px oklch(0.62 0.24 20 / 0.5)" }}
               >
                 查看客户痛点
                 <svg className="h-4 w-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none">
@@ -456,7 +456,7 @@ function Pain() {
   return (
     <section id="pain" className="relative z-10 border-t border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <Eyebrow>客户痛点</Eyebrow>
+        <Eyebrow tone="risk">客户痛点</Eyebrow>
         <h2 className="mt-5 max-w-3xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           业务越增长，<span className="text-risk">系统越脆弱</span>
         </h2>
