@@ -13,10 +13,17 @@ export function PageShell({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function Eyebrow({ children }: { children: React.ReactNode }) {
+export function Eyebrow({ children, tone = "primary" }: { children: React.ReactNode; tone?: "primary" | "risk" }) {
+  const isRisk = tone === "risk";
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs text-primary backdrop-blur">
-      <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px_var(--glow-primary)]" />
+    <div
+      className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs backdrop-blur ${
+        isRisk ? "border border-risk/40 bg-risk/10 text-risk" : "border border-primary/30 bg-primary/10 text-primary"
+      }`}
+    >
+      <span
+        className={`h-1.5 w-1.5 rounded-full ${isRisk ? "bg-risk shadow-[0_0_8px_oklch(0.62_0.24_20)]" : "bg-primary shadow-[0_0_8px_var(--glow-primary)]"}`}
+      />
       {children}
     </div>
   );
