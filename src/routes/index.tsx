@@ -212,9 +212,9 @@ function Index() {
               draggable={false}
               style={{
                 maskImage:
-                  "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 72%)",
+                  "radial-gradient(ellipse 90% 90% at 50% 50%, black 80%, transparent 99%)",
                 WebkitMaskImage:
-                  "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 72%)",
+                  "radial-gradient(ellipse 90% 90% at 50% 50%, black 80%, transparent 99%)",
               }}
             />
           </div>
