@@ -612,7 +612,7 @@ function Partners() {
         </p>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {PARTNER_CASES.map((c) => (
-            <div key={c.n} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card/40 backdrop-blur-md transition-colors hover:border-primary/40">
+            <Reveal key={c.n} delay={PARTNER_CASES.indexOf(c) * 100} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_18px_50px_oklch(0.72_0.16_230/0.20)]">
               <div className="relative h-44 overflow-hidden">
                 <img
                   src={c.img}
@@ -630,7 +630,7 @@ function Partners() {
                 <h3 className="text-lg font-semibold text-foreground">{c.t}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
         <div className="mt-8">
