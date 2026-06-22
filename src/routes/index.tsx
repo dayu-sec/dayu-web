@@ -520,10 +520,10 @@ function Solution() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">根因</h3>
             <div className="mt-5 space-y-4">
               {ROOT_CAUSES.map((c) => (
-                <div key={c.t} className="rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
+                <Reveal key={c.t} from="left" className="rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-white/25">
                   <p className="text-base font-semibold text-foreground">{c.t}</p>
                   <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -531,10 +531,10 @@ function Solution() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-primary/80">方案 · 业务视角 Business Focus</h3>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               {SOLUTIONS.map((s) => (
-                <div key={s.t} className="rounded-xl border border-primary/25 bg-primary/[0.06] p-5 backdrop-blur shadow-[0_0_30px_oklch(0.72_0.16_230/0.10)]">
+                <Reveal key={s.t} from="right" className="rounded-xl border border-primary/25 bg-primary/[0.06] p-5 backdrop-blur shadow-[0_0_30px_oklch(0.72_0.16_230/0.10)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_12px_40px_oklch(0.72_0.16_230/0.22)]">
                   <p className="text-base font-semibold text-foreground">{s.t}</p>
                   <p className="mt-1.5 text-sm leading-relaxed text-foreground/75">{s.d}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
