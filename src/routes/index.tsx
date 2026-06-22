@@ -6,6 +6,7 @@ import caseWinterOlympics from "@/assets/case-winter-olympics.jpg";
 import caseCityOps from "@/assets/case-city-ops.jpg";
 import casePowerGrid from "@/assets/case-power-grid.jpg";
 import { PageShell, Eyebrow } from "@/components/site/PageShell";
+import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -456,22 +457,25 @@ function Pain() {
   return (
     <section id="pain" className="relative z-10 border-t border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <Eyebrow tone="risk">客户痛点</Eyebrow>
-        <h2 className="mt-5 max-w-3xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          业务越增长，<span className="text-risk">系统越脆弱</span>
-        </h2>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          增长一旦持续，支撑体系里的断点就会被不断放大。
-        </p>
+        <Reveal>
+          <Eyebrow tone="risk">客户痛点</Eyebrow>
+          <h2 className="mt-5 max-w-3xl text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            业务越增长，<span className="text-risk">系统越脆弱</span>
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            增长一旦持续，支撑体系里的断点就会被不断放大。
+          </p>
+        </Reveal>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {PAIN_POINTS.map((p, i) => (
-            <div
+            <Reveal
               key={i}
-              className="group rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-colors hover:border-risk/40"
+              delay={i * 80}
+              className="group rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-risk/40 hover:shadow-[0_12px_40px_oklch(0.62_0.24_20/0.18)]"
             >
-              <span className="font-semibold text-risk/80 text-2xl">0{i + 1}</span>
+              <span className="inline-block font-semibold text-risk/80 text-2xl transition-transform duration-300 group-hover:scale-110">0{i + 1}</span>
               <p className="mt-2 text-sm leading-relaxed text-foreground/90">{p}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
         <div className="mt-10 rounded-2xl border border-primary/25 bg-card/40 p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.72_0.16_230/0.12)] lg:p-8">
@@ -518,10 +522,10 @@ function Solution() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">根因</h3>
             <div className="mt-5 space-y-4">
               {ROOT_CAUSES.map((c) => (
-                <div key={c.t} className="rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
+                <Reveal key={c.t} from="left" className="rounded-xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-white/25">
                   <p className="text-base font-semibold text-foreground">{c.t}</p>
                   <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -529,10 +533,10 @@ function Solution() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-primary/80">方案 · 业务视角 Business Focus</h3>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               {SOLUTIONS.map((s) => (
-                <div key={s.t} className="rounded-xl border border-primary/25 bg-primary/[0.06] p-5 backdrop-blur shadow-[0_0_30px_oklch(0.72_0.16_230/0.10)]">
+                <Reveal key={s.t} from="right" className="rounded-xl border border-primary/25 bg-primary/[0.06] p-5 backdrop-blur shadow-[0_0_30px_oklch(0.72_0.16_230/0.10)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_12px_40px_oklch(0.72_0.16_230/0.22)]">
                   <p className="text-base font-semibold text-foreground">{s.t}</p>
                   <p className="mt-1.5 text-sm leading-relaxed text-foreground/75">{s.d}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
             <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
@@ -565,10 +569,10 @@ function OpenSourceTeaser() {
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {OSS_ASSETS.map((a) => (
-            <div key={a.name} className="rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-colors hover:border-primary/40">
+            <Reveal key={a.name} delay={OSS_ASSETS.indexOf(a) * 80} className="rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_12px_40px_oklch(0.72_0.16_230/0.18)]">
               <p className="text-base font-semibold text-foreground">{a.name}</p>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{a.d}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground">
@@ -610,7 +614,7 @@ function Partners() {
         </p>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {PARTNER_CASES.map((c) => (
-            <div key={c.n} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card/40 backdrop-blur-md transition-colors hover:border-primary/40">
+            <Reveal key={c.n} delay={PARTNER_CASES.indexOf(c) * 100} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-card/40 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_18px_50px_oklch(0.72_0.16_230/0.20)]">
               <div className="relative h-44 overflow-hidden">
                 <img
                   src={c.img}
@@ -628,7 +632,7 @@ function Partners() {
                 <h3 className="text-lg font-semibold text-foreground">{c.t}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.d}</p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
         <div className="mt-8">
