@@ -6,6 +6,7 @@ import caseWinterOlympics from "@/assets/case-winter-olympics.jpg";
 import caseCityOps from "@/assets/case-city-ops.jpg";
 import casePowerGrid from "@/assets/case-power-grid.jpg";
 import { PageShell, Eyebrow } from "@/components/site/PageShell";
+import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
