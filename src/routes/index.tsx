@@ -466,13 +466,14 @@ function Pain() {
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {PAIN_POINTS.map((p, i) => (
-            <div
+            <Reveal
               key={i}
-              className="group rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-colors hover:border-risk/40"
+              delay={i * 80}
+              className="group rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-risk/40 hover:shadow-[0_12px_40px_oklch(0.62_0.24_20/0.18)]"
             >
-              <span className="font-semibold text-risk/80 text-2xl">0{i + 1}</span>
+              <span className="inline-block font-semibold text-risk/80 text-2xl transition-transform duration-300 group-hover:scale-110">0{i + 1}</span>
               <p className="mt-2 text-sm leading-relaxed text-foreground/90">{p}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
         <div className="mt-10 rounded-2xl border border-primary/25 bg-card/40 p-6 backdrop-blur-md shadow-[0_0_40px_oklch(0.72_0.16_230/0.12)] lg:p-8">
