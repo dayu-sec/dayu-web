@@ -567,10 +567,10 @@ function OpenSourceTeaser() {
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {OSS_ASSETS.map((a) => (
-            <div key={a.name} className="rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-colors hover:border-primary/40">
+            <Reveal key={a.name} delay={OSS_ASSETS.indexOf(a) * 80} className="rounded-xl border border-white/10 bg-card/40 p-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_12px_40px_oklch(0.72_0.16_230/0.18)]">
               <p className="text-base font-semibold text-foreground">{a.name}</p>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{a.d}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground">
