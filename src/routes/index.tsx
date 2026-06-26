@@ -201,11 +201,6 @@ function Index() {
 
           {/* Right: hero image — borderless, fades infinitely into the background */}
           <div className="relative animate-[fadeUp_0.9s_ease-out_both] lg:scale-110">
-            <div
-              aria-hidden
-              className="absolute inset-0 -z-10 scale-125 blur-3xl"
-              style={{ background: "radial-gradient(circle at 50% 45%, oklch(0.55 0.18 232 / 0.45), transparent 65%)" }}
-            />
             <img
               src={heroShield}
               alt="数字业务保障基础设施 — 资产、观测、运维与风险控制 3D 可视化"
