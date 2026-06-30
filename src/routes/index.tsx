@@ -30,28 +30,28 @@ type DNode = {
   x: number; y: number; w: number; h: number;
 };
 
-// Flat node set laid out on a strict column/row grid for clean orthogonal routing.
+// Flat node set — positions mirror the reference diagram's spatial structure.
 const DIAGRAM_NODES: DNode[] = [
-  // 左上接入区
-  { id: "domainsys", label: "DomainSys", kind: "system", x: 2, y: 7, w: 16, h: 7 },
-  { id: "wp-tl", label: "wp-insightd", kind: "core", x: 2, y: 17, w: 16, h: 7 },
-  { id: "aoc-tl", label: "AOC-HUB", kind: "hub", x: 23, y: 12, w: 13, h: 7 },
-  // 左下接入区
-  { id: "wp-bl", label: "wp-insightd", kind: "core", x: 2, y: 60, w: 16, h: 7 },
-  { id: "firewall", label: "FireWall", kind: "security", x: 2, y: 70, w: 16, h: 7 },
-  { id: "aoc-bl", label: "AOC-HUB", kind: "hub", x: 23, y: 65, w: 13, h: 7 },
+  // 左上接入区（自上而下汇入 AOC-HUB）
+  { id: "domainsys", label: "DomainSys", kind: "system", x: 10.5, y: 4, w: 15, h: 7 },
+  { id: "wp-tl", label: "wp-insightd", kind: "core", x: 2, y: 15, w: 14, h: 7 },
+  { id: "aoc-tl", label: "AOC-HUB", kind: "hub", x: 10.5, y: 25, w: 15, h: 7 },
+  // 左下接入区（自下而上汇入 AOC-HUB）
+  { id: "aoc-bl", label: "AOC-HUB", kind: "hub", x: 10.5, y: 44, w: 15, h: 7 },
+  { id: "wp-bl", label: "wp-insightd", kind: "core", x: 2, y: 57, w: 14, h: 7 },
+  { id: "firewall", label: "FireWall", kind: "security", x: 2, y: 69, w: 14, h: 7 },
   // 右侧接入区
-  { id: "wp-r", label: "wp-insightd", kind: "core", x: 80, y: 7, w: 17, h: 7 },
-  { id: "aoc-r", label: "AOC-HUB", kind: "hub", x: 80, y: 18, w: 17, h: 7 },
-  // 中枢区
-  { id: "warpparse", label: "WarpParse", kind: "core", x: 41, y: 29, w: 15, h: 7 },
-  { id: "warpfusion", label: "WarpFusion", kind: "core", x: 61, y: 47, w: 14, h: 7 },
-  { id: "obs", label: "OBS Data", kind: "data", x: 41, y: 73, w: 15, h: 8 },
+  { id: "wp-r", label: "wp-insightd", kind: "core", x: 80, y: 22, w: 17, h: 7 },
+  { id: "aoc-r", label: "AOC-HUB", kind: "hub", x: 80, y: 34, w: 17, h: 7 },
+  // 中枢区（大节点）
+  { id: "warpparse", label: "WarpParse", kind: "core", x: 40, y: 30, w: 17, h: 15 },
+  { id: "obs", label: "OBS Data", kind: "data", x: 40, y: 67, w: 17, h: 14 },
+  { id: "warpfusion", label: "WarpFusion", kind: "core", x: 62, y: 52, w: 15, h: 7 },
   // 决策执行区
-  { id: "ai-agent", label: "AI Agent", kind: "tool", x: 79, y: 47, w: 10, h: 7 },
-  { id: "exector", label: "Exector", kind: "tool", x: 91, y: 47, w: 8, h: 7 },
-  { id: "value", label: "Value Data", kind: "data", x: 79, y: 61, w: 17, h: 7 },
-  { id: "twins", label: "Domain Sys Twins", kind: "data", x: 78, y: 73, w: 21, h: 7 },
+  { id: "ai-agent", label: "AI Agent", kind: "tool", x: 80, y: 52, w: 10, h: 7 },
+  { id: "exector", label: "Exector", kind: "tool", x: 92, y: 52, w: 7, h: 7 },
+  { id: "value", label: "Value Data", kind: "data", x: 80, y: 65, w: 17, h: 7 },
+  { id: "twins", label: "Domain Sys Twins", kind: "data", x: 79, y: 76, w: 20, h: 7 },
 ];
 
 const NODE_ICONS: Record<NodeKind, LucideIcon> = {
@@ -65,22 +65,22 @@ const NODE_ICONS: Record<NodeKind, LucideIcon> = {
 
 // Orthogonal edges as explicit polylines (% coords). Direction = data flow (arrow at end).
 const DIAGRAM_EDGES: { points: [number, number][] }[] = [
-  { points: [[18, 10.5], [20.5, 10.5], [20.5, 15.5], [23, 15.5]] }, // DomainSys -> AOC-HUB(TL)
-  { points: [[18, 20.5], [20.5, 20.5], [20.5, 15.5], [23, 15.5]] }, // wp-insightd(TL) -> AOC-HUB(TL)
-  { points: [[36, 15.5], [38.5, 15.5], [38.5, 31], [41, 31]] }, // AOC-HUB(TL) -> WarpParse
-  { points: [[18, 63.5], [20.5, 63.5], [20.5, 68.5], [23, 68.5]] }, // wp-insightd(BL) -> AOC-HUB(BL)
-  { points: [[18, 73.5], [20.5, 73.5], [20.5, 68.5], [23, 68.5]] }, // FireWall -> AOC-HUB(BL)
-  { points: [[36, 68.5], [38.5, 68.5], [38.5, 34], [41, 34]] }, // AOC-HUB(BL) -> WarpParse
-  { points: [[88.5, 14], [88.5, 18]] }, // wp-insightd(R) -> AOC-HUB(R)
-  { points: [[80, 21.5], [48.5, 21.5], [48.5, 29]] }, // AOC-HUB(R) -> WarpParse
-  { points: [[56, 32.5], [68, 32.5], [68, 47]] }, // WarpParse -> WarpFusion
-  { points: [[61, 50.5], [58.5, 50.5], [58.5, 34.5], [56, 34.5]] }, // WarpFusion -> WarpParse (feedback)
-  { points: [[48.5, 36], [48.5, 73]] }, // WarpParse -> OBS Data
-  { points: [[75, 50.5], [79, 50.5]] }, // WarpFusion -> AI Agent
-  { points: [[89, 50.5], [91, 50.5]] }, // AI Agent -> Exector
-  { points: [[65, 54], [65, 64.5], [79, 64.5]] }, // WarpFusion -> Value Data
-  { points: [[87.5, 61], [87.5, 57.5], [84, 57.5], [84, 54]] }, // Value Data -> AI Agent
-  { points: [[71, 54], [71, 76.5], [78, 76.5]] }, // WarpFusion -> Domain Sys Twins
+  { points: [[18, 11], [18, 25]] }, // DomainSys -> AOC-HUB(TL)
+  { points: [[16, 18.5], [18, 18.5], [18, 25]] }, // wp-insightd(TL) -> AOC-HUB(TL)
+  { points: [[18, 32], [18, 37.5], [40, 37.5]] }, // AOC-HUB(TL) -> WarpParse
+  { points: [[16, 60.5], [18, 60.5], [18, 51]] }, // wp-insightd(BL) -> AOC-HUB(BL)
+  { points: [[16, 72.5], [18, 72.5], [18, 51]] }, // FireWall -> AOC-HUB(BL)
+  { points: [[18, 44], [18, 37.5], [40, 37.5]] }, // AOC-HUB(BL) -> WarpParse
+  { points: [[88.5, 29], [88.5, 34]] }, // wp-insightd(R) -> AOC-HUB(R)
+  { points: [[80, 37.5], [57, 37.5]] }, // AOC-HUB(R) -> WarpParse
+  { points: [[52, 45], [52, 55.5], [62, 55.5]] }, // WarpParse -> WarpFusion
+  { points: [[67, 52], [67, 47], [54.5, 47], [54.5, 45]] }, // WarpFusion -> WarpParse (feedback)
+  { points: [[48.5, 45], [48.5, 67]] }, // WarpParse -> OBS Data
+  { points: [[77, 55.5], [80, 55.5]] }, // WarpFusion -> AI Agent
+  { points: [[90, 55.5], [92, 55.5]] }, // AI Agent -> Exector
+  { points: [[66, 59], [66, 68.5], [80, 68.5]] }, // WarpFusion -> Value Data
+  { points: [[87, 65], [87, 61.5], [85, 61.5], [85, 59]] }, // Value Data -> AI Agent
+  { points: [[72, 59], [72, 79.5], [79, 79.5]] }, // WarpFusion -> Domain Sys Twins
 ];
 
 // Build a rounded orthogonal SVG path from polyline points.
@@ -249,7 +249,7 @@ function Architecture() {
             }}
           />
 
-          <div className="relative" style={{ aspectRatio: "16 / 9", minHeight: 460 }}>
+          <div className="relative" style={{ aspectRatio: "16 / 10", minHeight: 520 }}>
             {/* SVG edges layer */}
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <defs>
