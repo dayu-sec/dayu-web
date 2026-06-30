@@ -106,17 +106,17 @@ function roundedPath(pts: [number, number][], r = 0.8) {
 function nodeTone(kind: NodeKind) {
   switch (kind) {
     case "core":
-      return "border-primary/60 bg-primary/15 text-foreground shadow-[0_0_24px_oklch(0.72_0.16_230/0.35)]";
+      return "border-primary/45 bg-primary/12 text-foreground shadow-[0_0_18px_oklch(0.72_0.16_230/0.18)]";
     case "hub":
-      return "border-accent/60 bg-accent/15 text-foreground shadow-[0_0_22px_oklch(0.78_0.12_300/0.35)]";
+      return "border-accent/45 bg-accent/12 text-foreground shadow-[0_0_18px_oklch(0.78_0.12_300/0.18)]";
     case "data":
-      return "border-primary/35 bg-primary/8 text-foreground/95";
+      return "border-primary/30 bg-primary/8 text-foreground/95";
     case "tool":
       return "border-primary/30 bg-white/[0.04] text-foreground/90";
     case "system":
       return "border-primary/30 bg-card/60 text-foreground";
     case "security":
-      return "border-risk/60 bg-risk/15 text-foreground shadow-[0_0_22px_oklch(0.62_0.24_20/0.40)]";
+      return "border-risk/45 bg-risk/12 text-foreground shadow-[0_0_18px_oklch(0.62_0.24_20/0.20)]";
     default:
       return "border-white/10 bg-white/[0.03] text-muted-foreground";
   }
