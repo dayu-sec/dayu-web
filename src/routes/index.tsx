@@ -270,30 +270,18 @@ function Architecture() {
                 </linearGradient>
               </defs>
               {DIAGRAM_EDGES.map((e, i) => {
-                const d = roundedPath(e.points, 0.6);
-                const [sx, sy] = e.points[0];
-                const [ex, ey] = e.points[e.points.length - 1];
+                const d = roundedPath(e.points);
                 return (
                   <g key={i}>
-                    {/* dark backing halo keeps lines readable where they cross */}
-                    <path
-                      d={d}
-                      fill="none"
-                      stroke="oklch(0.16 0.02 250)"
-                      strokeWidth="1.1"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      opacity="0.55"
-                    />
                     <path
                       d={d}
                       fill="none"
                       stroke="url(#edge)"
-                      strokeWidth="0.5"
+                      strokeWidth="0.45"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       markerEnd="url(#arrow)"
-                      opacity="0.9"
+                      opacity="0.7"
                     />
                     {/* flowing light pulse overlay */}
                     <path
@@ -301,15 +289,12 @@ function Architecture() {
                       d={d}
                       fill="none"
                       stroke="oklch(0.95 0.06 210)"
-                      strokeWidth="0.55"
+                      strokeWidth="0.6"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeDasharray="3 14"
                       style={{ animationDelay: `${(i % 5) * 0.4}s` }}
                     />
-                    {/* endpoint highlights for crisp connection nodes */}
-                    <circle cx={sx} cy={sy} r="0.5" fill="oklch(0.9 0.1 220)" opacity="0.7" />
-                    <circle cx={ex} cy={ey} r="0.55" fill="oklch(0.96 0.06 210)" opacity="0.9" />
                   </g>
                 );
               })}
