@@ -220,10 +220,6 @@ function Index() {
 }
 
 function Architecture() {
-  // Build a flat lookup of node centers (% based) for SVG edges
-  const allNodes = DIAGRAM_GROUPS.flatMap((g) => g.nodes);
-  const byId = Object.fromEntries(allNodes.map((n) => [n.id, n]));
-
   return (
     <section id="system" className="relative z-10 border-t border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
@@ -236,50 +232,8 @@ function Architecture() {
             一体化保障架构
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            覆盖公有云、IDC、办公室多场景，统一接入 WarpAixs 中台，构建从观测、解析到决策执行的完整链路。
+            多源接入统一汇聚至 WarpParse 中枢，经 WarpFusion 融合后驱动 AI Agent 决策执行，构建从观测、解析到行动的完整链路。
           </p>
-        </div>
-
-        {/* Top system tags — supported by the architecture below */}
-        <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:max-w-[60%] lg:ml-[33%]">
-          {TOP_SYSTEMS.map((s) => (
-            <div
-              key={s.id}
-              className="flex items-center justify-center gap-2 rounded-lg border border-primary/20 bg-card/50 px-4 py-3 text-center text-xs font-medium text-foreground/90 backdrop-blur sm:text-sm"
-            >
-              <s.icon className={`h-4 w-4 shrink-0 ${s.id === "sec" ? "text-risk" : "text-primary"}`} strokeWidth={2} />
-              {s.label}
-            </div>
-          ))}
-        </div>
-
-        {/* Upward support arrows: architecture -> top systems */}
-        <div className="mb-6 grid grid-cols-3 gap-3 sm:gap-4 lg:max-w-[60%] lg:ml-[33%]">
-          {TOP_SYSTEMS.map((s) => (
-            <div key={s.id} className="flex justify-center">
-              <svg
-                className="h-10 w-6"
-                viewBox="0 0 24 40"
-                fill="none"
-                aria-hidden
-              >
-                <defs>
-                  <linearGradient id="edge-up" x1="0" y1="1" x2="0" y2="0">
-                    <stop offset="0%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
-                    <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M12 38 L12 8 M5 15 L12 6 L19 15"
-                  stroke="url(#edge-up)"
-                  strokeWidth="4.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  opacity="0.9"
-                />
-              </svg>
-            </div>
-          ))}
         </div>
 
         {/* Diagram canvas */}
@@ -315,23 +269,8 @@ function Architecture() {
                   <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
                 </linearGradient>
               </defs>
-              {DIAGRAM_EDGES.map(([a, b], i) => {
-                const na = byId[a]; const nb = byId[b];
-                if (!na || !nb) return null;
-                const x1 = na.x + na.w / 2;
-                const y1 = na.y + na.h / 2;
-                const x2 = nb.x + nb.w / 2;
-                const y2 = nb.y + nb.h / 2;
-                // rounded orthogonal elbow
-                const midX = (x1 + x2) / 2;
-                const dx1 = Math.sign(midX - x1) || 1;
-                const dy2 = Math.sign(y2 - y1) || 1;
-                const dx3 = Math.sign(x2 - midX) || 1;
-                const seg1 = Math.abs(midX - x1);
-                const seg2 = Math.abs(y2 - y1);
-                const seg3 = Math.abs(x2 - midX);
-                const rr = Math.min(0.8, seg1, seg2 / 2, seg3);
-                const d = `M ${x1} ${y1} L ${midX - dx1 * rr} ${y1} Q ${midX} ${y1} ${midX} ${y1 + dy2 * rr} L ${midX} ${y2 - dy2 * rr} Q ${midX} ${y2} ${midX + dx3 * rr} ${y2} L ${x2} ${y2}`;
+              {DIAGRAM_EDGES.map((e, i) => {
+                const d = roundedPath(e.points);
                 return (
                   <g key={i}>
                     <path
@@ -361,32 +300,11 @@ function Architecture() {
               })}
             </svg>
 
-            {/* Group containers */}
-            {DIAGRAM_GROUPS.map((g) => (
-              <div
-                key={g.id}
-                className="absolute rounded-xl border border-primary/15 bg-background/40 backdrop-blur-sm"
-                style={{
-                  left: `${g.x}%`, top: `${g.y}%`,
-                  width: `${g.w}%`, height: `${g.h}%`,
-                  boxShadow: "inset 0 0 0 1px oklch(1 0 0 / 0.03)",
-                }}
-              >
-                <span className="absolute left-3 top-2 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-primary/80">
-                  {(() => {
-                    const Icon = GROUP_ICONS[g.id];
-                    return Icon ? <Icon className="h-3.5 w-3.5" strokeWidth={2} /> : null;
-                  })()}
-                  {g.label}
-                </span>
-              </div>
-            ))}
-
             {/* Nodes */}
-            {allNodes.map((n) => (
+            {DIAGRAM_NODES.map((n) => (
               <div
                 key={n.id}
-                className={`absolute flex items-center justify-center gap-1.5 rounded-md border px-2 text-center text-xs font-medium leading-tight backdrop-blur sm:text-sm ${nodeTone(n.kind)}`}
+                className={`absolute flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md border px-2 text-center text-xs font-medium leading-tight backdrop-blur sm:text-sm ${nodeTone(n.kind)}`}
                 style={{
                   left: `${n.x}%`, top: `${n.y}%`,
                   width: `${n.w}%`, height: `${n.h}%`,
@@ -406,7 +324,8 @@ function Architecture() {
             <LegendDot className="bg-primary/60 shadow-[0_0_8px_var(--glow-primary)]" label="核心模块" />
             <LegendDot className="bg-accent/70 shadow-[0_0_8px_var(--glow-accent)]" label="接入枢纽 AOC-HUB" />
             <LegendDot className="bg-primary/30" label="数据层" />
-            <LegendDot className="bg-white/30" label="基础设施" />
+            <LegendDot className="bg-white/30" label="处理工具" />
+            <LegendDot className="bg-risk/60 shadow-[0_0_8px_oklch(0.62_0.24_20/0.5)]" label="安全边界" />
           </div>
         </div>
       </div>
