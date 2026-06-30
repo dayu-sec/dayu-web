@@ -200,7 +200,7 @@ function Index() {
           </div>
 
           {/* Right: hero image — borderless, fades infinitely into the background */}
-          <div className="relative animate-[fadeUp_0.9s_ease-out_both] lg:scale-110">
+          <div className="relative animate-[fadeUp_0.9s_ease-out_both] lg:scale-100">
             <img
               src={heroShield}
               alt="数字业务保障基础设施 — 资产、观测、运维与风险控制 3D 可视化"
