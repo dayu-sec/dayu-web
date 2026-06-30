@@ -277,11 +277,11 @@ function Architecture() {
                       d={d}
                       fill="none"
                       stroke="url(#edge)"
-                      strokeWidth="0.55"
+                      strokeWidth="0.45"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       markerEnd="url(#arrow)"
-                      opacity="0.85"
+                      opacity="0.7"
                     />
                     {/* flowing light pulse overlay */}
                     <path
@@ -289,7 +289,7 @@ function Architecture() {
                       d={d}
                       fill="none"
                       stroke="oklch(0.95 0.06 210)"
-                      strokeWidth="0.7"
+                      strokeWidth="0.6"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeDasharray="3 14"
@@ -304,7 +304,7 @@ function Architecture() {
             {DIAGRAM_NODES.map((n) => (
               <div
                 key={n.id}
-                className={`absolute flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md border px-2 text-center text-xs font-medium leading-tight backdrop-blur sm:text-sm ${nodeTone(n.kind)}`}
+                className={`absolute flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-2 text-center text-xs font-medium leading-tight backdrop-blur-md sm:text-sm ${nodeTone(n.kind)}`}
                 style={{
                   left: `${n.x}%`, top: `${n.y}%`,
                   width: `${n.w}%`, height: `${n.h}%`,
