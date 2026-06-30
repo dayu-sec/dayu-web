@@ -249,7 +249,7 @@ function Architecture() {
             }}
           />
 
-          <div className="relative" style={{ aspectRatio: "16 / 9", minHeight: 460 }}>
+          <div className="relative" style={{ aspectRatio: "16 / 10", minHeight: 520 }}>
             {/* SVG edges layer */}
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <defs>
