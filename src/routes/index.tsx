@@ -20,79 +20,39 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// ---- Architecture diagram data (mirrors uploaded 架构图2.png logic) ----
-type NodeKind = "core" | "hub" | "data" | "tool" | "system" | "infra" | "security";
+// ---- Architecture diagram data (node structure & flow mirror uploaded 架构图) ----
+type NodeKind = "core" | "hub" | "data" | "tool" | "system" | "security";
 type DNode = {
   id: string;
   label: string;
   kind: NodeKind;
-  // % coords inside the diagram viewport
+  // % coords inside the diagram viewport (0-100)
   x: number; y: number; w: number; h: number;
 };
-type DGroup = {
-  id: string;
-  label: string;
-  x: number; y: number; w: number; h: number;
-  nodes: DNode[];
-};
 
-const DIAGRAM_GROUPS: DGroup[] = [
-  {
-    id: "public-cloud", label: "公有云",
-    x: 1, y: 6, w: 26, h: 38,
-    nodes: [
-      { id: "domainsys", label: "DomainSys", kind: "infra", x: 8, y: 11, w: 14, h: 5 },
-      { id: "docker", label: "Docker", kind: "infra", x: 3, y: 18, w: 22, h: 14 },
-      { id: "wp-cloud", label: "wp-insightd", kind: "core", x: 6, y: 23, w: 16, h: 6 },
-      { id: "aoc-cloud", label: "AOC-HUB", kind: "hub", x: 14, y: 36, w: 12, h: 5 },
-    ],
-  },
-  {
-    id: "idc", label: "IDC",
-    x: 1, y: 50, w: 26, h: 46,
-    nodes: [
-      { id: "aoc-idc", label: "AOC-HUB", kind: "hub", x: 6, y: 56, w: 12, h: 5 },
-      { id: "server", label: "服务器", kind: "infra", x: 3, y: 65, w: 22, h: 18 },
-      { id: "wp-idc", label: "wp-insightd", kind: "core", x: 6, y: 71, w: 16, h: 6 },
-      { id: "firewall", label: "FireWall", kind: "security", x: 3, y: 87, w: 14, h: 5 },
-    ],
-  },
-  {
-    id: "warpaixs", label: "WarpAixs",
-    x: 33, y: 20, w: 47, h: 76,
-    nodes: [
-      { id: "warpparse", label: "WarpParse", kind: "core", x: 36, y: 26, w: 16, h: 6 },
-      { id: "warpfusion", label: "WarpFusion", kind: "core", x: 36, y: 40, w: 16, h: 6 },
-      { id: "obs", label: "OBS Data", kind: "data", x: 36, y: 80, w: 16, h: 6 },
-      { id: "ai-agent", label: "AI Agent", kind: "tool", x: 56, y: 40, w: 10, h: 6 },
-      { id: "exector", label: "Exector", kind: "tool", x: 68, y: 40, w: 10, h: 6 },
-      { id: "value", label: "Value Data", kind: "data", x: 58, y: 55, w: 20, h: 6 },
-      { id: "twins", label: "Domain Sys Twins", kind: "data", x: 58, y: 70, w: 20, h: 6 },
-    ],
-  },
-  {
-    id: "office", label: "办公室",
-    x: 86, y: 20, w: 13, h: 60,
-    nodes: [
-      { id: "aoc-office", label: "AOC-HUB", kind: "hub", x: 88, y: 28, w: 9, h: 5 },
-      { id: "pc", label: "电脑", kind: "infra", x: 87, y: 40, w: 11, h: 18 },
-      { id: "wp-office", label: "wp-insightd", kind: "core", x: 88, y: 46, w: 9, h: 6 },
-    ],
-  },
+// Flat node set laid out on a strict column/row grid for clean orthogonal routing.
+const DIAGRAM_NODES: DNode[] = [
+  // 左上接入区
+  { id: "domainsys", label: "DomainSys", kind: "system", x: 2, y: 7, w: 16, h: 7 },
+  { id: "wp-tl", label: "wp-insightd", kind: "core", x: 2, y: 17, w: 16, h: 7 },
+  { id: "aoc-tl", label: "AOC-HUB", kind: "hub", x: 23, y: 12, w: 13, h: 7 },
+  // 左下接入区
+  { id: "wp-bl", label: "wp-insightd", kind: "core", x: 2, y: 60, w: 16, h: 7 },
+  { id: "firewall", label: "FireWall", kind: "security", x: 2, y: 70, w: 16, h: 7 },
+  { id: "aoc-bl", label: "AOC-HUB", kind: "hub", x: 23, y: 65, w: 13, h: 7 },
+  // 右侧接入区
+  { id: "wp-r", label: "wp-insightd", kind: "core", x: 80, y: 7, w: 17, h: 7 },
+  { id: "aoc-r", label: "AOC-HUB", kind: "hub", x: 80, y: 18, w: 17, h: 7 },
+  // 中枢区
+  { id: "warpparse", label: "WarpParse", kind: "core", x: 41, y: 29, w: 15, h: 7 },
+  { id: "warpfusion", label: "WarpFusion", kind: "core", x: 61, y: 47, w: 14, h: 7 },
+  { id: "obs", label: "OBS Data", kind: "data", x: 41, y: 73, w: 15, h: 8 },
+  // 决策执行区
+  { id: "ai-agent", label: "AI Agent", kind: "tool", x: 79, y: 47, w: 10, h: 7 },
+  { id: "exector", label: "Exector", kind: "tool", x: 91, y: 47, w: 8, h: 7 },
+  { id: "value", label: "Value Data", kind: "data", x: 79, y: 61, w: 17, h: 7 },
+  { id: "twins", label: "Domain Sys Twins", kind: "data", x: 78, y: 73, w: 21, h: 7 },
 ];
-
-const TOP_SYSTEMS: { id: string; label: string; icon: LucideIcon }[] = [
-  { id: "sec", label: "网络安全系统", icon: ShieldCheck },
-  { id: "ops", label: "监控运维系统", icon: Activity },
-  { id: "risk", label: "人员风险系统", icon: UserCog },
-];
-
-const GROUP_ICONS: Record<string, LucideIcon> = {
-  "public-cloud": Cloud,
-  idc: Server,
-  warpaixs: Cpu,
-  office: Building2,
-};
 
 const NODE_ICONS: Record<NodeKind, LucideIcon> = {
   core: Boxes,
@@ -100,24 +60,48 @@ const NODE_ICONS: Record<NodeKind, LucideIcon> = {
   data: Database,
   tool: Wrench,
   system: Layers,
-  infra: Server,
   security: ShieldAlert,
 };
 
-// edges: [fromId, toId]
-const DIAGRAM_EDGES: [string, string][] = [
-  ["domainsys", "aoc-cloud"],
-  ["wp-cloud", "aoc-cloud"],
-  ["aoc-cloud", "warpparse"],
-  ["aoc-office", "warpparse"],
-  ["warpparse", "warpfusion"],
-  ["warpparse", "obs"],
-  ["warpfusion", "value"],
-  ["warpfusion", "twins"],
-  ["wp-idc", "aoc-idc"],
-  ["firewall", "aoc-idc"],
-  ["aoc-idc", "warpparse"],
+// Orthogonal edges as explicit polylines (% coords). Direction = data flow (arrow at end).
+const DIAGRAM_EDGES: { points: [number, number][] }[] = [
+  { points: [[18, 10.5], [20.5, 10.5], [20.5, 15.5], [23, 15.5]] }, // DomainSys -> AOC-HUB(TL)
+  { points: [[18, 20.5], [20.5, 20.5], [20.5, 15.5], [23, 15.5]] }, // wp-insightd(TL) -> AOC-HUB(TL)
+  { points: [[36, 15.5], [38.5, 15.5], [38.5, 31], [41, 31]] }, // AOC-HUB(TL) -> WarpParse
+  { points: [[18, 63.5], [20.5, 63.5], [20.5, 68.5], [23, 68.5]] }, // wp-insightd(BL) -> AOC-HUB(BL)
+  { points: [[18, 73.5], [20.5, 73.5], [20.5, 68.5], [23, 68.5]] }, // FireWall -> AOC-HUB(BL)
+  { points: [[36, 68.5], [38.5, 68.5], [38.5, 34], [41, 34]] }, // AOC-HUB(BL) -> WarpParse
+  { points: [[88.5, 14], [88.5, 18]] }, // wp-insightd(R) -> AOC-HUB(R)
+  { points: [[80, 21.5], [48.5, 21.5], [48.5, 29]] }, // AOC-HUB(R) -> WarpParse
+  { points: [[56, 32.5], [68, 32.5], [68, 47]] }, // WarpParse -> WarpFusion
+  { points: [[61, 50.5], [58.5, 50.5], [58.5, 34.5], [56, 34.5]] }, // WarpFusion -> WarpParse (feedback)
+  { points: [[48.5, 36], [48.5, 73]] }, // WarpParse -> OBS Data
+  { points: [[75, 50.5], [79, 50.5]] }, // WarpFusion -> AI Agent
+  { points: [[89, 50.5], [91, 50.5]] }, // AI Agent -> Exector
+  { points: [[65, 54], [65, 64.5], [79, 64.5]] }, // WarpFusion -> Value Data
+  { points: [[87.5, 61], [87.5, 57.5], [84, 57.5], [84, 54]] }, // Value Data -> AI Agent
+  { points: [[71, 54], [71, 76.5], [78, 76.5]] }, // WarpFusion -> Domain Sys Twins
 ];
+
+// Build a rounded orthogonal SVG path from polyline points.
+function roundedPath(pts: [number, number][], r = 0.8) {
+  if (pts.length < 2) return "";
+  let d = `M ${pts[0][0]} ${pts[0][1]}`;
+  for (let i = 1; i < pts.length - 1; i++) {
+    const [px, py] = pts[i - 1];
+    const [cx, cy] = pts[i];
+    const [nx, ny] = pts[i + 1];
+    const v1x = cx - px, v1y = cy - py; const l1 = Math.hypot(v1x, v1y) || 1;
+    const v2x = nx - cx, v2y = ny - cy; const l2 = Math.hypot(v2x, v2y) || 1;
+    const rr = Math.min(r, l1 / 2, l2 / 2);
+    const sx = cx - (v1x / l1) * rr, sy = cy - (v1y / l1) * rr;
+    const ex = cx + (v2x / l2) * rr, ey = cy + (v2y / l2) * rr;
+    d += ` L ${sx} ${sy} Q ${cx} ${cy} ${ex} ${ey}`;
+  }
+  const last = pts[pts.length - 1];
+  d += ` L ${last[0]} ${last[1]}`;
+  return d;
+}
 
 function nodeTone(kind: NodeKind) {
   switch (kind) {
@@ -133,7 +117,6 @@ function nodeTone(kind: NodeKind) {
       return "border-primary/30 bg-card/60 text-foreground";
     case "security":
       return "border-risk/60 bg-risk/15 text-foreground shadow-[0_0_22px_oklch(0.62_0.24_20/0.40)]";
-    case "infra":
     default:
       return "border-white/10 bg-white/[0.03] text-muted-foreground";
   }
