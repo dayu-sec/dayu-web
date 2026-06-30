@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { Cloud, Server, Cpu, Building2, Boxes, Network, Database, Wrench, Layers, ShieldCheck, ShieldAlert, Activity, UserCog, type LucideIcon } from "lucide-react";
+import { Boxes, Network, Database, Wrench, Layers, ShieldAlert, type LucideIcon } from "lucide-react";
 import heroShield from "@/assets/hero-shield.png";
 import caseWinterOlympics from "@/assets/case-winter-olympics.jpg";
 import caseCityOps from "@/assets/case-city-ops.jpg";
@@ -20,79 +20,39 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// ---- Architecture diagram data (mirrors uploaded 架构图2.png logic) ----
-type NodeKind = "core" | "hub" | "data" | "tool" | "system" | "infra" | "security";
+// ---- Architecture diagram data (node structure & flow mirror uploaded 架构图) ----
+type NodeKind = "core" | "hub" | "data" | "tool" | "system" | "security";
 type DNode = {
   id: string;
   label: string;
   kind: NodeKind;
-  // % coords inside the diagram viewport
+  // % coords inside the diagram viewport (0-100)
   x: number; y: number; w: number; h: number;
 };
-type DGroup = {
-  id: string;
-  label: string;
-  x: number; y: number; w: number; h: number;
-  nodes: DNode[];
-};
 
-const DIAGRAM_GROUPS: DGroup[] = [
-  {
-    id: "public-cloud", label: "公有云",
-    x: 1, y: 6, w: 26, h: 38,
-    nodes: [
-      { id: "domainsys", label: "DomainSys", kind: "infra", x: 8, y: 11, w: 14, h: 5 },
-      { id: "docker", label: "Docker", kind: "infra", x: 3, y: 18, w: 22, h: 14 },
-      { id: "wp-cloud", label: "wp-insightd", kind: "core", x: 6, y: 23, w: 16, h: 6 },
-      { id: "aoc-cloud", label: "AOC-HUB", kind: "hub", x: 14, y: 36, w: 12, h: 5 },
-    ],
-  },
-  {
-    id: "idc", label: "IDC",
-    x: 1, y: 50, w: 26, h: 46,
-    nodes: [
-      { id: "aoc-idc", label: "AOC-HUB", kind: "hub", x: 6, y: 56, w: 12, h: 5 },
-      { id: "server", label: "服务器", kind: "infra", x: 3, y: 65, w: 22, h: 18 },
-      { id: "wp-idc", label: "wp-insightd", kind: "core", x: 6, y: 71, w: 16, h: 6 },
-      { id: "firewall", label: "FireWall", kind: "security", x: 3, y: 87, w: 14, h: 5 },
-    ],
-  },
-  {
-    id: "warpaixs", label: "WarpAixs",
-    x: 33, y: 20, w: 47, h: 76,
-    nodes: [
-      { id: "warpparse", label: "WarpParse", kind: "core", x: 36, y: 26, w: 16, h: 6 },
-      { id: "warpfusion", label: "WarpFusion", kind: "core", x: 36, y: 40, w: 16, h: 6 },
-      { id: "obs", label: "OBS Data", kind: "data", x: 36, y: 80, w: 16, h: 6 },
-      { id: "ai-agent", label: "AI Agent", kind: "tool", x: 56, y: 40, w: 10, h: 6 },
-      { id: "exector", label: "Exector", kind: "tool", x: 68, y: 40, w: 10, h: 6 },
-      { id: "value", label: "Value Data", kind: "data", x: 58, y: 55, w: 20, h: 6 },
-      { id: "twins", label: "Domain Sys Twins", kind: "data", x: 58, y: 70, w: 20, h: 6 },
-    ],
-  },
-  {
-    id: "office", label: "办公室",
-    x: 86, y: 20, w: 13, h: 60,
-    nodes: [
-      { id: "aoc-office", label: "AOC-HUB", kind: "hub", x: 88, y: 28, w: 9, h: 5 },
-      { id: "pc", label: "电脑", kind: "infra", x: 87, y: 40, w: 11, h: 18 },
-      { id: "wp-office", label: "wp-insightd", kind: "core", x: 88, y: 46, w: 9, h: 6 },
-    ],
-  },
+// Flat node set laid out on a strict column/row grid for clean orthogonal routing.
+const DIAGRAM_NODES: DNode[] = [
+  // 左上接入区
+  { id: "domainsys", label: "DomainSys", kind: "system", x: 2, y: 7, w: 16, h: 7 },
+  { id: "wp-tl", label: "wp-insightd", kind: "core", x: 2, y: 17, w: 16, h: 7 },
+  { id: "aoc-tl", label: "AOC-HUB", kind: "hub", x: 23, y: 12, w: 13, h: 7 },
+  // 左下接入区
+  { id: "wp-bl", label: "wp-insightd", kind: "core", x: 2, y: 60, w: 16, h: 7 },
+  { id: "firewall", label: "FireWall", kind: "security", x: 2, y: 70, w: 16, h: 7 },
+  { id: "aoc-bl", label: "AOC-HUB", kind: "hub", x: 23, y: 65, w: 13, h: 7 },
+  // 右侧接入区
+  { id: "wp-r", label: "wp-insightd", kind: "core", x: 80, y: 7, w: 17, h: 7 },
+  { id: "aoc-r", label: "AOC-HUB", kind: "hub", x: 80, y: 18, w: 17, h: 7 },
+  // 中枢区
+  { id: "warpparse", label: "WarpParse", kind: "core", x: 41, y: 29, w: 15, h: 7 },
+  { id: "warpfusion", label: "WarpFusion", kind: "core", x: 61, y: 47, w: 14, h: 7 },
+  { id: "obs", label: "OBS Data", kind: "data", x: 41, y: 73, w: 15, h: 8 },
+  // 决策执行区
+  { id: "ai-agent", label: "AI Agent", kind: "tool", x: 79, y: 47, w: 10, h: 7 },
+  { id: "exector", label: "Exector", kind: "tool", x: 91, y: 47, w: 8, h: 7 },
+  { id: "value", label: "Value Data", kind: "data", x: 79, y: 61, w: 17, h: 7 },
+  { id: "twins", label: "Domain Sys Twins", kind: "data", x: 78, y: 73, w: 21, h: 7 },
 ];
-
-const TOP_SYSTEMS: { id: string; label: string; icon: LucideIcon }[] = [
-  { id: "sec", label: "网络安全系统", icon: ShieldCheck },
-  { id: "ops", label: "监控运维系统", icon: Activity },
-  { id: "risk", label: "人员风险系统", icon: UserCog },
-];
-
-const GROUP_ICONS: Record<string, LucideIcon> = {
-  "public-cloud": Cloud,
-  idc: Server,
-  warpaixs: Cpu,
-  office: Building2,
-};
 
 const NODE_ICONS: Record<NodeKind, LucideIcon> = {
   core: Boxes,
@@ -100,24 +60,48 @@ const NODE_ICONS: Record<NodeKind, LucideIcon> = {
   data: Database,
   tool: Wrench,
   system: Layers,
-  infra: Server,
   security: ShieldAlert,
 };
 
-// edges: [fromId, toId]
-const DIAGRAM_EDGES: [string, string][] = [
-  ["domainsys", "aoc-cloud"],
-  ["wp-cloud", "aoc-cloud"],
-  ["aoc-cloud", "warpparse"],
-  ["aoc-office", "warpparse"],
-  ["warpparse", "warpfusion"],
-  ["warpparse", "obs"],
-  ["warpfusion", "value"],
-  ["warpfusion", "twins"],
-  ["wp-idc", "aoc-idc"],
-  ["firewall", "aoc-idc"],
-  ["aoc-idc", "warpparse"],
+// Orthogonal edges as explicit polylines (% coords). Direction = data flow (arrow at end).
+const DIAGRAM_EDGES: { points: [number, number][] }[] = [
+  { points: [[18, 10.5], [20.5, 10.5], [20.5, 15.5], [23, 15.5]] }, // DomainSys -> AOC-HUB(TL)
+  { points: [[18, 20.5], [20.5, 20.5], [20.5, 15.5], [23, 15.5]] }, // wp-insightd(TL) -> AOC-HUB(TL)
+  { points: [[36, 15.5], [38.5, 15.5], [38.5, 31], [41, 31]] }, // AOC-HUB(TL) -> WarpParse
+  { points: [[18, 63.5], [20.5, 63.5], [20.5, 68.5], [23, 68.5]] }, // wp-insightd(BL) -> AOC-HUB(BL)
+  { points: [[18, 73.5], [20.5, 73.5], [20.5, 68.5], [23, 68.5]] }, // FireWall -> AOC-HUB(BL)
+  { points: [[36, 68.5], [38.5, 68.5], [38.5, 34], [41, 34]] }, // AOC-HUB(BL) -> WarpParse
+  { points: [[88.5, 14], [88.5, 18]] }, // wp-insightd(R) -> AOC-HUB(R)
+  { points: [[80, 21.5], [48.5, 21.5], [48.5, 29]] }, // AOC-HUB(R) -> WarpParse
+  { points: [[56, 32.5], [68, 32.5], [68, 47]] }, // WarpParse -> WarpFusion
+  { points: [[61, 50.5], [58.5, 50.5], [58.5, 34.5], [56, 34.5]] }, // WarpFusion -> WarpParse (feedback)
+  { points: [[48.5, 36], [48.5, 73]] }, // WarpParse -> OBS Data
+  { points: [[75, 50.5], [79, 50.5]] }, // WarpFusion -> AI Agent
+  { points: [[89, 50.5], [91, 50.5]] }, // AI Agent -> Exector
+  { points: [[65, 54], [65, 64.5], [79, 64.5]] }, // WarpFusion -> Value Data
+  { points: [[87.5, 61], [87.5, 57.5], [84, 57.5], [84, 54]] }, // Value Data -> AI Agent
+  { points: [[71, 54], [71, 76.5], [78, 76.5]] }, // WarpFusion -> Domain Sys Twins
 ];
+
+// Build a rounded orthogonal SVG path from polyline points.
+function roundedPath(pts: [number, number][], r = 0.8) {
+  if (pts.length < 2) return "";
+  let d = `M ${pts[0][0]} ${pts[0][1]}`;
+  for (let i = 1; i < pts.length - 1; i++) {
+    const [px, py] = pts[i - 1];
+    const [cx, cy] = pts[i];
+    const [nx, ny] = pts[i + 1];
+    const v1x = cx - px, v1y = cy - py; const l1 = Math.hypot(v1x, v1y) || 1;
+    const v2x = nx - cx, v2y = ny - cy; const l2 = Math.hypot(v2x, v2y) || 1;
+    const rr = Math.min(r, l1 / 2, l2 / 2);
+    const sx = cx - (v1x / l1) * rr, sy = cy - (v1y / l1) * rr;
+    const ex = cx + (v2x / l2) * rr, ey = cy + (v2y / l2) * rr;
+    d += ` L ${sx} ${sy} Q ${cx} ${cy} ${ex} ${ey}`;
+  }
+  const last = pts[pts.length - 1];
+  d += ` L ${last[0]} ${last[1]}`;
+  return d;
+}
 
 function nodeTone(kind: NodeKind) {
   switch (kind) {
@@ -133,7 +117,6 @@ function nodeTone(kind: NodeKind) {
       return "border-primary/30 bg-card/60 text-foreground";
     case "security":
       return "border-risk/60 bg-risk/15 text-foreground shadow-[0_0_22px_oklch(0.62_0.24_20/0.40)]";
-    case "infra":
     default:
       return "border-white/10 bg-white/[0.03] text-muted-foreground";
   }
@@ -237,10 +220,6 @@ function Index() {
 }
 
 function Architecture() {
-  // Build a flat lookup of node centers (% based) for SVG edges
-  const allNodes = DIAGRAM_GROUPS.flatMap((g) => g.nodes);
-  const byId = Object.fromEntries(allNodes.map((n) => [n.id, n]));
-
   return (
     <section id="system" className="relative z-10 border-t border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
@@ -253,50 +232,8 @@ function Architecture() {
             一体化保障架构
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            覆盖公有云、IDC、办公室多场景，统一接入 WarpAixs 中台，构建从观测、解析到决策执行的完整链路。
+            多源接入统一汇聚至 WarpParse 中枢，经 WarpFusion 融合后驱动 AI Agent 决策执行，构建从观测、解析到行动的完整链路。
           </p>
-        </div>
-
-        {/* Top system tags — supported by the architecture below */}
-        <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:max-w-[60%] lg:ml-[33%]">
-          {TOP_SYSTEMS.map((s) => (
-            <div
-              key={s.id}
-              className="flex items-center justify-center gap-2 rounded-lg border border-primary/20 bg-card/50 px-4 py-3 text-center text-xs font-medium text-foreground/90 backdrop-blur sm:text-sm"
-            >
-              <s.icon className={`h-4 w-4 shrink-0 ${s.id === "sec" ? "text-risk" : "text-primary"}`} strokeWidth={2} />
-              {s.label}
-            </div>
-          ))}
-        </div>
-
-        {/* Upward support arrows: architecture -> top systems */}
-        <div className="mb-6 grid grid-cols-3 gap-3 sm:gap-4 lg:max-w-[60%] lg:ml-[33%]">
-          {TOP_SYSTEMS.map((s) => (
-            <div key={s.id} className="flex justify-center">
-              <svg
-                className="h-10 w-6"
-                viewBox="0 0 24 40"
-                fill="none"
-                aria-hidden
-              >
-                <defs>
-                  <linearGradient id="edge-up" x1="0" y1="1" x2="0" y2="0">
-                    <stop offset="0%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
-                    <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M12 38 L12 8 M5 15 L12 6 L19 15"
-                  stroke="url(#edge-up)"
-                  strokeWidth="4.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  opacity="0.9"
-                />
-              </svg>
-            </div>
-          ))}
         </div>
 
         {/* Diagram canvas */}
@@ -312,7 +249,7 @@ function Architecture() {
             }}
           />
 
-          <div className="relative" style={{ aspectRatio: "16 / 11", minHeight: 520 }}>
+          <div className="relative" style={{ aspectRatio: "16 / 9", minHeight: 460 }}>
             {/* SVG edges layer */}
             <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
               <defs>
@@ -332,23 +269,8 @@ function Architecture() {
                   <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
                 </linearGradient>
               </defs>
-              {DIAGRAM_EDGES.map(([a, b], i) => {
-                const na = byId[a]; const nb = byId[b];
-                if (!na || !nb) return null;
-                const x1 = na.x + na.w / 2;
-                const y1 = na.y + na.h / 2;
-                const x2 = nb.x + nb.w / 2;
-                const y2 = nb.y + nb.h / 2;
-                // rounded orthogonal elbow
-                const midX = (x1 + x2) / 2;
-                const dx1 = Math.sign(midX - x1) || 1;
-                const dy2 = Math.sign(y2 - y1) || 1;
-                const dx3 = Math.sign(x2 - midX) || 1;
-                const seg1 = Math.abs(midX - x1);
-                const seg2 = Math.abs(y2 - y1);
-                const seg3 = Math.abs(x2 - midX);
-                const rr = Math.min(0.8, seg1, seg2 / 2, seg3);
-                const d = `M ${x1} ${y1} L ${midX - dx1 * rr} ${y1} Q ${midX} ${y1} ${midX} ${y1 + dy2 * rr} L ${midX} ${y2 - dy2 * rr} Q ${midX} ${y2} ${midX + dx3 * rr} ${y2} L ${x2} ${y2}`;
+              {DIAGRAM_EDGES.map((e, i) => {
+                const d = roundedPath(e.points);
                 return (
                   <g key={i}>
                     <path
@@ -378,32 +300,11 @@ function Architecture() {
               })}
             </svg>
 
-            {/* Group containers */}
-            {DIAGRAM_GROUPS.map((g) => (
-              <div
-                key={g.id}
-                className="absolute rounded-xl border border-primary/15 bg-background/40 backdrop-blur-sm"
-                style={{
-                  left: `${g.x}%`, top: `${g.y}%`,
-                  width: `${g.w}%`, height: `${g.h}%`,
-                  boxShadow: "inset 0 0 0 1px oklch(1 0 0 / 0.03)",
-                }}
-              >
-                <span className="absolute left-3 top-2 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-primary/80">
-                  {(() => {
-                    const Icon = GROUP_ICONS[g.id];
-                    return Icon ? <Icon className="h-3.5 w-3.5" strokeWidth={2} /> : null;
-                  })()}
-                  {g.label}
-                </span>
-              </div>
-            ))}
-
             {/* Nodes */}
-            {allNodes.map((n) => (
+            {DIAGRAM_NODES.map((n) => (
               <div
                 key={n.id}
-                className={`absolute flex items-center justify-center gap-1.5 rounded-md border px-2 text-center text-xs font-medium leading-tight backdrop-blur sm:text-sm ${nodeTone(n.kind)}`}
+                className={`absolute flex items-center justify-center gap-1.5 whitespace-nowrap rounded-md border px-2 text-center text-xs font-medium leading-tight backdrop-blur sm:text-sm ${nodeTone(n.kind)}`}
                 style={{
                   left: `${n.x}%`, top: `${n.y}%`,
                   width: `${n.w}%`, height: `${n.h}%`,
@@ -423,7 +324,8 @@ function Architecture() {
             <LegendDot className="bg-primary/60 shadow-[0_0_8px_var(--glow-primary)]" label="核心模块" />
             <LegendDot className="bg-accent/70 shadow-[0_0_8px_var(--glow-accent)]" label="接入枢纽 AOC-HUB" />
             <LegendDot className="bg-primary/30" label="数据层" />
-            <LegendDot className="bg-white/30" label="基础设施" />
+            <LegendDot className="bg-white/30" label="处理工具" />
+            <LegendDot className="bg-risk/60 shadow-[0_0_8px_oklch(0.62_0.24_20/0.5)]" label="安全边界" />
           </div>
         </div>
       </div>
