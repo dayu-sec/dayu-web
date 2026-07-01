@@ -360,6 +360,16 @@ function Architecture() {
                   }}
                 >
                   {(() => {
+                    if (n.iconUrl) {
+                      return (
+                        <img
+                          src={n.iconUrl}
+                          alt=""
+                          aria-hidden
+                          className={`shrink-0 opacity-95 ${big ? "h-7 w-7 sm:h-9 sm:w-9" : "h-5 w-5 sm:h-6 sm:w-6"}`}
+                        />
+                      );
+                    }
                     const Icon = NODE_ICONS[n.kind];
                     return Icon ? (
                       <Icon
