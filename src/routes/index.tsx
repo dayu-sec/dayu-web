@@ -302,7 +302,7 @@ function Architecture() {
                     d="M1.4,1 L5,3 L1.4,5"
                     fill="none"
                     stroke="oklch(0.82 0.14 220)"
-                    strokeWidth="1"
+                    strokeWidth="1.3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
