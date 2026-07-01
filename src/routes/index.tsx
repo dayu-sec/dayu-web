@@ -52,7 +52,7 @@ const DIAGRAM_NODES: DNode[] = [
   { id: "ai-agent", label: "AI Agent", kind: "tool", x: 76, y: 52, w: 10, h: 8 },
   { id: "exector", label: "Exector", kind: "tool", x: 89, y: 52, w: 9, h: 8 },
   { id: "value", label: "Value Data", kind: "data", x: 76, y: 64, w: 22, h: 8 },
-  { id: "twins", label: "Domain Sys Twins", kind: "data", x: 76, y: 78, w: 22, h: 8 },
+  { id: "twins", label: "Domain Sys Twins", kind: "data", x: 75, y: 77.5, w: 24, h: 9 },
 ];
 
 const NODE_ICONS: Record<NodeKind, LucideIcon> = {
@@ -88,7 +88,7 @@ const DIAGRAM_EDGES: { points: [number, number][]; noArrow?: boolean }[] = [
   { points: [[86, 56], [89, 56]] }, // AI Agent -> Exector
   { points: [[65, 60], [65, 68], [76, 68]] }, // WarpFusion -> Value Data
   { points: [[87, 64], [87, 62], [81, 62], [81, 60]] }, // Value Data -> AI Agent
-  { points: [[71, 60], [71, 82], [76, 82]] }, // WarpFusion -> Domain Sys Twins
+  { points: [[71, 60], [71, 82], [75, 82]] }, // WarpFusion -> Domain Sys Twins
 ];
 
 // Build a rounded orthogonal SVG path from polyline points.
