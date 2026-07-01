@@ -366,11 +366,11 @@ function Architecture() {
 
           {/* Legend */}
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground sm:text-sm">
-            <LegendDot className="bg-[oklch(0.72_0.16_230)] shadow-[0_0_8px_oklch(0.72_0.16_230/0.7)]" label="核心模块" />
-            <LegendDot className="bg-[oklch(0.72_0.17_300)] shadow-[0_0_8px_oklch(0.72_0.17_300/0.7)]" label="接入枢纽 AOC-HUB" />
-            <LegendDot className="bg-[oklch(0.78_0.15_170)] shadow-[0_0_8px_oklch(0.78_0.15_170/0.7)]" label="数据层" />
-            <LegendDot className="bg-[oklch(0.80_0.16_75)] shadow-[0_0_8px_oklch(0.80_0.16_75/0.7)]" label="处理工具" />
-            <LegendDot className="bg-[oklch(0.62_0.24_20)] shadow-[0_0_8px_oklch(0.62_0.24_20/0.7)]" label="安全边界" />
+            <LegendDot className="bg-[oklch(0.7_0.09_230)] shadow-[0_0_8px_oklch(0.7_0.09_230/0.5)]" label="核心模块" />
+            <LegendDot className="bg-[oklch(0.7_0.09_300)] shadow-[0_0_8px_oklch(0.7_0.09_300/0.5)]" label="接入枢纽 AOC-HUB" />
+            <LegendDot className="bg-[oklch(0.72_0.08_180)] shadow-[0_0_8px_oklch(0.72_0.08_180/0.5)]" label="数据层" />
+            <LegendDot className="bg-[oklch(0.76_0.09_75)] shadow-[0_0_8px_oklch(0.76_0.09_75/0.5)]" label="处理工具" />
+            <LegendDot className="bg-[oklch(0.62_0.13_20)] shadow-[0_0_8px_oklch(0.62_0.13_20/0.5)]" label="安全边界" />
           </div>
         </div>
       </div>
