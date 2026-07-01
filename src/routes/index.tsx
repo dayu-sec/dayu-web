@@ -35,14 +35,14 @@ type DNode = {
 const DIAGRAM_NODES: DNode[] = [
   // 左上接入区（自上而下汇入 AOC-HUB）
   { id: "domainsys", label: "DomainSys", kind: "system", x: 17, y: 5, w: 15, h: 8 },
-  { id: "wp-tl", label: "wp-insightd", kind: "core", x: 0, y: 19, w: 15, h: 8 },
+  { id: "wp-tl", label: "wp-insightd", kind: "core", x: 0, y: 18, w: 16, h: 10 },
   { id: "aoc-tl", label: "AOC-HUB", kind: "hub", x: 17, y: 31, w: 15, h: 8 },
   // 左下接入区（自下而上汇入 AOC-HUB）
   { id: "aoc-bl", label: "AOC-HUB", kind: "hub", x: 17, y: 52, w: 15, h: 8 },
-  { id: "wp-bl", label: "wp-insightd", kind: "core", x: 0, y: 63, w: 15, h: 8 },
+  { id: "wp-bl", label: "wp-insightd", kind: "core", x: 0, y: 62, w: 16, h: 10 },
   { id: "firewall", label: "FireWall", kind: "security", x: 0, y: 79, w: 15, h: 8 },
   // 右侧接入区
-  { id: "wp-r", label: "wp-insightd", kind: "core", x: 79, y: 19, w: 18, h: 8 },
+  { id: "wp-r", label: "wp-insightd", kind: "core", x: 79, y: 18, w: 18, h: 10 },
   { id: "aoc-r", label: "AOC-HUB", kind: "hub", x: 79, y: 38, w: 18, h: 8 },
   // 中枢区（大节点）
   { id: "warpparse", label: "WarpParse", kind: "core", x: 39, y: 27, w: 18, h: 16 },
