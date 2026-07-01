@@ -256,14 +256,23 @@ function Architecture() {
               <defs>
                 <marker
                   id="arrow"
-                  viewBox="0 0 10 10"
-                  refX="8"
-                  refY="5"
-                  markerWidth="7"
-                  markerHeight="7"
+                  viewBox="0 0 6 6"
+                  refX="5"
+                  refY="3"
+                  markerWidth="0.55"
+                  markerHeight="0.55"
+                  markerUnits="userSpaceOnUse"
                   orient="auto-start-reverse"
                 >
-                  <path d="M0,0 L10,5 L0,10 z" fill="oklch(0.82 0.14 220)" />
+                  {/* thin open chevron — no fill */}
+                  <path
+                    d="M1.4,1 L5,3 L1.4,5"
+                    fill="none"
+                    stroke="oklch(0.82 0.14 220)"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </marker>
                 <linearGradient id="edge" x1="0" x2="1">
                   <stop offset="0%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
@@ -278,7 +287,8 @@ function Architecture() {
                       d={d}
                       fill="none"
                       stroke="url(#edge)"
-                      strokeWidth="0.45"
+                      strokeWidth="1.25"
+                      vectorEffect="non-scaling-stroke"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       markerEnd={e.noArrow ? undefined : "url(#arrow)"}
@@ -290,10 +300,11 @@ function Architecture() {
                       d={d}
                       fill="none"
                       stroke="oklch(0.95 0.06 210)"
-                      strokeWidth="0.6"
+                      strokeWidth="1.25"
+                      vectorEffect="non-scaling-stroke"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      strokeDasharray="3 14"
+                      strokeDasharray="4 18"
                       style={{ animationDelay: `${(i % 5) * 0.4}s` }}
                     />
                   </g>
