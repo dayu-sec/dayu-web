@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { Boxes, Network, Database, Wrench, Layers, ShieldAlert, type LucideIcon } from "lucide-react";
+import { Boxes, Network, Database, Wrench, Layers, ShieldAlert, ShieldCheck, Activity, UserCog, type LucideIcon } from "lucide-react";
 import heroShield from "@/assets/hero-shield.png";
 import caseWinterOlympics from "@/assets/case-winter-olympics.jpg";
 import caseCityOps from "@/assets/case-city-ops.jpg";
@@ -63,6 +63,13 @@ const NODE_ICONS: Record<NodeKind, LucideIcon> = {
   system: Layers,
   security: ShieldAlert,
 };
+
+// Top target systems — diagram outputs flow up into these.
+const TOP_SYSTEMS: { label: string; icon: LucideIcon; color: string }[] = [
+  { label: "网络安全系统", icon: ShieldCheck, color: "oklch(0.62 0.24 20)" },
+  { label: "监控运维系统", icon: Activity, color: "oklch(0.82 0.14 220)" },
+  { label: "人员风险系统", icon: UserCog, color: "oklch(0.78 0.12 300)" },
+];
 
 // Orthogonal edges as explicit polylines (% coords). Direction = data flow (arrow at end).
 const DIAGRAM_EDGES: { points: [number, number][]; noArrow?: boolean }[] = [
@@ -239,6 +246,32 @@ function Architecture() {
 
         {/* Diagram canvas */}
         <div className="relative w-full overflow-hidden rounded-2xl border border-primary/20 bg-card/30 p-4 backdrop-blur-md shadow-[0_0_60px_oklch(0.72_0.16_230/0.12)] sm:p-6">
+          {/* Top target systems — outputs flow up into these */}
+          <div className="relative z-10 mb-2 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+            {TOP_SYSTEMS.map((s) => {
+              const Icon = s.icon;
+              return (
+                <div key={s.label} className="flex flex-col items-center">
+                  <div className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-primary/20 bg-white/[0.03] px-4 py-3 text-center backdrop-blur-md">
+                    <Icon className="h-5 w-5 shrink-0" style={{ color: s.color }} strokeWidth={2} />
+                    <span className="whitespace-nowrap text-sm font-medium text-foreground">{s.label}</span>
+                  </div>
+                  {/* upward gradient arrow */}
+                  <svg width="20" height="34" viewBox="0 0 20 34" className="mt-1.5" aria-hidden>
+                    <defs>
+                      <linearGradient id={`up-${s.label}`} x1="0" y1="1" x2="0" y2="0">
+                        <stop offset="0%" stopColor="oklch(0.82 0.14 220)" />
+                        <stop offset="100%" stopColor="oklch(0.78 0.12 300)" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M10 33 L10 9" stroke={`url(#up-${s.label})`} strokeWidth="3" strokeLinecap="round" />
+                    <path d="M3 13 L10 4 L17 13" fill="none" stroke={`url(#up-${s.label})`} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              );
+            })}
+          </div>
+
           {/* faint grid */}
           <div
             aria-hidden
