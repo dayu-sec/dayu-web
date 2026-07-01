@@ -30,28 +30,29 @@ type DNode = {
   x: number; y: number; w: number; h: number;
 };
 
-// Flat node set — positions mirror the reference diagram's spatial structure.
+// Flat node set — strict column/row grid mirroring the reference diagram.
+// Columns: A(left inputs) B(left hubs) C(center) D(fusion) E(right decision/right inputs)
 const DIAGRAM_NODES: DNode[] = [
   // 左上接入区（自上而下汇入 AOC-HUB）
-  { id: "domainsys", label: "DomainSys", kind: "system", x: 10.5, y: 4, w: 15, h: 7 },
-  { id: "wp-tl", label: "wp-insightd", kind: "core", x: 2, y: 15, w: 14, h: 7 },
-  { id: "aoc-tl", label: "AOC-HUB", kind: "hub", x: 10.5, y: 25, w: 15, h: 7 },
+  { id: "domainsys", label: "DomainSys", kind: "system", x: 17, y: 5, w: 15, h: 8 },
+  { id: "wp-tl", label: "wp-insightd", kind: "core", x: 0, y: 19, w: 15, h: 8 },
+  { id: "aoc-tl", label: "AOC-HUB", kind: "hub", x: 17, y: 31, w: 15, h: 8 },
   // 左下接入区（自下而上汇入 AOC-HUB）
-  { id: "aoc-bl", label: "AOC-HUB", kind: "hub", x: 10.5, y: 44, w: 15, h: 7 },
-  { id: "wp-bl", label: "wp-insightd", kind: "core", x: 2, y: 57, w: 14, h: 7 },
-  { id: "firewall", label: "FireWall", kind: "security", x: 2, y: 69, w: 14, h: 7 },
+  { id: "aoc-bl", label: "AOC-HUB", kind: "hub", x: 17, y: 52, w: 15, h: 8 },
+  { id: "wp-bl", label: "wp-insightd", kind: "core", x: 0, y: 63, w: 15, h: 8 },
+  { id: "firewall", label: "FireWall", kind: "security", x: 0, y: 79, w: 15, h: 8 },
   // 右侧接入区
-  { id: "wp-r", label: "wp-insightd", kind: "core", x: 80, y: 22, w: 17, h: 7 },
-  { id: "aoc-r", label: "AOC-HUB", kind: "hub", x: 80, y: 34, w: 17, h: 7 },
+  { id: "wp-r", label: "wp-insightd", kind: "core", x: 79, y: 19, w: 18, h: 8 },
+  { id: "aoc-r", label: "AOC-HUB", kind: "hub", x: 79, y: 38, w: 18, h: 8 },
   // 中枢区（大节点）
-  { id: "warpparse", label: "WarpParse", kind: "core", x: 40, y: 30, w: 17, h: 15 },
-  { id: "obs", label: "OBS Data", kind: "data", x: 40, y: 67, w: 17, h: 14 },
-  { id: "warpfusion", label: "WarpFusion", kind: "core", x: 62, y: 52, w: 15, h: 7 },
+  { id: "warpparse", label: "WarpParse", kind: "core", x: 39, y: 27, w: 18, h: 16 },
+  { id: "obs", label: "OBS Data", kind: "data", x: 39, y: 63, w: 18, h: 16 },
+  { id: "warpfusion", label: "WarpFusion", kind: "core", x: 61, y: 52, w: 14, h: 8 },
   // 决策执行区
-  { id: "ai-agent", label: "AI Agent", kind: "tool", x: 80, y: 52, w: 10, h: 7 },
-  { id: "exector", label: "Exector", kind: "tool", x: 92, y: 52, w: 7, h: 7 },
-  { id: "value", label: "Value Data", kind: "data", x: 80, y: 65, w: 17, h: 7 },
-  { id: "twins", label: "Domain Sys Twins", kind: "data", x: 79, y: 76, w: 20, h: 7 },
+  { id: "ai-agent", label: "AI Agent", kind: "tool", x: 76, y: 52, w: 10, h: 8 },
+  { id: "exector", label: "Exector", kind: "tool", x: 89, y: 52, w: 9, h: 8 },
+  { id: "value", label: "Value Data", kind: "data", x: 76, y: 64, w: 22, h: 8 },
+  { id: "twins", label: "Domain Sys Twins", kind: "data", x: 76, y: 78, w: 22, h: 8 },
 ];
 
 const NODE_ICONS: Record<NodeKind, LucideIcon> = {
@@ -64,23 +65,23 @@ const NODE_ICONS: Record<NodeKind, LucideIcon> = {
 };
 
 // Orthogonal edges as explicit polylines (% coords). Direction = data flow (arrow at end).
-const DIAGRAM_EDGES: { points: [number, number][] }[] = [
-  { points: [[18, 11], [18, 25]] }, // DomainSys -> AOC-HUB(TL)
-  { points: [[16, 18.5], [18, 18.5], [18, 25]] }, // wp-insightd(TL) -> AOC-HUB(TL)
-  { points: [[18, 32], [18, 37.5], [40, 37.5]] }, // AOC-HUB(TL) -> WarpParse
-  { points: [[16, 60.5], [18, 60.5], [18, 51]] }, // wp-insightd(BL) -> AOC-HUB(BL)
-  { points: [[16, 72.5], [18, 72.5], [18, 51]] }, // FireWall -> AOC-HUB(BL)
-  { points: [[18, 44], [18, 37.5], [40, 37.5]] }, // AOC-HUB(BL) -> WarpParse
-  { points: [[88.5, 29], [88.5, 34]] }, // wp-insightd(R) -> AOC-HUB(R)
-  { points: [[80, 37.5], [57, 37.5]] }, // AOC-HUB(R) -> WarpParse
-  { points: [[52, 45], [52, 55.5], [62, 55.5]] }, // WarpParse -> WarpFusion
-  { points: [[67, 52], [67, 47], [54.5, 47], [54.5, 45]] }, // WarpFusion -> WarpParse (feedback)
-  { points: [[48.5, 45], [48.5, 67]] }, // WarpParse -> OBS Data
-  { points: [[77, 55.5], [80, 55.5]] }, // WarpFusion -> AI Agent
-  { points: [[90, 55.5], [92, 55.5]] }, // AI Agent -> Exector
-  { points: [[66, 59], [66, 68.5], [80, 68.5]] }, // WarpFusion -> Value Data
-  { points: [[87, 65], [87, 61.5], [85, 61.5], [85, 59]] }, // Value Data -> AI Agent
-  { points: [[72, 59], [72, 79.5], [79, 79.5]] }, // WarpFusion -> Domain Sys Twins
+const DIAGRAM_EDGES: { points: [number, number][]; noArrow?: boolean }[] = [
+  { points: [[24.5, 13], [24.5, 31]] }, // DomainSys -> AOC-HUB(TL)
+  { points: [[15, 23], [24.5, 23]], noArrow: true }, // wp-insightd(TL) -> AOC-HUB(TL) junction
+  { points: [[32, 35], [39, 35]] }, // AOC-HUB(TL) -> WarpParse
+  { points: [[32, 56], [35.5, 56], [35.5, 35]], noArrow: true }, // AOC-HUB(BL) -> WarpParse (T-junction)
+  { points: [[15, 67], [24.5, 67]], noArrow: true }, // wp-insightd(BL) -> AOC-HUB(BL) junction
+  { points: [[15, 83], [24.5, 83], [24.5, 60]] }, // FireWall -> AOC-HUB(BL)
+  { points: [[88, 27], [88, 38]] }, // wp-insightd(R) -> AOC-HUB(R)
+  { points: [[79, 42], [57, 42]] }, // AOC-HUB(R) -> WarpParse
+  { points: [[52, 43], [52, 56], [61, 56]] }, // WarpParse -> WarpFusion
+  { points: [[68, 52], [68, 47], [54.5, 47], [54.5, 43]] }, // WarpFusion -> WarpParse (feedback)
+  { points: [[44, 43], [44, 63]] }, // WarpParse -> OBS Data
+  { points: [[75, 56], [76, 56]] }, // WarpFusion -> AI Agent
+  { points: [[86, 56], [89, 56]] }, // AI Agent -> Exector
+  { points: [[65, 60], [65, 68], [76, 68]] }, // WarpFusion -> Value Data
+  { points: [[87, 64], [87, 62], [81, 62], [81, 60]] }, // Value Data -> AI Agent
+  { points: [[71, 60], [71, 82], [76, 82]] }, // WarpFusion -> Domain Sys Twins
 ];
 
 // Build a rounded orthogonal SVG path from polyline points.
@@ -280,7 +281,7 @@ function Architecture() {
                       strokeWidth="0.45"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      markerEnd="url(#arrow)"
+                      markerEnd={e.noArrow ? undefined : "url(#arrow)"}
                       opacity="0.7"
                     />
                     {/* flowing light pulse overlay */}
