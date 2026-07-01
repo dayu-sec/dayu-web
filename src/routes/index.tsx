@@ -7,6 +7,7 @@ import caseCityOps from "@/assets/case-city-ops.jpg";
 import casePowerGrid from "@/assets/case-power-grid.jpg";
 import { PageShell, Eyebrow } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
+import warpparseLogo from "@/assets/warpparse-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,6 +27,7 @@ type DNode = {
   id: string;
   label: string;
   kind: NodeKind;
+  iconUrl?: string;
   // % coords inside the diagram viewport (0-100)
   x: number; y: number; w: number; h: number;
 };
@@ -45,7 +47,7 @@ const DIAGRAM_NODES: DNode[] = [
   { id: "wp-r", label: "wp-insightd", kind: "core", x: 79, y: 18, w: 18, h: 10 },
   { id: "aoc-r", label: "AOC-HUB", kind: "hub", x: 79, y: 38, w: 18, h: 8 },
   // 中枢区（大节点）
-  { id: "warpparse", label: "WarpParse", kind: "core", x: 39, y: 27, w: 18, h: 16 },
+  { id: "warpparse", label: "WarpParse", kind: "core", iconUrl: warpparseLogo, x: 39, y: 27, w: 18, h: 16 },
   { id: "obs", label: "OBS Data", kind: "data", x: 39, y: 71, w: 18, h: 16 },
   { id: "warpfusion", label: "WarpFusion", kind: "core", x: 61, y: 52, w: 14, h: 8 },
   // 决策执行区
