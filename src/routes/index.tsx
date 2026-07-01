@@ -88,7 +88,7 @@ const DIAGRAM_EDGES: { points: [number, number][]; noArrow?: boolean }[] = [
   { points: [[86, 56], [89, 56]] }, // AI Agent -> Exector
   { points: [[65, 60], [65, 68], [76, 68]] }, // WarpFusion -> Value Data
   { points: [[87, 64], [87, 62], [81, 62], [81, 60]] }, // Value Data -> AI Agent
-  { points: [[71, 60], [71, 82], [76, 82]] }, // WarpFusion -> Domain Sys Twins
+  { points: [[71, 60], [71, 82], [75, 82]] }, // WarpFusion -> Domain Sys Twins
 ];
 
 // Build a rounded orthogonal SVG path from polyline points.
