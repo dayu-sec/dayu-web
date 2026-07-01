@@ -281,7 +281,7 @@ function Architecture() {
                       strokeWidth="0.45"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      markerEnd="url(#arrow)"
+                      markerEnd={e.noArrow ? undefined : "url(#arrow)"}
                       opacity="0.7"
                     />
                     {/* flowing light pulse overlay */}
