@@ -7,7 +7,7 @@ import caseCityOps from "@/assets/case-city-ops.jpg";
 import casePowerGrid from "@/assets/case-power-grid.jpg";
 import { PageShell, Eyebrow } from "@/components/site/PageShell";
 import { Reveal } from "@/components/site/Reveal";
-import warpparseLogo from "@/assets/warpparse-logo.png";
+import warpparseLogo from "@/assets/warpparse-logo.svg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
