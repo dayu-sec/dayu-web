@@ -64,6 +64,22 @@ const NODE_ICONS: Record<NodeKind, LucideIcon> = {
   security: ShieldAlert,
 };
 
+// Top target systems — diagram outputs flow up into these.
+const TOP_SYSTEMS: { label: string; icon: LucideIcon; color: string }[] = [
+  { label: "网络安全系统", icon: ShieldCheck, color: "oklch(0.62 0.24 20)" },
+  { label: "监控运维系统", icon: Activity, color: "oklch(0.82 0.14 220)" },
+  { label: "人员风险系统", icon: UserCog, color: "oklch(0.78 0.12 300)" },
+];
+
+const _NODE_ICONS_DUP: Record<NodeKind, LucideIcon> = {
+  core: Boxes,
+  hub: Network,
+  data: Database,
+  tool: Wrench,
+  system: Layers,
+  security: ShieldAlert,
+};
+
 // Orthogonal edges as explicit polylines (% coords). Direction = data flow (arrow at end).
 const DIAGRAM_EDGES: { points: [number, number][]; noArrow?: boolean }[] = [
   { points: [[24.5, 13], [24.5, 31]] }, // DomainSys -> AOC-HUB(TL)
