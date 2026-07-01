@@ -71,15 +71,6 @@ const TOP_SYSTEMS: { label: string; icon: LucideIcon; color: string }[] = [
   { label: "人员风险系统", icon: UserCog, color: "oklch(0.78 0.12 300)" },
 ];
 
-const _NODE_ICONS_DUP: Record<NodeKind, LucideIcon> = {
-  core: Boxes,
-  hub: Network,
-  data: Database,
-  tool: Wrench,
-  system: Layers,
-  security: ShieldAlert,
-};
-
 // Orthogonal edges as explicit polylines (% coords). Direction = data flow (arrow at end).
 const DIAGRAM_EDGES: { points: [number, number][]; noArrow?: boolean }[] = [
   { points: [[24.5, 13], [24.5, 31]] }, // DomainSys -> AOC-HUB(TL)
