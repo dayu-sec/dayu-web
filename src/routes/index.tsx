@@ -346,22 +346,30 @@ function Architecture() {
             </svg>
 
             {/* Nodes */}
-            {DIAGRAM_NODES.map((n) => (
-              <div
-                key={n.id}
-                className={`absolute flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-2 text-center text-xs font-medium leading-tight backdrop-blur-md sm:text-sm ${nodeTone(n.kind)}`}
-                style={{
-                  left: `${n.x}%`, top: `${n.y}%`,
-                  width: `${n.w}%`, height: `${n.h}%`,
-                }}
-              >
-                {(() => {
-                  const Icon = NODE_ICONS[n.kind];
-                  return Icon ? <Icon className="h-5 w-5 shrink-0 opacity-90 sm:h-[22px] sm:w-[22px]" strokeWidth={2} /> : null;
-                })()}
-                <span>{n.label}</span>
-              </div>
-            ))}
+            {DIAGRAM_NODES.map((n) => {
+              const big = n.h >= 12;
+              return (
+                <div
+                  key={n.id}
+                  className={`absolute flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-2 text-center font-medium leading-tight backdrop-blur-md ${big ? "text-sm sm:text-base" : "text-xs sm:text-sm"} ${nodeTone(n.kind)}`}
+                  style={{
+                    left: `${n.x}%`, top: `${n.y}%`,
+                    width: `${n.w}%`, height: `${n.h}%`,
+                  }}
+                >
+                  {(() => {
+                    const Icon = NODE_ICONS[n.kind];
+                    return Icon ? (
+                      <Icon
+                        className={`shrink-0 opacity-90 ${big ? "h-6 w-6 sm:h-7 sm:w-7" : "h-5 w-5 sm:h-[22px] sm:w-[22px]"}`}
+                        strokeWidth={2}
+                      />
+                    ) : null;
+                  })()}
+                  <span>{n.label}</span>
+                </div>
+              );
+            })}
           </div>
 
           {/* Legend */}
