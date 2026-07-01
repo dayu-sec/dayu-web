@@ -114,17 +114,17 @@ function roundedPath(pts: [number, number][], r = 0.8) {
 function nodeTone(kind: NodeKind) {
   switch (kind) {
     case "core":
-      return "border-primary/45 bg-primary/12 text-foreground shadow-[0_0_18px_oklch(0.72_0.16_230/0.18)]";
+      return "border-[oklch(0.72_0.16_230)] bg-[oklch(0.55_0.15_230/0.55)] text-foreground shadow-[0_0_22px_oklch(0.72_0.16_230/0.45)]";
     case "hub":
-      return "border-accent/45 bg-accent/12 text-foreground shadow-[0_0_18px_oklch(0.78_0.12_300/0.18)]";
+      return "border-[oklch(0.72_0.17_300)] bg-[oklch(0.55_0.17_300/0.55)] text-foreground shadow-[0_0_22px_oklch(0.72_0.17_300/0.45)]";
     case "data":
-      return "border-primary/30 bg-primary/8 text-foreground/95";
+      return "border-[oklch(0.78_0.15_170)] bg-[oklch(0.55_0.13_170/0.55)] text-foreground shadow-[0_0_22px_oklch(0.78_0.15_170/0.40)]";
     case "tool":
-      return "border-primary/30 bg-white/[0.04] text-foreground/90";
+      return "border-[oklch(0.80_0.16_75)] bg-[oklch(0.58_0.13_75/0.55)] text-foreground shadow-[0_0_22px_oklch(0.80_0.16_75/0.42)]";
     case "system":
-      return "border-primary/30 bg-card/60 text-foreground";
+      return "border-[oklch(0.7_0.02_240)] bg-[oklch(0.5_0.02_240/0.55)] text-foreground";
     case "security":
-      return "border-risk/45 bg-risk/12 text-foreground shadow-[0_0_18px_oklch(0.62_0.24_20/0.20)]";
+      return "border-[oklch(0.62_0.24_20)] bg-[oklch(0.5_0.2_20/0.55)] text-foreground shadow-[0_0_22px_oklch(0.62_0.24_20/0.45)]";
     default:
       return "border-white/10 bg-white/[0.03] text-muted-foreground";
   }
@@ -366,11 +366,11 @@ function Architecture() {
 
           {/* Legend */}
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground sm:text-sm">
-            <LegendDot className="bg-primary/60 shadow-[0_0_8px_var(--glow-primary)]" label="核心模块" />
-            <LegendDot className="bg-accent/70 shadow-[0_0_8px_var(--glow-accent)]" label="接入枢纽 AOC-HUB" />
-            <LegendDot className="bg-primary/30" label="数据层" />
-            <LegendDot className="bg-white/30" label="处理工具" />
-            <LegendDot className="bg-risk/60 shadow-[0_0_8px_oklch(0.62_0.24_20/0.5)]" label="安全边界" />
+            <LegendDot className="bg-[oklch(0.72_0.16_230)] shadow-[0_0_8px_oklch(0.72_0.16_230/0.7)]" label="核心模块" />
+            <LegendDot className="bg-[oklch(0.72_0.17_300)] shadow-[0_0_8px_oklch(0.72_0.17_300/0.7)]" label="接入枢纽 AOC-HUB" />
+            <LegendDot className="bg-[oklch(0.78_0.15_170)] shadow-[0_0_8px_oklch(0.78_0.15_170/0.7)]" label="数据层" />
+            <LegendDot className="bg-[oklch(0.80_0.16_75)] shadow-[0_0_8px_oklch(0.80_0.16_75/0.7)]" label="处理工具" />
+            <LegendDot className="bg-[oklch(0.62_0.24_20)] shadow-[0_0_8px_oklch(0.62_0.24_20/0.7)]" label="安全边界" />
           </div>
         </div>
       </div>
