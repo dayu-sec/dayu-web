@@ -46,7 +46,7 @@ const DIAGRAM_NODES: DNode[] = [
   { id: "aoc-r", label: "AOC-HUB", kind: "hub", x: 79, y: 38, w: 18, h: 8 },
   // 中枢区（大节点）
   { id: "warpparse", label: "WarpParse", kind: "core", x: 39, y: 27, w: 18, h: 16 },
-  { id: "obs", label: "OBS Data", kind: "data", x: 39, y: 63, w: 18, h: 16 },
+  { id: "obs", label: "OBS Data", kind: "data", x: 39, y: 71, w: 18, h: 16 },
   { id: "warpfusion", label: "WarpFusion", kind: "core", x: 61, y: 52, w: 14, h: 8 },
   // 决策执行区
   { id: "ai-agent", label: "AI Agent", kind: "tool", x: 76, y: 52, w: 10, h: 8 },
@@ -83,7 +83,7 @@ const DIAGRAM_EDGES: { points: [number, number][]; noArrow?: boolean }[] = [
   { points: [[79, 42], [57, 42]] }, // AOC-HUB(R) -> WarpParse
   { points: [[52, 43], [52, 56], [61, 56]] }, // WarpParse -> WarpFusion
   { points: [[68, 52], [68, 47], [54.5, 47], [54.5, 43]] }, // WarpFusion -> WarpParse (feedback)
-  { points: [[44, 43], [44, 63]] }, // WarpParse -> OBS Data
+  { points: [[44, 43], [44, 71]] }, // WarpParse -> OBS Data
   { points: [[75, 56], [76, 56]] }, // WarpFusion -> AI Agent
   { points: [[86, 56], [89, 56]] }, // AI Agent -> Exector
   { points: [[65, 60], [65, 68], [76, 68]] }, // WarpFusion -> Value Data
