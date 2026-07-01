@@ -320,7 +320,7 @@ function Architecture() {
                       d={d}
                       fill="none"
                       stroke="url(#edge)"
-                      strokeWidth="1.25"
+                      strokeWidth="1.6"
                       vectorEffect="non-scaling-stroke"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -333,7 +333,7 @@ function Architecture() {
                       d={d}
                       fill="none"
                       stroke="oklch(0.95 0.06 210)"
-                      strokeWidth="1.25"
+                      strokeWidth="1.6"
                       vectorEffect="non-scaling-stroke"
                       strokeLinecap="round"
                       strokeLinejoin="round"
