@@ -52,7 +52,7 @@ const DIAGRAM_NODES: DNode[] = [
   { id: "ai-agent", label: "AI Agent", kind: "tool", x: 76, y: 52, w: 10, h: 8 },
   { id: "exector", label: "Exector", kind: "tool", x: 89, y: 52, w: 9, h: 8 },
   { id: "value", label: "Value Data", kind: "data", x: 76, y: 64, w: 22, h: 8 },
-  { id: "twins", label: "Domain Sys Twins", kind: "data", x: 75, y: 77.5, w: 24, h: 9 },
+  { id: "twins", label: "Domain Sys Twins", kind: "data", x: 75, y: 78, w: 24, h: 9 },
 ];
 
 const NODE_ICONS: Record<NodeKind, LucideIcon> = {
