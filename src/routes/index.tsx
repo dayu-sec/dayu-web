@@ -114,17 +114,17 @@ function roundedPath(pts: [number, number][], r = 0.8) {
 function nodeTone(kind: NodeKind) {
   switch (kind) {
     case "core":
-      return "border-primary/45 bg-primary/12 text-foreground shadow-[0_0_18px_oklch(0.72_0.16_230/0.18)]";
+      return "border-[oklch(0.72_0.16_230/0.7)] bg-[oklch(0.72_0.16_230/0.22)] text-foreground shadow-[0_0_20px_oklch(0.72_0.16_230/0.30)]";
     case "hub":
-      return "border-accent/45 bg-accent/12 text-foreground shadow-[0_0_18px_oklch(0.78_0.12_300/0.18)]";
+      return "border-[oklch(0.72_0.17_300/0.7)] bg-[oklch(0.72_0.17_300/0.22)] text-foreground shadow-[0_0_20px_oklch(0.72_0.17_300/0.30)]";
     case "data":
-      return "border-primary/30 bg-primary/8 text-foreground/95";
+      return "border-[oklch(0.78_0.15_170/0.7)] bg-[oklch(0.78_0.15_170/0.20)] text-foreground shadow-[0_0_20px_oklch(0.78_0.15_170/0.26)]";
     case "tool":
-      return "border-primary/30 bg-white/[0.04] text-foreground/90";
+      return "border-[oklch(0.80_0.16_75/0.75)] bg-[oklch(0.80_0.16_75/0.22)] text-foreground shadow-[0_0_20px_oklch(0.80_0.16_75/0.28)]";
     case "system":
-      return "border-primary/30 bg-card/60 text-foreground";
+      return "border-[oklch(0.7_0.02_240/0.8)] bg-[oklch(0.5_0.02_240/0.35)] text-foreground";
     case "security":
-      return "border-risk/45 bg-risk/12 text-foreground shadow-[0_0_18px_oklch(0.62_0.24_20/0.20)]";
+      return "border-[oklch(0.62_0.24_20/0.8)] bg-[oklch(0.62_0.24_20/0.24)] text-foreground shadow-[0_0_20px_oklch(0.62_0.24_20/0.32)]";
     default:
       return "border-white/10 bg-white/[0.03] text-muted-foreground";
   }
