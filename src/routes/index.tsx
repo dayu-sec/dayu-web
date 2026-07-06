@@ -537,10 +537,13 @@ function Architecture() {
   );
 }
 
-function LegendDot({ className, label }: { className: string; label: string }) {
+function LegendDot({ color, label }: { color: string; label: string }) {
   return (
     <span className="inline-flex items-center gap-2">
-      <span className={`h-2 w-2 rounded-full ${className}`} />
+      <span
+        className="h-2 w-2 rounded-full"
+        style={{ background: color, boxShadow: `0 0 8px ${color}` }}
+      />
       {label}
     </span>
   );
