@@ -332,6 +332,15 @@ function Index() {
 }
 
 function Architecture() {
+  const [paletteId, setPaletteId] = useState(PALETTES[0].id);
+  const palette = PALETTES.find((p) => p.id === paletteId) ?? PALETTES[0];
+  const legend: { kind: NodeKind; label: string }[] = [
+    { kind: "core", label: "核心模块" },
+    { kind: "hub", label: "接入枢纽 AOC-HUB" },
+    { kind: "data", label: "数据层" },
+    { kind: "tool", label: "处理工具" },
+    { kind: "security", label: "安全边界" },
+  ];
   return (
     <section id="system" className="relative z-10 border-t border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
@@ -348,8 +357,34 @@ function Architecture() {
           </p>
         </div>
 
+        {/* Palette switcher */}
+        <div className="mb-5 flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-xs text-muted-foreground">配色预览</span>
+          {PALETTES.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => setPaletteId(p.id)}
+              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition ${
+                p.id === paletteId
+                  ? "border-primary bg-primary/15 text-primary"
+                  : "border-white/10 bg-white/[0.03] text-muted-foreground hover:border-white/25 hover:text-foreground"
+              }`}
+            >
+              <span
+                className="h-2.5 w-2.5 rounded-full"
+                style={{ background: p.tones.core.border, boxShadow: `0 0 6px ${p.tones.core.border}` }}
+              />
+              {p.name}
+            </button>
+          ))}
+        </div>
+
         {/* Diagram canvas */}
-        <div className="relative w-full overflow-hidden rounded-2xl border border-primary/20 bg-card/30 p-4 backdrop-blur-md shadow-[0_0_60px_oklch(0.72_0.16_230/0.12)] sm:p-6">
+        <div
+          className="relative w-full overflow-hidden rounded-2xl border border-primary/20 p-4 backdrop-blur-md shadow-[0_0_60px_oklch(0.72_0.16_230/0.12)] transition-colors duration-500 sm:p-6"
+          style={{ background: palette.canvas }}
+        >
           {/* Top target systems — outputs flow up into these */}
           <div className="relative z-10 mb-2 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
             {TOP_SYSTEMS.map((s) => {
@@ -381,8 +416,7 @@ function Architecture() {
             aria-hidden
             className="pointer-events-none absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage:
-                "linear-gradient(to right, oklch(1 0 0 / 0.18) 1px, transparent 1px), linear-gradient(to bottom, oklch(1 0 0 / 0.18) 1px, transparent 1px)",
+              backgroundImage: `linear-gradient(to right, ${palette.gridColor} 1px, transparent 1px), linear-gradient(to bottom, ${palette.gridColor} 1px, transparent 1px)`,
               backgroundSize: "32px 32px",
             }}
           />
@@ -405,15 +439,15 @@ function Architecture() {
                   <path
                     d="M1.4,1 L5,3 L1.4,5"
                     fill="none"
-                    stroke="oklch(0.82 0.14 220)"
+                    stroke={palette.edge[0]}
                     strokeWidth="1.3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                 </marker>
                 <linearGradient id="edge" x1="0" x2="1">
-                  <stop offset="0%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
-                  <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
+                  <stop offset="0%" stopColor={palette.edge[0]} />
+                  <stop offset="100%" stopColor={palette.edge[1]} />
                 </linearGradient>
               </defs>
               {DIAGRAM_EDGES.map((e, i) => {
@@ -436,7 +470,7 @@ function Architecture() {
                       className="edge-flow"
                       d={d}
                       fill="none"
-                      stroke="oklch(0.95 0.06 210)"
+                      stroke={palette.pulse}
                       strokeWidth="1.6"
                       vectorEffect="non-scaling-stroke"
                       strokeLinecap="round"
@@ -455,10 +489,11 @@ function Architecture() {
               return (
                 <div
                   key={n.id}
-                  className={`absolute flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-2 text-center font-medium leading-tight backdrop-blur-md ${big ? "text-sm sm:text-base" : "text-xs sm:text-sm"} ${nodeTone(n.kind)}`}
+                  className={`absolute flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-2 text-center font-medium leading-tight backdrop-blur-md transition-colors duration-500 ${big ? "text-sm sm:text-base" : "text-xs sm:text-sm"}`}
                   style={{
                     left: `${n.x}%`, top: `${n.y}%`,
                     width: `${n.w}%`, height: `${n.h}%`,
+                    ...nodeStyle(palette, n.kind),
                   }}
                 >
                   {(() => {
@@ -488,11 +523,13 @@ function Architecture() {
 
           {/* Legend */}
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground sm:text-sm">
-            <LegendDot className="bg-[oklch(0.82_0.16_225)] shadow-[0_0_8px_oklch(0.82_0.16_225/0.7)]" label="核心模块" />
-            <LegendDot className="bg-[oklch(0.6_0.12_236)] shadow-[0_0_8px_oklch(0.6_0.12_236/0.7)]" label="接入枢纽 AOC-HUB" />
-            <LegendDot className="bg-[oklch(0.72_0.13_220)] shadow-[0_0_8px_oklch(0.72_0.13_220/0.7)]" label="数据层" />
-            <LegendDot className="bg-[oklch(0.68_0.02_240)] shadow-[0_0_8px_oklch(0.68_0.02_240/0.7)]" label="处理工具" />
-            <LegendDot className="bg-[oklch(0.62_0.24_20)] shadow-[0_0_8px_oklch(0.62_0.24_20/0.7)]" label="安全边界" />
+            {legend.map((l) => (
+              <LegendDot
+                key={l.kind}
+                color={palette.tones[l.kind].border}
+                label={l.label}
+              />
+            ))}
           </div>
         </div>
       </div>
