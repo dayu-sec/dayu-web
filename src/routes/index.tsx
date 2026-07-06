@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { Boxes, Network, Database, Wrench, Layers, ShieldAlert, ShieldCheck, Activity, UserCog, type LucideIcon } from "lucide-react";
@@ -224,7 +224,7 @@ const PALETTES: Palette[] = [
   },
 ];
 
-function nodeStyle(p: Palette, kind: NodeKind): React.CSSProperties {
+function nodeStyle(p: Palette, kind: NodeKind): CSSProperties {
   const t = p.tones[kind];
   return {
     borderColor: t.border,
