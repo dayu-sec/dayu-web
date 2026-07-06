@@ -262,8 +262,8 @@ function Architecture() {
                   <svg width="20" height="34" viewBox="0 0 20 34" className="mt-1.5" aria-hidden>
                     <defs>
                       <linearGradient id={`up-${s.label}`} x1="0" y1="1" x2="0" y2="0">
-                        <stop offset="0%" stopColor="oklch(0.6 0.14 235)" />
-                        <stop offset="100%" stopColor="oklch(0.85 0.16 225)" />
+                        <stop offset="0%" stopColor="oklch(0.82 0.14 220)" />
+                        <stop offset="100%" stopColor="oklch(0.78 0.12 300)" />
                       </linearGradient>
                     </defs>
                     <path d="M10 33 L10 9" stroke={`url(#up-${s.label})`} strokeWidth="3" strokeLinecap="round" />
@@ -303,15 +303,15 @@ function Architecture() {
                   <path
                     d="M1.4,1 L5,3 L1.4,5"
                     fill="none"
-                    stroke="oklch(0.85 0.16 225)"
+                    stroke="oklch(0.82 0.14 220)"
                     strokeWidth="1.3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                 </marker>
                 <linearGradient id="edge" x1="0" x2="1">
-                  <stop offset="0%" stopColor="oklch(0.85 0.16 225 / 0.9)" />
-                  <stop offset="100%" stopColor="oklch(0.58 0.14 236 / 0.9)" />
+                  <stop offset="0%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
+                  <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
                 </linearGradient>
               </defs>
               {DIAGRAM_EDGES.map((e, i) => {
@@ -334,7 +334,7 @@ function Architecture() {
                       className="edge-flow"
                       d={d}
                       fill="none"
-                      stroke="oklch(0.95 0.08 220)"
+                      stroke="oklch(0.95 0.06 210)"
                       strokeWidth="1.6"
                       vectorEffect="non-scaling-stroke"
                       strokeLinecap="round"
