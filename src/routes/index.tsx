@@ -262,8 +262,8 @@ function Architecture() {
                   <svg width="20" height="34" viewBox="0 0 20 34" className="mt-1.5" aria-hidden>
                     <defs>
                       <linearGradient id={`up-${s.label}`} x1="0" y1="1" x2="0" y2="0">
-                        <stop offset="0%" stopColor="oklch(0.82 0.14 220)" />
-                        <stop offset="100%" stopColor="oklch(0.78 0.12 300)" />
+                        <stop offset="0%" stopColor="oklch(0.6 0.14 235)" />
+                        <stop offset="100%" stopColor="oklch(0.85 0.16 225)" />
                       </linearGradient>
                     </defs>
                     <path d="M10 33 L10 9" stroke={`url(#up-${s.label})`} strokeWidth="3" strokeLinecap="round" />
