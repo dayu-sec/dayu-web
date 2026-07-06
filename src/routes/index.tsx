@@ -116,17 +116,17 @@ function roundedPath(pts: [number, number][], r = 0.8) {
 function nodeTone(kind: NodeKind) {
   switch (kind) {
     case "core":
-      return "border-[oklch(0.72_0.16_230)] bg-[oklch(0.55_0.15_230/0.55)] text-foreground shadow-[0_0_22px_oklch(0.72_0.16_230/0.45)]";
+      return "border-[oklch(0.75_0.15_230)] bg-[oklch(0.48_0.14_232/0.6)] text-foreground shadow-[0_0_24px_oklch(0.72_0.16_230/0.5)]";
     case "hub":
-      return "border-[oklch(0.72_0.17_300)] bg-[oklch(0.55_0.17_300/0.55)] text-foreground shadow-[0_0_22px_oklch(0.72_0.17_300/0.45)]";
+      return "border-[oklch(0.62_0.13_235)] bg-[oklch(0.36_0.11_236/0.6)] text-foreground shadow-[0_0_22px_oklch(0.62_0.13_235/0.4)]";
     case "data":
-      return "border-[oklch(0.78_0.15_170)] bg-[oklch(0.55_0.13_170/0.55)] text-foreground shadow-[0_0_22px_oklch(0.78_0.15_170/0.40)]";
+      return "border-[oklch(0.82_0.12_222)] bg-[oklch(0.6_0.12_224/0.5)] text-foreground shadow-[0_0_22px_oklch(0.82_0.12_222/0.4)]";
     case "tool":
-      return "border-[oklch(0.80_0.16_75)] bg-[oklch(0.58_0.13_75/0.55)] text-foreground shadow-[0_0_22px_oklch(0.80_0.16_75/0.42)]";
+      return "border-[oklch(0.7_0.14_228)] bg-[oklch(0.44_0.12_230/0.55)] text-foreground shadow-[0_0_22px_oklch(0.7_0.14_228/0.42)]";
     case "system":
-      return "border-[oklch(0.7_0.02_240)] bg-[oklch(0.5_0.02_240/0.55)] text-foreground";
+      return "border-[oklch(0.5_0.08_240)] bg-[oklch(0.28_0.07_242/0.6)] text-foreground shadow-[0_0_16px_oklch(0.5_0.08_240/0.3)]";
     case "security":
-      return "border-[oklch(0.62_0.24_20)] bg-[oklch(0.5_0.2_20/0.55)] text-foreground shadow-[0_0_22px_oklch(0.62_0.24_20/0.45)]";
+      return "border-[oklch(0.55_0.1_240)] bg-[oklch(0.3_0.08_242/0.6)] text-foreground shadow-[0_0_18px_oklch(0.55_0.1_240/0.35)]";
     default:
       return "border-white/10 bg-white/[0.03] text-muted-foreground";
   }
@@ -386,11 +386,11 @@ function Architecture() {
 
           {/* Legend */}
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground sm:text-sm">
-            <LegendDot className="bg-[oklch(0.72_0.16_230)] shadow-[0_0_8px_oklch(0.72_0.16_230/0.7)]" label="核心模块" />
-            <LegendDot className="bg-[oklch(0.72_0.17_300)] shadow-[0_0_8px_oklch(0.72_0.17_300/0.7)]" label="接入枢纽 AOC-HUB" />
-            <LegendDot className="bg-[oklch(0.78_0.15_170)] shadow-[0_0_8px_oklch(0.78_0.15_170/0.7)]" label="数据层" />
-            <LegendDot className="bg-[oklch(0.80_0.16_75)] shadow-[0_0_8px_oklch(0.80_0.16_75/0.7)]" label="处理工具" />
-            <LegendDot className="bg-[oklch(0.62_0.24_20)] shadow-[0_0_8px_oklch(0.62_0.24_20/0.7)]" label="安全边界" />
+            <LegendDot className="bg-[oklch(0.75_0.15_230)] shadow-[0_0_8px_oklch(0.75_0.15_230/0.7)]" label="核心模块" />
+            <LegendDot className="bg-[oklch(0.62_0.13_235)] shadow-[0_0_8px_oklch(0.62_0.13_235/0.7)]" label="接入枢纽 AOC-HUB" />
+            <LegendDot className="bg-[oklch(0.82_0.12_222)] shadow-[0_0_8px_oklch(0.82_0.12_222/0.7)]" label="数据层" />
+            <LegendDot className="bg-[oklch(0.7_0.14_228)] shadow-[0_0_8px_oklch(0.7_0.14_228/0.7)]" label="处理工具" />
+            <LegendDot className="bg-[oklch(0.55_0.1_240)] shadow-[0_0_8px_oklch(0.55_0.1_240/0.7)]" label="安全边界" />
           </div>
         </div>
       </div>
