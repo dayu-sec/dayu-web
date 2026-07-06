@@ -1,3 +1,4 @@
+import { useState, type CSSProperties } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { Boxes, Network, Database, Wrench, Layers, ShieldAlert, ShieldCheck, Activity, UserCog, type LucideIcon } from "lucide-react";
@@ -113,23 +114,124 @@ function roundedPath(pts: [number, number][], r = 0.8) {
   return d;
 }
 
-function nodeTone(kind: NodeKind) {
-  switch (kind) {
-    case "core":
-      return "border-[oklch(0.82_0.16_225)] bg-[oklch(0.5_0.16_228/0.6)] text-foreground shadow-[0_0_28px_oklch(0.78_0.18_225/0.6)]";
-    case "hub":
-      return "border-[oklch(0.6_0.12_236)] bg-[oklch(0.34_0.1_238/0.65)] text-foreground shadow-[0_0_22px_oklch(0.6_0.12_236/0.4)]";
-    case "data":
-      return "border-[oklch(0.72_0.13_220)] bg-[oklch(0.42_0.12_222/0.55)] text-foreground shadow-[0_0_20px_oklch(0.72_0.13_220/0.4)]";
-    case "tool":
-      return "border-[oklch(0.55_0.09_240)] bg-[oklch(0.32_0.07_242/0.6)] text-foreground shadow-[0_0_18px_oklch(0.55_0.09_240/0.35)]";
-    case "system":
-      return "border-[oklch(0.68_0.02_240)] bg-[oklch(0.42_0.02_242/0.55)] text-foreground shadow-[0_0_16px_oklch(0.68_0.02_240/0.3)]";
-    case "security":
-      return "border-[oklch(0.62_0.24_20)] bg-[oklch(0.44_0.2_22/0.55)] text-foreground shadow-[0_0_24px_oklch(0.62_0.24_20/0.5)]";
-    default:
-      return "border-white/10 bg-white/[0.03] text-muted-foreground";
+// ---- Switchable color palettes for the architecture diagram ----
+type Tone = { border: string; bg: string; glow: number };
+type Palette = {
+  id: string;
+  name: string;
+  mode: "dark" | "light";
+  canvas: string; // diagram canvas background
+  gridColor: string; // faint grid lines
+  text: string; // node text color
+  edge: [string, string]; // edge gradient stops
+  pulse: string; // flowing pulse color
+  tones: Record<NodeKind, Tone>;
+};
+
+// helper: build a tone set from a single hue (mono) or two hues (duo)
+function tones(
+  mode: "dark" | "light",
+  a: number, // primary hue
+  b: number, // secondary hue (duo). pass a for mono
+  secHue: number, // security accent hue
+): Record<NodeKind, Tone> {
+  if (mode === "dark") {
+    return {
+      core: { border: `oklch(0.82 0.15 ${a})`, bg: `oklch(0.5 0.15 ${a} / 0.6)`, glow: 28 },
+      hub: { border: `oklch(0.6 0.12 ${b})`, bg: `oklch(0.34 0.1 ${b} / 0.65)`, glow: 22 },
+      data: { border: `oklch(0.72 0.12 ${a})`, bg: `oklch(0.42 0.11 ${a} / 0.55)`, glow: 20 },
+      tool: { border: `oklch(0.62 0.12 ${b})`, bg: `oklch(0.36 0.1 ${b} / 0.6)`, glow: 18 },
+      system: { border: `oklch(0.6 0.03 ${a})`, bg: `oklch(0.36 0.02 ${a} / 0.55)`, glow: 16 },
+      security: { border: `oklch(0.62 0.22 ${secHue})`, bg: `oklch(0.44 0.18 ${secHue} / 0.55)`, glow: 24 },
+    };
   }
+  return {
+    core: { border: `oklch(0.6 0.16 ${a})`, bg: `oklch(0.92 0.06 ${a} / 0.85)`, glow: 18 },
+    hub: { border: `oklch(0.55 0.13 ${b})`, bg: `oklch(0.9 0.05 ${b} / 0.85)`, glow: 14 },
+    data: { border: `oklch(0.62 0.12 ${a})`, bg: `oklch(0.93 0.05 ${a} / 0.85)`, glow: 12 },
+    tool: { border: `oklch(0.58 0.12 ${b})`, bg: `oklch(0.92 0.05 ${b} / 0.85)`, glow: 12 },
+    system: { border: `oklch(0.6 0.03 ${a})`, bg: `oklch(0.94 0.01 ${a} / 0.85)`, glow: 10 },
+    security: { border: `oklch(0.58 0.2 ${secHue})`, bg: `oklch(0.92 0.09 ${secHue} / 0.85)`, glow: 14 },
+  };
+}
+
+const PALETTES: Palette[] = [
+  {
+    id: "cyan-dark",
+    name: "青蓝单色 · 深色",
+    mode: "dark",
+    canvas: "oklch(0.17 0.026 248 / 0.3)",
+    gridColor: "oklch(1 0 0 / 0.18)",
+    text: "oklch(0.98 0.006 230)",
+    edge: ["oklch(0.82 0.14 225 / 0.9)", "oklch(0.7 0.14 235 / 0.9)"],
+    pulse: "oklch(0.95 0.06 220)",
+    tones: tones("dark", 225, 235, 20),
+  },
+  {
+    id: "cyan-light",
+    name: "青蓝单色 · 浅色",
+    mode: "light",
+    canvas: "oklch(0.98 0.008 225 / 0.9)",
+    gridColor: "oklch(0.55 0.05 235 / 0.14)",
+    text: "oklch(0.25 0.03 240)",
+    edge: ["oklch(0.55 0.14 225 / 0.9)", "oklch(0.5 0.14 235 / 0.9)"],
+    pulse: "oklch(0.6 0.16 220)",
+    tones: tones("light", 225, 235, 20),
+  },
+  {
+    id: "indigo-dark",
+    name: "蓝紫双色 · 深色",
+    mode: "dark",
+    canvas: "oklch(0.17 0.03 275 / 0.35)",
+    gridColor: "oklch(1 0 0 / 0.16)",
+    text: "oklch(0.98 0.006 280)",
+    edge: ["oklch(0.78 0.14 250 / 0.9)", "oklch(0.7 0.16 300 / 0.9)"],
+    pulse: "oklch(0.92 0.08 285)",
+    tones: tones("dark", 250, 300, 15),
+  },
+  {
+    id: "indigo-light",
+    name: "蓝紫双色 · 浅色",
+    mode: "light",
+    canvas: "oklch(0.98 0.01 285 / 0.92)",
+    gridColor: "oklch(0.5 0.06 285 / 0.14)",
+    text: "oklch(0.25 0.04 285)",
+    edge: ["oklch(0.52 0.16 255 / 0.9)", "oklch(0.5 0.18 300 / 0.9)"],
+    pulse: "oklch(0.55 0.18 285)",
+    tones: tones("light", 250, 300, 15),
+  },
+  {
+    id: "emerald-dark",
+    name: "翡翠双色 · 深色",
+    mode: "dark",
+    canvas: "oklch(0.16 0.02 175 / 0.35)",
+    gridColor: "oklch(1 0 0 / 0.15)",
+    text: "oklch(0.98 0.006 170)",
+    edge: ["oklch(0.8 0.14 170 / 0.9)", "oklch(0.75 0.13 200 / 0.9)"],
+    pulse: "oklch(0.92 0.1 175)",
+    tones: tones("dark", 170, 200, 30),
+  },
+  {
+    id: "graphite-light",
+    name: "石墨单色 · 浅色",
+    mode: "light",
+    canvas: "oklch(0.97 0.004 250 / 0.95)",
+    gridColor: "oklch(0.4 0.02 250 / 0.12)",
+    text: "oklch(0.22 0.02 250)",
+    edge: ["oklch(0.5 0.03 250 / 0.9)", "oklch(0.45 0.04 250 / 0.9)"],
+    pulse: "oklch(0.4 0.05 250)",
+    tones: tones("light", 250, 250, 250),
+  },
+];
+
+function nodeStyle(p: Palette, kind: NodeKind): CSSProperties {
+  const t = p.tones[kind];
+  return {
+    borderColor: t.border,
+    background: t.bg,
+    color: p.text,
+    boxShadow: `0 0 ${t.glow}px ${t.border.replace(")", " / 0.5)")}`,
+  };
 }
 
 function Index() {
@@ -230,6 +332,15 @@ function Index() {
 }
 
 function Architecture() {
+  const [paletteId, setPaletteId] = useState(PALETTES[0].id);
+  const palette = PALETTES.find((p) => p.id === paletteId) ?? PALETTES[0];
+  const legend: { kind: NodeKind; label: string }[] = [
+    { kind: "core", label: "核心模块" },
+    { kind: "hub", label: "接入枢纽 AOC-HUB" },
+    { kind: "data", label: "数据层" },
+    { kind: "tool", label: "处理工具" },
+    { kind: "security", label: "安全边界" },
+  ];
   return (
     <section id="system" className="relative z-10 border-t border-white/5">
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
@@ -246,8 +357,34 @@ function Architecture() {
           </p>
         </div>
 
+        {/* Palette switcher */}
+        <div className="mb-5 flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-xs text-muted-foreground">配色预览</span>
+          {PALETTES.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => setPaletteId(p.id)}
+              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition ${
+                p.id === paletteId
+                  ? "border-primary bg-primary/15 text-primary"
+                  : "border-white/10 bg-white/[0.03] text-muted-foreground hover:border-white/25 hover:text-foreground"
+              }`}
+            >
+              <span
+                className="h-2.5 w-2.5 rounded-full"
+                style={{ background: p.tones.core.border, boxShadow: `0 0 6px ${p.tones.core.border}` }}
+              />
+              {p.name}
+            </button>
+          ))}
+        </div>
+
         {/* Diagram canvas */}
-        <div className="relative w-full overflow-hidden rounded-2xl border border-primary/20 bg-card/30 p-4 backdrop-blur-md shadow-[0_0_60px_oklch(0.72_0.16_230/0.12)] sm:p-6">
+        <div
+          className="relative w-full overflow-hidden rounded-2xl border border-primary/20 p-4 backdrop-blur-md shadow-[0_0_60px_oklch(0.72_0.16_230/0.12)] transition-colors duration-500 sm:p-6"
+          style={{ background: palette.canvas }}
+        >
           {/* Top target systems — outputs flow up into these */}
           <div className="relative z-10 mb-2 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
             {TOP_SYSTEMS.map((s) => {
@@ -279,8 +416,7 @@ function Architecture() {
             aria-hidden
             className="pointer-events-none absolute inset-0 opacity-[0.12]"
             style={{
-              backgroundImage:
-                "linear-gradient(to right, oklch(1 0 0 / 0.18) 1px, transparent 1px), linear-gradient(to bottom, oklch(1 0 0 / 0.18) 1px, transparent 1px)",
+              backgroundImage: `linear-gradient(to right, ${palette.gridColor} 1px, transparent 1px), linear-gradient(to bottom, ${palette.gridColor} 1px, transparent 1px)`,
               backgroundSize: "32px 32px",
             }}
           />
@@ -303,15 +439,15 @@ function Architecture() {
                   <path
                     d="M1.4,1 L5,3 L1.4,5"
                     fill="none"
-                    stroke="oklch(0.82 0.14 220)"
+                    stroke={palette.edge[0]}
                     strokeWidth="1.3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                 </marker>
                 <linearGradient id="edge" x1="0" x2="1">
-                  <stop offset="0%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
-                  <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
+                  <stop offset="0%" stopColor={palette.edge[0]} />
+                  <stop offset="100%" stopColor={palette.edge[1]} />
                 </linearGradient>
               </defs>
               {DIAGRAM_EDGES.map((e, i) => {
@@ -334,7 +470,7 @@ function Architecture() {
                       className="edge-flow"
                       d={d}
                       fill="none"
-                      stroke="oklch(0.95 0.06 210)"
+                      stroke={palette.pulse}
                       strokeWidth="1.6"
                       vectorEffect="non-scaling-stroke"
                       strokeLinecap="round"
@@ -353,10 +489,11 @@ function Architecture() {
               return (
                 <div
                   key={n.id}
-                  className={`absolute flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-2 text-center font-medium leading-tight backdrop-blur-md ${big ? "text-sm sm:text-base" : "text-xs sm:text-sm"} ${nodeTone(n.kind)}`}
+                  className={`absolute flex items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border px-2 text-center font-medium leading-tight backdrop-blur-md transition-colors duration-500 ${big ? "text-sm sm:text-base" : "text-xs sm:text-sm"}`}
                   style={{
                     left: `${n.x}%`, top: `${n.y}%`,
                     width: `${n.w}%`, height: `${n.h}%`,
+                    ...nodeStyle(palette, n.kind),
                   }}
                 >
                   {(() => {
@@ -386,11 +523,13 @@ function Architecture() {
 
           {/* Legend */}
           <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-muted-foreground sm:text-sm">
-            <LegendDot className="bg-[oklch(0.82_0.16_225)] shadow-[0_0_8px_oklch(0.82_0.16_225/0.7)]" label="核心模块" />
-            <LegendDot className="bg-[oklch(0.6_0.12_236)] shadow-[0_0_8px_oklch(0.6_0.12_236/0.7)]" label="接入枢纽 AOC-HUB" />
-            <LegendDot className="bg-[oklch(0.72_0.13_220)] shadow-[0_0_8px_oklch(0.72_0.13_220/0.7)]" label="数据层" />
-            <LegendDot className="bg-[oklch(0.68_0.02_240)] shadow-[0_0_8px_oklch(0.68_0.02_240/0.7)]" label="处理工具" />
-            <LegendDot className="bg-[oklch(0.62_0.24_20)] shadow-[0_0_8px_oklch(0.62_0.24_20/0.7)]" label="安全边界" />
+            {legend.map((l) => (
+              <LegendDot
+                key={l.kind}
+                color={palette.tones[l.kind].border}
+                label={l.label}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -398,10 +537,13 @@ function Architecture() {
   );
 }
 
-function LegendDot({ className, label }: { className: string; label: string }) {
+function LegendDot({ color, label }: { color: string; label: string }) {
   return (
     <span className="inline-flex items-center gap-2">
-      <span className={`h-2 w-2 rounded-full ${className}`} />
+      <span
+        className="h-2 w-2 rounded-full"
+        style={{ background: color, boxShadow: `0 0 8px ${color}` }}
+      />
       {label}
     </span>
   );
