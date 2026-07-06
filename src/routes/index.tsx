@@ -303,15 +303,15 @@ function Architecture() {
                   <path
                     d="M1.4,1 L5,3 L1.4,5"
                     fill="none"
-                    stroke="oklch(0.82 0.14 220)"
+                    stroke="oklch(0.85 0.16 225)"
                     strokeWidth="1.3"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                 </marker>
                 <linearGradient id="edge" x1="0" x2="1">
-                  <stop offset="0%" stopColor="oklch(0.82 0.14 220 / 0.9)" />
-                  <stop offset="100%" stopColor="oklch(0.78 0.12 300 / 0.9)" />
+                  <stop offset="0%" stopColor="oklch(0.85 0.16 225 / 0.9)" />
+                  <stop offset="100%" stopColor="oklch(0.58 0.14 236 / 0.9)" />
                 </linearGradient>
               </defs>
               {DIAGRAM_EDGES.map((e, i) => {
