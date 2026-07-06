@@ -334,7 +334,7 @@ function Architecture() {
                       className="edge-flow"
                       d={d}
                       fill="none"
-                      stroke="oklch(0.95 0.06 210)"
+                      stroke="oklch(0.95 0.08 220)"
                       strokeWidth="1.6"
                       vectorEffect="non-scaling-stroke"
                       strokeLinecap="round"
