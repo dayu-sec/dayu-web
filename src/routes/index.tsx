@@ -145,13 +145,14 @@ function tones(
       security: { border: `oklch(0.62 0.22 ${secHue})`, bg: `oklch(0.44 0.18 ${secHue} / 0.55)`, glow: 24 },
     };
   }
+  // Light mode: solid, saturated colored chips with white text — crisp & vivid
   return {
-    core: { border: `oklch(0.6 0.16 ${a})`, bg: `oklch(0.92 0.06 ${a} / 0.85)`, glow: 18 },
-    hub: { border: `oklch(0.55 0.13 ${b})`, bg: `oklch(0.9 0.05 ${b} / 0.85)`, glow: 14 },
-    data: { border: `oklch(0.62 0.12 ${a})`, bg: `oklch(0.93 0.05 ${a} / 0.85)`, glow: 12 },
-    tool: { border: `oklch(0.58 0.12 ${b})`, bg: `oklch(0.92 0.05 ${b} / 0.85)`, glow: 12 },
-    system: { border: `oklch(0.6 0.03 ${a})`, bg: `oklch(0.94 0.01 ${a} / 0.85)`, glow: 10 },
-    security: { border: `oklch(0.58 0.2 ${secHue})`, bg: `oklch(0.92 0.09 ${secHue} / 0.85)`, glow: 14 },
+    core: { border: `oklch(0.55 0.17 ${a})`, bg: `oklch(0.62 0.16 ${a} / 0.95)`, glow: 22 },
+    hub: { border: `oklch(0.5 0.14 ${b})`, bg: `oklch(0.56 0.14 ${b} / 0.95)`, glow: 16 },
+    data: { border: `oklch(0.58 0.13 ${a})`, bg: `oklch(0.64 0.13 ${a} / 0.95)`, glow: 14 },
+    tool: { border: `oklch(0.53 0.13 ${b})`, bg: `oklch(0.59 0.13 ${b} / 0.95)`, glow: 14 },
+    system: { border: `oklch(0.55 0.04 ${a})`, bg: `oklch(0.62 0.03 ${a} / 0.95)`, glow: 12 },
+    security: { border: `oklch(0.55 0.21 ${secHue})`, bg: `oklch(0.62 0.2 ${secHue} / 0.95)`, glow: 18 },
   };
 }
 
