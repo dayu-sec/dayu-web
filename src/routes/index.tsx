@@ -169,17 +169,6 @@ const PALETTES: Palette[] = [
     tones: tones("dark", 225, 235, 20),
   },
   {
-    id: "cyan-light",
-    name: "青蓝单色 · 浅色",
-    mode: "light",
-    canvas: "oklch(0.98 0.008 225 / 0.9)",
-    gridColor: "oklch(0.55 0.05 235 / 0.14)",
-    text: "oklch(0.99 0.005 230)",
-    edge: ["oklch(0.55 0.14 225 / 0.9)", "oklch(0.5 0.14 235 / 0.9)"],
-    pulse: "oklch(0.6 0.16 220)",
-    tones: tones("light", 225, 235, 20),
-  },
-  {
     id: "indigo-dark",
     name: "蓝紫双色 · 深色",
     mode: "dark",
@@ -191,17 +180,6 @@ const PALETTES: Palette[] = [
     tones: tones("dark", 250, 300, 15),
   },
   {
-    id: "indigo-light",
-    name: "蓝紫双色 · 浅色",
-    mode: "light",
-    canvas: "oklch(0.98 0.01 285 / 0.92)",
-    gridColor: "oklch(0.5 0.06 285 / 0.14)",
-    text: "oklch(0.99 0.006 285)",
-    edge: ["oklch(0.52 0.16 255 / 0.9)", "oklch(0.5 0.18 300 / 0.9)"],
-    pulse: "oklch(0.55 0.18 285)",
-    tones: tones("light", 250, 300, 15),
-  },
-  {
     id: "emerald-dark",
     name: "翡翠双色 · 深色",
     mode: "dark",
@@ -211,17 +189,6 @@ const PALETTES: Palette[] = [
     edge: ["oklch(0.8 0.14 170 / 0.9)", "oklch(0.75 0.13 200 / 0.9)"],
     pulse: "oklch(0.92 0.1 175)",
     tones: tones("dark", 170, 200, 30),
-  },
-  {
-    id: "graphite-light",
-    name: "石墨单色 · 浅色",
-    mode: "light",
-    canvas: "oklch(0.97 0.004 250 / 0.95)",
-    gridColor: "oklch(0.4 0.02 250 / 0.12)",
-    text: "oklch(0.99 0.004 250)",
-    edge: ["oklch(0.5 0.03 250 / 0.9)", "oklch(0.45 0.04 250 / 0.9)"],
-    pulse: "oklch(0.4 0.05 250)",
-    tones: tones("light", 250, 250, 250),
   },
 ];
 
