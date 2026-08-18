@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logoGlyph from "@/assets/logo-glyph.png.asset.json";
+import logoGlyph from "@/assets/logo-glyph.png";
 
 export function SiteFooter() {
   return (
@@ -13,8 +13,8 @@ export function SiteFooter() {
                   aria-hidden
                   className="h-5 w-5 bg-primary"
                   style={{
-                    maskImage: `url(${logoGlyph.url})`,
-                    WebkitMaskImage: `url(${logoGlyph.url})`,
+                    maskImage: `url(${logoGlyph})`,
+                    WebkitMaskImage: `url(${logoGlyph})`,
                     maskRepeat: "no-repeat",
                     WebkitMaskRepeat: "no-repeat",
                     maskPosition: "center",

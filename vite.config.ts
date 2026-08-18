@@ -11,5 +11,21 @@ export default defineConfig({
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    // Static SPA: build-time prerender of the app shell into index.html.
+    // Nginx serves dist/client directly with `try_files ... /index.html`.
+    // The shell hydrates and renders every route client-side; no Node server needed.
+    // outputPath "/index" => shell is written to index.html at the site root
+    // (the plugin does outputPath + ".html"; "/" alone would produce ".html").
+    spa: {
+      enabled: true,
+      prerender: {
+        enabled: true,
+        outputPath: "/index",
+        retryCount: 3,
+      },
+    },
   },
+  // Deploy target is a static file server (Nginx), so the nitro server bundle
+  // is dead weight. `false` skips it entirely; only dist/client ships.
+  nitro: false,
 });

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logoGlyph from "@/assets/logo-glyph.png.asset.json";
+import logoGlyph from "@/assets/logo-glyph.png";
 
 const NAV: { label: string; to: string; hash?: string }[] = [
   { label: "首页", to: "/" },
@@ -20,8 +20,8 @@ export function SiteHeader() {
               aria-hidden
               className="h-5 w-5 bg-primary transition-transform group-hover:scale-110"
               style={{
-                maskImage: `url(${logoGlyph.url})`,
-                WebkitMaskImage: `url(${logoGlyph.url})`,
+                maskImage: `url(${logoGlyph})`,
+                WebkitMaskImage: `url(${logoGlyph})`,
                 maskRepeat: "no-repeat",
                 WebkitMaskRepeat: "no-repeat",
                 maskPosition: "center",
