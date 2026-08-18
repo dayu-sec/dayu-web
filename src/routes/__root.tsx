@@ -106,6 +106,16 @@ function RootShell({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        {/* ICP 备案号：管局预检抓取静态 HTML 源码，SPA 空壳里必须带一份；
+            hydration 只接管 children，不会触碰此节点 */}
+        <a
+          href="https://beian.miit.gov.cn"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="sr-only"
+        >
+          湘ICP备2025110699号-1
+        </a>
         <Scripts />
       </body>
     </html>

@@ -9,19 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as OpensourceRouteImport } from './routes/opensource'
-import { Route as CaseRouteImport } from './routes/case'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CaseRouteImport } from './routes/case'
+import { Route as OpensourceRouteImport } from './routes/opensource'
 
-const OpensourceRoute = OpensourceRouteImport.update({
-  id: '/opensource',
-  path: '/opensource',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CaseRoute = CaseRouteImport.update({
-  id: '/case',
-  path: '/case',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -29,9 +24,14 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const CaseRoute = CaseRouteImport.update({
+  id: '/case',
+  path: '/case',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpensourceRoute = OpensourceRouteImport.update({
+  id: '/opensource',
+  path: '/opensource',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -71,18 +71,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/opensource': {
-      id: '/opensource'
-      path: '/opensource'
-      fullPath: '/opensource'
-      preLoaderRoute: typeof OpensourceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/case': {
-      id: '/case'
-      path: '/case'
-      fullPath: '/case'
-      preLoaderRoute: typeof CaseRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -92,11 +85,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/case': {
+      id: '/case'
+      path: '/case'
+      fullPath: '/case'
+      preLoaderRoute: typeof CaseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opensource': {
+      id: '/opensource'
+      path: '/opensource'
+      fullPath: '/opensource'
+      preLoaderRoute: typeof OpensourceRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

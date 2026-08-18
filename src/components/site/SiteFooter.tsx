@@ -53,7 +53,17 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-white/5 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center">
-          <span>© {new Date().getFullYear()} 大禹安全 · 数字业务保障基础设施</span>
+          <div className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-3">
+            <span>© {new Date().getFullYear()} 大禹安全 · 数字业务保障基础设施</span>
+            <a
+              href="https://beian.miit.gov.cn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              湘ICP备2025110699号-1
+            </a>
+          </div>
           <span>开源 · 可审计 · 可持续演进</span>
         </div>
       </div>
