@@ -116,6 +116,14 @@ function RootShell({ children }: { children: React.ReactNode }) {
         >
           湘ICP备2025110699号-1
         </a>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43019002002848"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="sr-only"
+        >
+          湘公网安备43019002002848号
+        </a>
         <Scripts />
       </body>
     </html>

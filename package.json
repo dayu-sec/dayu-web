@@ -1,8 +1,16 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "dayu-web",
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "homepage": "https://preview.dy-sec.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dayu-sec/dayu-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dayu-sec/dayu-web/issues"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",

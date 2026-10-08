@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import logoGlyph from "@/assets/logo-glyph.png";
+import beianLogo from "@/assets/beian-logo.png";
 
 export function SiteFooter() {
   return (
@@ -62,6 +63,15 @@ export function SiteFooter() {
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
               湘ICP备2025110699号-1
+            </a>
+            <a
+              href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43019002002848"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <img src={beianLogo} alt="" aria-hidden className="h-4 w-4 shrink-0" />
+              <span>湘公网安备43019002002848号</span>
             </a>
           </div>
           <span>开源 · 可审计 · 可持续演进</span>
