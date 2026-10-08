@@ -83,9 +83,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "Lovable App" },
       { name: "twitter:description", content: "Visual Refresh Studio enhances website aesthetics by applying custom visual styles and updating hero images." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2699e248-9dee-41d1-8854-9f1e9ee5a05f/id-preview-8b233505--bd8d2bc3-6c46-4f10-b597-356de238cb48.lovable.app-1779948189722.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2699e248-9dee-41d1-8854-9f1e9ee5a05f/id-preview-8b233505--bd8d2bc3-6c46-4f10-b597-356de238cb48.lovable.app-1779948189722.png" },
+      { name: "theme-color", content: "#080F1A" },
     ],
     links: [
+      { rel: "icon", href: "/favicon.ico", sizes: "48x48" },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      { rel: "manifest", href: "/site.webmanifest" },
       {
         rel: "stylesheet",
         href: appCss,
